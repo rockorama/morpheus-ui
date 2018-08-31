@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"storybook": "start-storybook -p 9001 -c .storybook"
+		"start": "yarn open && start-storybook -p 9001 -c .storybook",
+		"open": "node scripts/openDemo"
 	},
 	"author": "",
 	"license": "ISC",
@@ -12,7 +13,8 @@
 		"@storybook/react": "^3.4.10"
 	},
 	"dependencies": {
-		"react-dom": "^16.4.2",
-		"morpheus-ui": "*"
+		"@morpheus-ui/core": "*",
+		"react": "^16.4.2",
+		"react-dom": "^16.4.2"
 	}
 }
