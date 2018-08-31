@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Button, StyleSheet } from 'react-native-web'
+import { Button as RNWButtom, StyleSheet } from 'react-native-web'
 
 export default class Button extends Component<{}> {
 	render() {
@@ -14,7 +14,7 @@ export default class Button extends Component<{}> {
 			title
 		} = this.props
 
-		return <Button />
+		return <RNWButtom />
 	}
 }
 
