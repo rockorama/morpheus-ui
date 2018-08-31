@@ -15,7 +15,7 @@
 		"build": "lerna run build",
 		"start:core": "cd packages/core && yarn start",
 		"start:demo": "cd demo && yarn start",
-		"start": "nf start",
+		"start": "yarn build && nf start",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {

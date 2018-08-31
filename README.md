@@ -19,10 +19,8 @@ yarn bootstrap
 yarn build
 ```
 
-## Run
-
-Whenever code changes in more than one package, you should build everything (via `lerna`) with:
+## Run Demo
 
 ```
-yarn build
+yarn start
 ```
