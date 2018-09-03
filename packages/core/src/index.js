@@ -1,7 +1,3 @@
-import Button from './components/Button'
-
-export default {
-	Button
-}
+// @flow
 
 export { default as Button } from './components/Button'

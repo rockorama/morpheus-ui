@@ -1,20 +1,21 @@
 {
-	"name": "website",
-	"version": "0.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "yarn open && start-storybook -p 9001 -c .storybook",
-		"open": "node scripts/openDemo"
-	},
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@storybook/react": "^3.4.10"
-	},
-	"dependencies": {
-		"@morpheus-ui/core": "*",
-		"react": "^16.4.2",
-		"react-dom": "^16.4.2"
-	}
+  "name": "website",
+  "version": "0.0.0",
+  "author": "Mainframe",
+  "license": "MIT",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn open && start-storybook -p 9001 -c .storybook",
+    "open": "node scripts/openDemo"
+  },
+  "dependencies": {
+    "@morpheus-ui/core": "*",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/react": "^4.0.0-alpha.20"
+  }
 }
