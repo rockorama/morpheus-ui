@@ -21,8 +21,8 @@
     "flow": "flow check",
     "jest": "jest --config jest.config.js",
     "jest:ci": "jest --ci --config jest.config.ci.js --runInBand",
-    "test": "yarn lint && yarn flow && yarn test",
-    "test:ci": "yarn lint && yarn flow && yarn test:ci"
+    "test": "yarn lint && yarn flow && yarn jest",
+    "test:ci": "yarn lint && yarn flow && yarn jest:ci"
   },
   "repository": {
     "type": "git",
