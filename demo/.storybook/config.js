@@ -15,9 +15,8 @@ setOptions({
   enableShortcuts: true,
 })
 
-function loadStories() {
-  require('../stories/index.js')
-  // You can require as many stories as you need.
-}
+const req = require.context('../stories', true, /.js$/)
 
-configure(loadStories, module)
+configure(() => {
+  req.keys().forEach(filename => req(filename))
+}, module)
