@@ -1,30 +1,35 @@
 {
-	"name": "@morpheus-ui/core",
-	"version": "0.0.1",
-	"description": "UI Library from Mainframe",
-	"module": "lib/index.js",
-	"main": "lib/index.js",
-	"scripts": {
-		"build": "babel src --out-dir lib --ignore test.js",
-		"start": "babel src --out-dir lib  --watch --ignore test.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
-	},
-	"author": "Mainframe",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/MainframeHQ/morpheus-ui/issues"
-	},
-	"homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
-	"dependencies": {
-		"react-art": "^16.4.2",
-		"react-native-web": "^0.8.9"
-	},
-	"peerDependencies": {
-		"react": "^16.4.2",
-		"react-dom": "^16.4.2"
-	}
+  "name": "@morpheus-ui/core",
+  "version": "0.0.1",
+  "description": "UI Library from Mainframe",
+  "module": "lib/index.js",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
+  },
+  "author": "Mainframe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MainframeHQ/morpheus-ui/issues"
+  },
+  "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
+  "scripts": {
+    "build": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js",
+    "start": "BABEL_ENV='test' babel src --out-dir lib  --watch --ignore test.js",
+    "flow:install": "flow-typed install --ignoreDeps=dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "react-art": "^16.4.2",
+    "react-native-web": "^0.8.9"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.80.0"
+  }
 }

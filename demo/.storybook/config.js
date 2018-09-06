@@ -1,8 +1,22 @@
 import { configure } from '@storybook/react'
 
-function loadStories() {
-	require('../stories/index.js')
-	// You can require as many stories as you need.
-}
+import { setOptions } from '@storybook/addon-options'
 
-configure(loadStories, module)
+setOptions({
+  name: 'Morpheus UI',
+  url: 'https://github.com/MainframeHQ/morpheus-ui',
+  goFullScreen: false,
+  showAddonsPanel: true,
+  showSearchBox: false,
+  addonPanelInRight: false,
+  sortStoriesByKind: false,
+  hierarchySeparator: /\./,
+  hierarchyRootSeparator: /\|/,
+  enableShortcuts: true,
+})
+
+const req = require.context('../stories', true, /.js$/)
+
+configure(() => {
+  req.keys().forEach(filename => req(filename))
+}, module)
