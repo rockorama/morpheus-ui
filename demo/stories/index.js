@@ -14,18 +14,21 @@ storiesOf('NewButton', module)
   .add('outlineStyle', () => (
     <Button outlineStyle={true} title="Hello Button" />
   ))
-  .add('customStyle', () => (
-    <Button customStyle={styles.myCustomStyle} title="Hello Button" />
+  .add('buttonStyle', () => (
+    <Button buttonStyle={styles.myButtonStyle} title="Hello Button" />
   ))
   .add('textStyle', () => (
-    <Button textStyle={styles.myCustomTextStyle} title="Hello Button" />
+    <Button textStyle={styles.myTextStyle} title="Hello Button" />
   ))
 
 const styles = StyleSheet.create({
-  myCustomStyle: {
+  myButtonStyle: {
     backgroundColor: '#00A7E7',
+    borderWidth: 2,
+    borderColor: '#09142E',
   },
-  myCustomTextStyle: {
-    color: '#09142E',
+  myTextStyle: {
+    color: '#102043',
+    fontWeight: 'bold',
   },
 })

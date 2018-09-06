@@ -6,7 +6,8 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native-web'
 type Props = {
   title: string,
   disabled?: boolean,
-  customStyle?: number | Array<number | Object> | Object,
+  buttonStyle?: number | Array<number | Object> | Object,
+  textStyle?: number | Array<number | Object> | Object,
   outlineStyle?: boolean,
   onPress?: Function,
 }
@@ -17,26 +18,25 @@ export default class Button extends Component<Props> {
       title,
       disabled,
       outlineStyle,
-      customStyle,
+      buttonStyle,
       textStyle,
       onPress,
     } = this.props
 
-    const containerStyles = [styles.container]
-    containerStyles.push(styles.button)
+    const buttonStyles = [styles.button]
     const textStyles = [styles.text]
 
     if (disabled) {
-      containerStyles.push(styles.disabled)
+      buttonStyles.push(styles.disabled)
     }
 
     if (outlineStyle) {
-      containerStyles.push(styles.outline)
+      buttonStyles.push(styles.outline)
       textStyles.push(styles.redText)
     }
 
-    if (customStyle) {
-      containerStyles.push(customStyle)
+    if (buttonStyle) {
+      buttonStyles.push(buttonStyle)
     }
 
     if (textStyle) {
@@ -45,7 +45,7 @@ export default class Button extends Component<Props> {
 
     return (
       <TouchableOpacity
-        style={containerStyles}
+        style={buttonStyles}
         disabled={disabled}
         onPress={onPress}>
         <Text style={textStyles}>{this.props.title}</Text>
@@ -55,9 +55,6 @@ export default class Button extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   button: {
     flex: 1,
     backgroundColor: '#DA1157',
@@ -79,6 +76,6 @@ const styles = StyleSheet.create({
   outline: {
     borderColor: '#DA1157',
     borderWidth: 2,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 })
