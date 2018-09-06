@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 import { Button } from '@morpheus-ui/core'
 import { View, Text, StyleSheet } from 'react-native-web'
 
-storiesOf('NewButton', module)
+storiesOf('Button', module)
   .add('normal', () => (
     <Button onPress={action('clicked')} title="Hello Button" />
   ))
