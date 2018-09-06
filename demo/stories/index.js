@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { OnyxButton } from '@morpheus-ui/core'
 import { Button } from '@morpheus-ui/core'
 import { View, Text, StyleSheet } from 'react-native-web'
 
