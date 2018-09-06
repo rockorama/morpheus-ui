@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Button } from '@morpheus-ui/core'
 import { StyleSheet } from 'react-native-web'
+import COLORS from '../../packages/core/src/colors'
 
 storiesOf('Button', module)
   .add('normal', () => (
@@ -23,12 +24,12 @@ storiesOf('Button', module)
 
 const styles = StyleSheet.create({
   myButtonStyle: {
-    backgroundColor: '#00A7E7',
+    backgroundColor: COLORS.LIGHTEST_BLUE,
     borderWidth: 2,
-    borderColor: '#09142E',
+    borderColor: COLORS.DARK_BLUE,
   },
   myTextStyle: {
-    color: '#102043',
+    color: COLORS.PRIMARY_BLUE,
     fontWeight: 'bold',
   },
 })

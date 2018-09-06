@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native-web'
+import COLORS from '../colors'
 
 type Props = {
   title: string,
@@ -57,25 +58,25 @@ export default class Button extends Component<Props> {
 const styles = StyleSheet.create({
   button: {
     flex: 1,
-    backgroundColor: '#DA1157',
+    backgroundColor: COLORS.PRIMARY_RED,
     height: 45,
     borderRadius: 23,
     justifyContent: 'center',
   },
   text: {
     fontSize: 18,
-    color: 'white',
+    color: COLORS.WHITE,
     textAlign: 'center',
   },
   redText: {
-    color: '#DA1157',
+    color: COLORS.PRIMARY_RED,
   },
   disabled: {
-    backgroundColor: '#ffc1dc',
+    backgroundColor: COLORS.LIGHTEST_RED,
   },
   outline: {
-    borderColor: '#DA1157',
+    borderColor: COLORS.PRIMARY_RED,
     borderWidth: 2,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: COLORS.TRANSPARENT_WHITE,
   },
 })
