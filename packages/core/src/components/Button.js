@@ -48,7 +48,7 @@ export default class Button extends Component<Props> {
         style={buttonStyles}
         disabled={disabled}
         onPress={onPress}>
-        <Text style={textStyles}>{this.props.title}</Text>
+        <Text style={textStyles}>{title}</Text>
       </TouchableOpacity>
     )
   }

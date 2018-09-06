@@ -4,7 +4,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Button } from '@morpheus-ui/core'
-import { Text, StyleSheet } from 'react-native-web'
+import { StyleSheet } from 'react-native-web'
 
 storiesOf('Button', module)
   .add('normal', () => (
