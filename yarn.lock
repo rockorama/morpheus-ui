@@ -1413,6 +1413,21 @@
     react-inspector "^2.2.2"
     uuid "^3.2.1"
 
+"@storybook/addon-options@^3.4.10":
+  version "3.4.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.4.10.tgz#0b6ed3e22b7541a86a7c507ff80356d33784eda9"
+  dependencies:
+    babel-runtime "^6.26.0"
+
+"@storybook/addon-viewport@^3.4.10":
+  version "3.4.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-3.4.10.tgz#c89495b52801921ce0656a4fef280ae96b1aef2f"
+  dependencies:
+    "@storybook/components" "3.4.10"
+    babel-runtime "^6.26.0"
+    global "^4.3.2"
+    prop-types "^15.6.1"
+
 "@storybook/addons@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.20.tgz#8bde211b59a45a7e878492946993e4e37625447e"
