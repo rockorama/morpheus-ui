@@ -6,16 +6,30 @@ import { action } from '@storybook/addon-actions'
 import { InputText } from '@morpheus-ui/core'
 
 storiesOf('Text Input', module)
-  .add('normal', () => (
-    <InputText />
+  .add('full width', () => (
+    <InputText
+      fullwidth="true"
+      placeholder="placeholder for full width text input"
+    />
   ))
-  // .add('altered', () => (
-  //   <Button
-  //     onPress={action('clicked')}
-  //     title={
-  //       <span role="img" aria-label="so cool">
-  //         😀 😎 👍 💯
-  //       </span>
-  //     }
-  //   />
-  // ))
+  .add('half width', () => (
+    <InputText
+      halfwidth="true"
+      placeholder="placeholder for half width text input"
+    />
+  ))
+  .add('multiline', () => (
+    <InputText
+      multiline="true"
+      placeholder="placeholder for multiline text input"
+    />
+  ))
+  .add('singleLine', () => (
+    <InputText
+      singleline="true"
+      placeholder="placeholder for single line text input"
+    />
+  ))
+  .add('white', () => (
+    <InputText white="true" placeholder="placeholder for white text input" />
+  ))

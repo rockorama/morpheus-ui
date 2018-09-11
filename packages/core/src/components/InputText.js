@@ -7,6 +7,11 @@ import { BASIC_SPACING, INPUT_HEIGHT } from '../styles'
 
 type Props = {
   white: boolean,
+  halfWidth: boolean,
+  fullWidth: boolean,
+  multiline: boolean,
+  singleLine: boolean,
+  placeholder: string,
   onBlur?: () => void,
   onFocus?: () => void,
 }
@@ -40,10 +45,17 @@ export default class InputText extends Component<Props, State> {
     if (this.state.active) {
       fieldContainerStyles.push(styles.activeFieldContainer)
     }
+    console.log(this.state)
 
     if (this.props.white) {
       fieldContainerStyles.push({ backgroundColor: COLORS.WHITE })
       fieldStyles.push({ backgroundColor: COLORS.WHITE })
+    }
+
+    if (this.props.halfwidth) {
+      fieldStyles.push(styles.half)
+    } else {
+      fieldStyles.push(styles.full)
     }
 
     if (this.props.multiline) {
@@ -53,13 +65,16 @@ export default class InputText extends Component<Props, State> {
     }
 
     return (
-      <TextInput
-        {...this.props}
-        style={fieldStyles}
-        value={this.state.text}
-        onBlur={this.onBlur}
-        onFocus={this.onFocus}
-      />
+      <View style={fieldContainerStyles}>
+        <TextInput
+          {...this.props}
+          style={fieldStyles}
+          value={this.state.text}
+          onBlur={this.onBlur}
+          onFocus={this.onFocus}
+          placeholder={this.props.placeholder}
+        />
+      </View>
     )
   }
 }
@@ -82,8 +97,12 @@ const styles = StyleSheet.create({
     color: COLORS.DARK_GRAY,
     backgroundColor: COLORS.LIGHT_GRAY,
     outline: 'none',
+  },
+  half: {
+    width: '50%',
+  },
+  full: {
     width: '100%',
-    maxWidth: '100%',
   },
   activeFieldContainer: {
     borderStyle: 'solid',
