@@ -45,7 +45,6 @@ export default class InputText extends Component<Props, State> {
     if (this.state.active) {
       fieldContainerStyles.push(styles.activeFieldContainer)
     }
-    console.log(this.state)
 
     if (this.props.white) {
       fieldContainerStyles.push({ backgroundColor: COLORS.WHITE })
