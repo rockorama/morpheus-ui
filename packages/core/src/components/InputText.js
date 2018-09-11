@@ -7,10 +7,10 @@ import { BASIC_SPACING, INPUT_HEIGHT } from '../styles'
 
 type Props = {
   white: boolean,
-  halfWidth: boolean,
-  fullWidth: boolean,
+  halfwidth: boolean,
+  fullwidth: boolean,
   multiline: boolean,
-  singleLine: boolean,
+  singleline: boolean,
   placeholder: string,
   onBlur?: () => void,
   onFocus?: () => void,
@@ -68,7 +68,6 @@ export default class InputText extends Component<Props, State> {
         <TextInput
           {...this.props}
           style={fieldStyles}
-          value={this.state.text}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           placeholder={this.props.placeholder}
