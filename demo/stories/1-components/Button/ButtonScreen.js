@@ -50,4 +50,5 @@ const ButtonScreen = () => (
   </UIExplorer>
 )
 
+export default ButtonScreen
 storiesOf('Components', module).add('Button', ButtonScreen)
