@@ -4,30 +4,36 @@
  * @flow
  */
 
-import AppText from './AppText';
-import ExternalLink from './ExternalLink';
-import insertBetween from './insertBetween';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import AppText from './AppText'
+import ExternalLink from './ExternalLink'
+import insertBetween from './insertBetween'
 
-const Title = ({ children }) => <AppText style={styles.title}>{children}</AppText>;
+const Title = ({ children }) => (
+  <AppText style={styles.title}>{children}</AppText>
+)
 
 export const Description = ({ children }) => (
   <AppText style={styles.description}>
-    {insertBetween(() => <Divider key={Math.random()} />, React.Children.toArray(children))}
+    {insertBetween(
+      () => (
+        <Divider key={Math.random()} />
+      ),
+      React.Children.toArray(children),
+    )}
   </AppText>
-);
+)
 
-const Divider = () => <View style={styles.divider} />;
+const Divider = () => <View style={styles.divider} />
 
 const SourceLink = ({ uri }) => (
   <ExternalLink
-    href={`https://github.com/necolas/react-native-web/tree/master/packages/website/storybook/${uri}`}
-    style={styles.link}
-  >
+    href={`https://github.com/MainframeHQ/morpheus-ui/tree/master/packages/core/src/components${uri}`}
+    style={styles.link}>
     View source code on GitHub
   </ExternalLink>
-);
+)
 
 const UIExplorer = ({ children, description, sections, title, url }) => (
   <View style={styles.root}>
@@ -36,19 +42,19 @@ const UIExplorer = ({ children, description, sections, title, url }) => (
     {children}
     {url && <SourceLink uri={url} />}
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   root: {
     padding: '1rem',
     flex: 1,
-    flexBasis: 'auto'
+    flexBasis: 'auto',
   },
   divider: {
-    height: '1.3125rem'
+    height: '1.3125rem',
   },
   title: {
-    fontSize: '2rem'
+    fontSize: '2rem',
   },
   description: {
     color: '#666',
@@ -56,14 +62,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     fontSize: '1.25rem',
     marginTop: 'calc(0.5 * 1.3125rem)',
-    marginBottom: 'calc(1.5 * 1.3125rem)'
+    marginBottom: 'calc(1.5 * 1.3125rem)',
   },
   link: {
     color: '#1B95E0',
     fontSize: '1rem',
     marginTop: 'calc(0.5 * 1.3125rem)',
-    textDecorationLine: 'underline'
-  }
-});
+    textDecorationLine: 'underline',
+  },
+})
 
-export default UIExplorer;
+export default UIExplorer
