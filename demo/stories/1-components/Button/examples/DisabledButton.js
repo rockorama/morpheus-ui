@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { Button } from '@morpheus-ui/core'
 import React from 'react'
 
@@ -15,7 +15,5 @@ const DisabledButtonExample = () => (
     />
   </View>
 )
-
-const styles = StyleSheet.create({})
 
 export default DisabledButtonExample

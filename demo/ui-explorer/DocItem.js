@@ -1,26 +1,30 @@
+/* taken from React Native for Web's Storybook */
+/* which is under MIT license */
+/* RNW ui-explorer url: https://github.com/necolas/react-native-web/tree/0e81c6ef2758d4ca9b2099b1d04a4f8c417f0f43/packages/website/storybook/ui-explorer */
+
 /* eslint-disable react/prop-types */
 
 /**
  * @flow
  */
 
-import AppText from './AppText';
-import insertBetween from './insertBetween';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import AppText from './AppText'
+import insertBetween from './insertBetween'
 
-const Divider = () => <View style={styles.verticalDivider} />;
+const Divider = () => <View style={styles.verticalDivider} />
 
 const createDescription = description => {
-  const nodeList = React.Children.toArray(description);
-  let content;
+  const nodeList = React.Children.toArray(description)
+  let content
   if (nodeList.length === 1) {
-    content = <Text>{nodeList}</Text>;
+    content = <Text>{nodeList}</Text>
   } else {
-    content = insertBetween(() => <Divider key={Math.random()} />, nodeList);
+    content = insertBetween(() => <Divider key={Math.random()} />, nodeList)
   }
-  return <Text style={styles.text}>{content}</Text>;
-};
+  return <Text style={styles.text}>{content}</Text>
+}
 
 const DocItem = ({ description, example = {}, name, typeInfo, label }) => (
   <View style={styles.example}>
@@ -29,21 +33,28 @@ const DocItem = ({ description, example = {}, name, typeInfo, label }) => (
         <PropText label={label} name={name} typeInfo={typeInfo} />
       </AppText>
     )}
-    {description && <View style={styles.description}>{createDescription(description)}</View>}
+    {description && (
+      <View style={styles.description}>{createDescription(description)}</View>
+    )}
     {(example.render || example.code) && (
       <View style={styles.renderBox}>
         <AppText style={styles.exampleText}>Example</AppText>
         {example.render && <View>{example.render()}</View>}
-        {example.render && example.code && <View style={styles.verticalDivider} />}
+        {example.render &&
+          example.code && <View style={styles.verticalDivider} />}
         {example.code && <Text style={styles.code}>{example.code}</Text>}
       </View>
     )}
   </View>
-);
+)
 
 const PropText = ({ label, name, typeInfo }) => (
   <AppText>
-    {label && <Text style={[styles.label, label === 'web' && styles.webLabel]}>{label}</Text>}
+    {label && (
+      <Text style={[styles.label, label === 'web' && styles.webLabel]}>
+        {label}
+      </Text>
+    )}
     <Text style={styles.propName}>{name}</Text>
     {typeInfo && (
       <Text>
@@ -52,26 +63,26 @@ const PropText = ({ label, name, typeInfo }) => (
       </Text>
     )}
   </AppText>
-);
+)
 
 const styles = StyleSheet.create({
   code: {
     fontFamily: 'monospace, monospace',
     fontSize: '1rem',
-    lineHeight: '1.3125em'
+    lineHeight: '1.3125em',
   },
   example: {
-    marginBottom: 'calc(1.5 * 1.3125rem)'
+    marginBottom: 'calc(1.5 * 1.3125rem)',
   },
   title: {
-    fontSize: '1rem'
+    fontSize: '1rem',
   },
   text: {
     alignItems: 'stretch',
     display: 'flex',
     flexDirection: 'column',
     fontSize: '1rem',
-    lineHeight: '1.3125em'
+    lineHeight: '1.3125em',
   },
   label: {
     backgroundColor: '#ddd',
@@ -79,34 +90,34 @@ const styles = StyleSheet.create({
     color: '#555',
     marginRight: '0.5rem',
     paddingVertical: '0.125rem',
-    paddingHorizontal: '0.5rem'
+    paddingHorizontal: '0.5rem',
   },
   propName: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   webLabel: {
     backgroundColor: '#bdebff',
-    color: '#025268'
+    color: '#025268',
   },
   description: {
-    marginTop: 'calc(0.5 * 1.3125rem)'
+    marginTop: 'calc(0.5 * 1.3125rem)',
   },
   renderBox: {
     borderColor: '#E6ECF0',
     borderWidth: 1,
     padding: '1.3125rem',
-    marginTop: '1.3125rem'
+    marginTop: '1.3125rem',
   },
   exampleText: {
     color: '#AAB8C2',
     fontSize: '0.8rem',
     fontWeight: 'bold',
     marginBottom: 'calc(0.5 * 1.3125rem)',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   verticalDivider: {
-    height: '1rem'
-  }
-});
+    height: '1rem',
+  },
+})
 
-export default DocItem;
+export default DocItem
