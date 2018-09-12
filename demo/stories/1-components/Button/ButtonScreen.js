@@ -19,7 +19,7 @@ import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
 
-const ButtonScreen = () => (
+const buttonScreen = () => (
   <UIExplorer title="Button" url="1-components/Button">
     <Description>Displays a customizable button</Description>
     <Section title="Props">
@@ -50,5 +50,5 @@ const ButtonScreen = () => (
   </UIExplorer>
 )
 
-export default ButtonScreen
-storiesOf('Components', module).add('Button', ButtonScreen)
+export default buttonScreen
+storiesOf('Components', module).add('Button', buttonScreen)
