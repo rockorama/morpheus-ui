@@ -1,22 +1,23 @@
-import { configure } from '@storybook/react'
+import { setOptions } from '@storybook/addon-options';
+import centered from './decorator-centered';
+import { configure, addDecorator } from '@storybook/react';
 
-import { setOptions } from '@storybook/addon-options'
+const context = require.context('../', true, /Screen\.js$/);
+
+addDecorator(centered);
 
 setOptions({
-  name: 'Morpheus UI',
-  url: 'https://github.com/MainframeHQ/morpheus-ui',
+  name: 'React Native Web',
+  url: 'https://necolas.github.io/react-native-web',
   goFullScreen: false,
-  showAddonsPanel: true,
-  showSearchBox: false,
   addonPanelInRight: false,
-  sortStoriesByKind: false,
-  hierarchySeparator: /\./,
-  hierarchyRootSeparator: /\|/,
-  enableShortcuts: true,
-})
+  showSearchBox: false,
+  showAddonPanel: false,
+  showStoriesPanel: true
+});
 
-const req = require.context('../stories', true, /.js$/)
+function loadStories() {
+  context.keys().forEach(context);
+}
 
-configure(() => {
-  req.keys().forEach(filename => req(filename))
-}, module)
+configure(loadStories, module);
