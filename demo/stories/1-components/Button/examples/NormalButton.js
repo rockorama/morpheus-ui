@@ -6,16 +6,12 @@ import { StyleSheet, View } from 'react-native'
 import { Button } from '@morpheus-ui/core'
 import React from 'react'
 
-const DisabledButtonExample = () => (
+const NormalButtonExample = () => (
   <View>
-    <Button
-      onPress={console.log('hi')}
-      disabled={true}
-      title="disabled button"
-    />
+    <Button onPress={console.log('button pressed')} title="normal button" />
   </View>
 )
 
 const styles = StyleSheet.create({})
 
-export default DisabledButtonExample
+export default NormalButtonExample
