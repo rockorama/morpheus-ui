@@ -18,6 +18,10 @@ setOptions({
   showSearchBox: false,
   showAddonPanel: false,
   showStoriesPanel: true,
+  sortStoriesByKind: false,
+  hierarchySeparator: /\./,
+  hierarchyRootSeparator: /\|/,
+  enableShortcuts: true,
 })
 
 function loadStories() {
