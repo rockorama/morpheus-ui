@@ -10,7 +10,7 @@
     "open": "node scripts/openDemo"
   },
   "dependencies": {
-    "@morpheus-ui/core": "*",
+    "@morpheus-ui/core": "**",
     "react": "^16.4.2",
     "react-native": "^0.57.0",
     "react-dom": "^16.4.2"
