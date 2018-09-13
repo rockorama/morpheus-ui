@@ -10,7 +10,7 @@ class OutlinedButtonExample extends React.Component {
     return (
       <View>
         <Button
-          onPress={console.log('button pressed')}
+          onPress={action('clicked')}
           title="outlined button"
           outlineStyle={true}
         />

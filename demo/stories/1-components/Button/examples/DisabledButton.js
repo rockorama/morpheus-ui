@@ -10,7 +10,7 @@ class DisabledButtonExample extends React.Component {
     return (
       <View>
         <Button
-          onPress={console.log('button pressed')}
+          onPress={action('clicked')}
           disabled={true}
           title="disabled button"
         />

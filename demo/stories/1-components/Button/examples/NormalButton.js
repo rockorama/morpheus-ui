@@ -9,7 +9,7 @@ class NormalButtonExample extends React.Component {
   render() {
     return (
       <View>
-        <Button onPress={console.log('button pressed')} title="normal button" />
+        <Button onPress={action('clicked')} title="normal button" />
       </View>
     )
   }
