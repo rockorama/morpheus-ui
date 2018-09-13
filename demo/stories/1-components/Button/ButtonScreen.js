@@ -27,7 +27,7 @@ const buttonScreen = Component => {
 
     render() {
       return (
-        <UIExplorer title="Button" url="1-components/Button">
+        <UIExplorer title="Button" url="/Button.js">
           <Description>Displays a customizable button</Description>
           <Section title="Props">
             <DocItem name="...View props" />
