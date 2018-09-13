@@ -49,6 +49,8 @@
     "del-cli": "^1.1.0",
     "eslint": "^5.5.0",
     "eslint-config-mainframe": "^2.0.0",
+    "eslint-import-resolver-alias": "^1.1.1",
+    "eslint-plugin-import": "^2.14.0",
     "flow-bin": "^0.80.0",
     "flow-copy-source": "^2.0.1",
     "flow-typed": "^2.4.0",
