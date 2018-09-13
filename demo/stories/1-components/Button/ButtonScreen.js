@@ -19,36 +19,49 @@ import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
 
-const buttonScreen = () => (
-  <UIExplorer title="Button" url="1-components/Button">
-    <Description>Displays a customizable button</Description>
-    <Section title="Props">
-      <DocItem name="...View props" />
-      <DocItem
-        description="The default button style."
-        example={{
-          render: () => <NormalButton />,
-        }}
-      />
-      <DocItem
-        name="disabled"
-        typeInfo="?boolean = false"
-        description="Don't allow button press."
-        example={{
-          render: () => <DisabledButton />,
-        }}
-      />
-      <DocItem
-        name="outlineStyle"
-        typeInfo="?boolean = true"
-        description="Default outlined style."
-        example={{
-          render: () => <OutlinedButton />,
-        }}
-      />
-    </Section>
-  </UIExplorer>
-)
+const buttonScreen = Component => {
+  class ButtonScreen extends React.Component {
+    constructor(props) {
+      super(props)
+    }
 
-export default buttonScreen
+    render() {
+      return (
+        <UIExplorer title="Button" url="1-components/Button">
+          <Description>Displays a customizable button</Description>
+          <Section title="Props">
+            <DocItem name="...View props" />
+            <DocItem
+              description="The default button style."
+              example={{
+                render: () => <NormalButton />,
+              }}
+            />
+            <DocItem
+              name="disabled"
+              typeInfo="?boolean = false"
+              description="Don't allow button press."
+              example={{
+                render: () => <DisabledButton />,
+              }}
+            />
+            <DocItem
+              name="outlineStyle"
+              typeInfo="?boolean = true"
+              description="Default outlined style."
+              example={{
+                render: () => <OutlinedButton />,
+              }}
+            />
+          </Section>
+        </UIExplorer>
+      )
+    }
+  }
+
+  buttonScreen.displayName = Component.displayName
+
+  return <ButtonScreen />
+}
+
 storiesOf('Components', module).add('Button', buttonScreen)
