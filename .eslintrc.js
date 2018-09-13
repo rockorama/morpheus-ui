@@ -9,6 +9,7 @@ module.exports = {
       node: {
         paths: ['@morpheus-ui/core'],
       },
+      alias: [['@morpheus-ui/core', '/packages/core']],
     },
   },
 }
