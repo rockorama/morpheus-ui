@@ -14,9 +14,6 @@ import AppText from './AppText'
 
 type ExternalLinkType = {
   props?: any,
-  children?: any,
-  href: string,
-  style: StyleSheet.Styles | Array<StyleSheet.Styles>,
 }
 
 const ExternalLink = ({ props }: ExternalLinkType) => (

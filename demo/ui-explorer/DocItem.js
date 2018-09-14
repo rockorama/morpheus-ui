@@ -14,8 +14,8 @@ import AppText from './AppText'
 import insertBetween from './insertBetween'
 
 type DocItemType = {
-  description?: string,
-  example?: Object,
+  description: string,
+  example: Object,
   name?: string,
   typeInfo?: string,
   label?: string,

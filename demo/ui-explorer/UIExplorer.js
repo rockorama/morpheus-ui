@@ -15,7 +15,6 @@ import ExternalLink from './ExternalLink'
 import insertBetween from './insertBetween'
 
 type UIType = {
-  props?: any,
   children?: any,
   description?: string,
   sections?: string,
@@ -42,7 +41,7 @@ const Divider = () => <View style={styles.divider} />
 
 const SourceLink = ({ uri }) => (
   <ExternalLink
-    href={`https://github.com/MainframeHQ/morpheus-ui/tree/master/packages/core/src/components${uri}`}
+    href={`https://github.com/MainframeHQ/morpheus-ui/tree/master/packages/core/src${uri}`}
     style={styles.link}>
     View source code on GitHub
   </ExternalLink>

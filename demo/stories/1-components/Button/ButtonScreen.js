@@ -20,7 +20,7 @@ import OutlinedButton from './examples/OutlinedButton'
 class ButtonScreen extends Component<{}> {
   render() {
     return (
-      <UIExplorer title="Button" url="/Button.js">
+      <UIExplorer title="Button" url="/components/Button.js">
         <Description>Displays a customizable button</Description>
         <Section title="Props">
           <DocItem
