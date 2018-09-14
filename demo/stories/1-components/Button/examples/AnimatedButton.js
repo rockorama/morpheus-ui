@@ -10,7 +10,7 @@ export default class AnimatedButtonExample extends Component<{}> {
     return (
       <View>
         <Button animation onClick={action('clicked')}>
-          outlined button
+          animated button
         </Button>
       </View>
     )

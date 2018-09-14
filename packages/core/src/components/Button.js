@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
-import * as React from 'react'
 
-type Props = {
+/*type Props = {
   title: string,
   disabled?: boolean,
   buttonStyle?: number | Array<number | Object> | Object,
@@ -9,7 +8,7 @@ type Props = {
   outlined?: boolean,
   animation?: boolean,
   onClick?: Function,
-}
+}*/
 
 const fadeIn = keyframes`
   0% {
@@ -27,7 +26,6 @@ const fadeIn = keyframes`
     transform: rotate(0deg);
   }
 `
-
 const Button = styled.button`
   cursor: pointer;
   border-radius: 23px;
@@ -59,4 +57,4 @@ const Button = styled.button`
     `};
 `
 
-export default (props: Props) => <Button {...props} />
+export default Button
