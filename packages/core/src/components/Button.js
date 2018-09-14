@@ -28,7 +28,7 @@ const fadeIn = keyframes`
   }
 `
 
-export default styled.button`
+const Button = styled.button`
   cursor: pointer;
   border-radius: 23px;
   height: 45px;
@@ -57,4 +57,6 @@ export default styled.button`
         animation: ${fadeIn} 1.5s linear both;
       }
     `};
-`: React.ComponentType<Props>
+`
+
+export default (props: Props) => <Button {...props} />
