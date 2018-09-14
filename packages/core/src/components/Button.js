@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
+import * as React from 'react'
 
 type Props = {
   title: string,
@@ -56,4 +57,4 @@ export default styled.button`
         animation: ${fadeIn} 1.5s linear both;
       }
     `};
-`
+`: React.ComponentType<Props>
