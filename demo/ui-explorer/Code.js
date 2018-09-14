@@ -8,7 +8,11 @@
 
 import { createElement, StyleSheet } from 'react-native-web'
 
-const Code = props =>
+type Props = {
+  props: any,
+}
+
+const Code = ({ props }: Props) =>
   createElement('code', { ...props, style: [styles.code, props.style] })
 
 export default Code

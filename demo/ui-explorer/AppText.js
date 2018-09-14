@@ -12,7 +12,12 @@ import { bool } from 'prop-types'
 import React from 'react'
 import { StyleSheet, Text } from 'react-native-web'
 
-class AppText extends React.PureComponent {
+type Props = {
+  href?: string,
+  style?: StyleSheet.Styles | Array<StyleSheet.Styles>,
+}
+
+class AppText extends React.PureComponent<Props> {
   static contextTypes = {
     isInAParentText: bool,
   }

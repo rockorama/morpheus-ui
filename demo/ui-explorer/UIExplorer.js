@@ -14,11 +14,20 @@ import AppText from './AppText'
 import ExternalLink from './ExternalLink'
 import insertBetween from './insertBetween'
 
+type UIType = {
+  props?: any,
+  children?: any,
+  description?: string,
+  sections?: string,
+  title: string,
+  url?: string,
+}
+
 const Title = ({ children }) => (
   <AppText style={styles.title}>{children}</AppText>
 )
 
-export const Description = ({ children }) => (
+export const Description = ({ children }: Object) => (
   <AppText style={styles.description}>
     {insertBetween(
       () => (
@@ -39,7 +48,13 @@ const SourceLink = ({ uri }) => (
   </ExternalLink>
 )
 
-const UIExplorer = ({ children, description, sections, title, url }) => (
+const UIExplorer = ({
+  children,
+  description,
+  sections,
+  title,
+  url,
+}: UIType) => (
   <View style={styles.root}>
     <Title>{title}</Title>
     {description}

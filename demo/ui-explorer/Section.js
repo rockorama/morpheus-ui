@@ -12,11 +12,16 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native-web'
 import AppText from './AppText'
 
+type SectionType = {
+  children?: any,
+  title: string,
+}
+
 const SectionTitle = ({ children }) => (
   <AppText style={styles.sectionTitle}>{children}</AppText>
 )
 
-const Section = ({ children, title }) => (
+const Section = ({ children, title }: SectionTitle) => (
   <View>
     <SectionTitle>{title}</SectionTitle>
     {children}

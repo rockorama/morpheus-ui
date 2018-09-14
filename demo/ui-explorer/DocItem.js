@@ -13,6 +13,14 @@ import { StyleSheet, Text, View } from 'react-native-web'
 import AppText from './AppText'
 import insertBetween from './insertBetween'
 
+type DocItemType = {
+  description?: string,
+  example?: Object,
+  name?: string,
+  typeInfo?: string,
+  label?: string,
+}
+
 const Divider = () => <View style={styles.verticalDivider} />
 
 const createDescription = description => {
@@ -26,7 +34,13 @@ const createDescription = description => {
   return <Text style={styles.text}>{content}</Text>
 }
 
-const DocItem = ({ description, example = {}, name, typeInfo, label }) => (
+const DocItem = ({
+  description,
+  example = {},
+  name,
+  typeInfo,
+  label,
+}: DocItemType) => (
   <View style={styles.example}>
     {name && (
       <AppText style={styles.title}>

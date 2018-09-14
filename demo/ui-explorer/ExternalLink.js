@@ -9,9 +9,17 @@
  */
 
 import React from 'react'
+import { StyleSheet } from 'react-native-web'
 import AppText from './AppText'
 
-const ExternalLink = props => (
+type ExternalLinkType = {
+  props?: any,
+  children?: any,
+  href: string,
+  style: StyleSheet.Styles | Array<StyleSheet.Styles>,
+}
+
+const ExternalLink = ({ props }: ExternalLinkType) => (
   <AppText {...props} accessibilityRole="link" target="_blank" />
 )
 

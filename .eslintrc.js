@@ -5,8 +5,5 @@ module.exports = {
       version: '16.4',
       flowVersion: '0.80',
     },
-    'import/resolver': {
-      alias: [['@morpheus-ui/core', '/packages/core/']],
-    },
   },
 }
