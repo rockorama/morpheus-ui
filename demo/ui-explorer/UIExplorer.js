@@ -39,7 +39,7 @@ export const Description = ({ children }: Object) => (
 
 const Divider = () => <View style={styles.divider} />
 
-const SourceLink = uri => (
+const SourceLink = ({ uri }) => (
   <ExternalLink
     href={`https://github.com/MainframeHQ/morpheus-ui/tree/master/packages/core/src${uri}`}
     style={styles.link}>
