@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
-import COLORS from '../colors'
 
 type Props = {
   title: string,
