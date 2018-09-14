@@ -16,7 +16,6 @@ import UIExplorer, {
 import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
-import NewButton from './examples/NewButton'
 
 class ButtonScreen extends Component<{}> {
   render() {
@@ -24,12 +23,6 @@ class ButtonScreen extends Component<{}> {
       <UIExplorer title="Button" url="/components/Button.js">
         <Description>Displays a customizable button</Description>
         <Section title="Props">
-          <DocItem
-            description="The default button style."
-            example={{
-              render: () => <NewButton />,
-            }}
-          />
           <DocItem
             description="The default button style."
             example={{
@@ -45,7 +38,7 @@ class ButtonScreen extends Component<{}> {
             }}
           />
           <DocItem
-            name="outlineStyle"
+            name="outlined"
             typeInfo="?boolean = true"
             description="Default outlined style."
             example={{
