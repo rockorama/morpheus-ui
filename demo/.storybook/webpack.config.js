@@ -22,9 +22,5 @@ module.exports = storybookBaseConfig => {
     '.jsx',
   ]
 
-  storybookBaseConfig.resolve.alias = {
-    'react-native': 'react-native-web',
-  }
-
   return storybookBaseConfig
 }

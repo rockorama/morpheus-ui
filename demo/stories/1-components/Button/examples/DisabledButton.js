@@ -1,12 +1,11 @@
-/**
- * @flow
- */
-import React from 'react'
-import { View } from 'react-native'
+// @flow
+
+import React, { Component } from 'react'
+import { View } from 'react-native-web'
 import { action } from '@storybook/addon-actions'
 import { Button } from '@morpheus-ui/core'
 
-class DisabledButtonExample extends React.Component {
+export default class DisabledButtonExample extends Component<{}> {
   render() {
     return (
       <View>
@@ -19,5 +18,3 @@ class DisabledButtonExample extends React.Component {
     )
   }
 }
-
-export default DisabledButtonExample

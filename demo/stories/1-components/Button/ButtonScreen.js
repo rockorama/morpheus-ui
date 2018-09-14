@@ -2,66 +2,53 @@
 /* which is under MIT license */
 /* RNW storybook url: https://github.com/necolas/react-native-web/tree/0e81c6ef2758d4ca9b2099b1d04a4f8c417f0f43/packages/website/storybook */
 
-/* eslint-disable react/jsx-sort-props */
+// @flow
 
-/**
- * @flow
- */
+import React, { Component } from 'react'
 
-import React from 'react'
 import UIExplorer, {
   Description,
   DocItem,
   Section,
   storiesOf,
 } from '../../../ui-explorer'
+
 import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
 
-const buttonScreen = Component => {
-  class ButtonScreen extends React.Component {
-    constructor(props) {
-      super(props)
-    }
-
-    render() {
-      return (
-        <UIExplorer title="Button" url="/Button.js">
-          <Description>Displays a customizable button</Description>
-          <Section title="Props">
-            <DocItem name="...View props" />
-            <DocItem
-              description="The default button style."
-              example={{
-                render: () => <NormalButton />,
-              }}
-            />
-            <DocItem
-              name="disabled"
-              typeInfo="?boolean = false"
-              description="Don't allow button press."
-              example={{
-                render: () => <DisabledButton />,
-              }}
-            />
-            <DocItem
-              name="outlineStyle"
-              typeInfo="?boolean = true"
-              description="Default outlined style."
-              example={{
-                render: () => <OutlinedButton />,
-              }}
-            />
-          </Section>
-        </UIExplorer>
-      )
-    }
+class ButtonScreen extends Component<{}> {
+  render() {
+    return (
+      <UIExplorer title="Button" url="/Button.js">
+        <Description>Displays a customizable button</Description>
+        <Section title="Props">
+          <DocItem
+            description="The default button style."
+            example={{
+              render: () => <NormalButton />,
+            }}
+          />
+          <DocItem
+            name="disabled"
+            typeInfo="?boolean = false"
+            description="Don't allow button press."
+            example={{
+              render: () => <DisabledButton />,
+            }}
+          />
+          <DocItem
+            name="outlineStyle"
+            typeInfo="?boolean = true"
+            description="Default outlined style."
+            example={{
+              render: () => <OutlinedButton />,
+            }}
+          />
+        </Section>
+      </UIExplorer>
+    )
   }
-
-  buttonScreen.displayName = Component.displayName
-
-  return <ButtonScreen />
 }
 
-storiesOf('Components', module).add('Button', buttonScreen)
+storiesOf('Components', module).add('Button', () => <ButtonScreen />)

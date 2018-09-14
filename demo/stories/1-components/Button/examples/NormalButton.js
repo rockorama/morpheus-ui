@@ -2,7 +2,7 @@
  * @flow
  */
 import React from 'react'
-import { View } from 'react-native'
+import { View } from 'react-native-web'
 import { action } from '@storybook/addon-actions'
 import { Button } from '@morpheus-ui/core'
 

@@ -10,7 +10,7 @@
 
 import { bool } from 'prop-types'
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text } from 'react-native-web'
 
 class AppText extends React.PureComponent {
   static contextTypes = {

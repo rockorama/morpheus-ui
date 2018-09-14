@@ -9,7 +9,7 @@
  */
 
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native-web'
 import AppText from './AppText'
 import insertBetween from './insertBetween'
 

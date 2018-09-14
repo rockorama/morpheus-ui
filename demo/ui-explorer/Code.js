@@ -6,7 +6,7 @@
  * @flow
  */
 
-import { createElement, StyleSheet } from 'react-native'
+import { createElement, StyleSheet } from 'react-native-web'
 
 const Code = props =>
   createElement('code', { ...props, style: [styles.code, props.style] })
