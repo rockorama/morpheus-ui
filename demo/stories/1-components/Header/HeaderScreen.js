@@ -19,19 +19,19 @@ import UIExplorer, {
 class HeaderScreen extends Component<{}> {
   render() {
     return (
-      <UIExplorer title="Button" url="/components/Button.js">
-        <Description>Displays a customizable button</Description>
+      <UIExplorer title="Header" url="/components/Header.js">
+        <Description>Displays a customizable header</Description>
         <Section title="Props">
           <DocItem
-            description="The default button style."
+            description="The default header style."
             example={{
               render: () => <NormalHeader />,
             }}
           />
           <DocItem
-            name="disabled"
+            name="subhead"
             typeInfo="?boolean = false"
-            description="Don't allow button press."
+            description="The header with a subheader."
             example={{
               render: () => <HeaderWithText />,
             }}
