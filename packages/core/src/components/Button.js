@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component, type Node } from 'react'
 import { Text } from 'react-native'
 import { css } from 'styled-components/native'
 
@@ -13,8 +13,8 @@ type ContainerProps = {
 }
 
 type Props = ContainerProps & {
-  children: React.Node,
-  title: string,
+  children?: Node,
+  title?: string,
 }
 
 const mainStyle = css`
