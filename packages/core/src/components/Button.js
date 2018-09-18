@@ -13,7 +13,7 @@ type ContainerProps = {
 }
 
 type Props = ContainerProps & {
-  children: any,
+  children: React.Node,
   title: string,
 }
 
@@ -26,6 +26,7 @@ const mainStyle = css`
   font-size: 13pt;
   border: 0;
   text-align: center;
+  transition: all 0.8s;
   ${props =>
     props.outlined &&
     css`
@@ -53,8 +54,9 @@ export default class Button extends Component<Props> {
     return (
       <HoverView
         styles={mainStyle}
-        hoverStyles={hoverStyle}
+        hoverStyles={disabled ? null : hoverStyle}
         onClick={disabled ? null : onPress}
+        disabled={disabled}
         {...other}>
         {children ? children : <Text>{title}</Text>}
       </HoverView>
