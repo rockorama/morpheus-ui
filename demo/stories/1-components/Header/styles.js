@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 const Header = styled.h1`
   font-size: 5em;

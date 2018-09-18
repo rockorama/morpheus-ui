@@ -2,15 +2,13 @@
 
 import React, { Component } from 'react'
 import { View } from 'react-native-web'
-import { action } from '@storybook/addon-actions'
-import styled, { css, keyframes } from 'styled-components'
 import { Header, SubHeader } from '../styles.js'
 
 type Props = {
   subhead: boolean,
 }
 
-export default class HeaderExample extends Component<{}> {
+export default class HeaderExample extends Component<Props> {
   render() {
     if (this.props.subhead) {
       return (
