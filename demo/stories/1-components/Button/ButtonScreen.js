@@ -16,7 +16,6 @@ import UIExplorer, {
 import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
-import AnimatedButton from './examples/AnimatedButton'
 
 class ButtonScreen extends Component<{}> {
   render() {
@@ -44,14 +43,6 @@ class ButtonScreen extends Component<{}> {
             description="Default outlined style."
             example={{
               render: () => <OutlinedButton />,
-            }}
-          />
-          <DocItem
-            name="animation"
-            typeInfo="?boolean = true"
-            description="An animation example (hover over button to see)."
-            example={{
-              render: () => <AnimatedButton />,
             }}
           />
         </Section>

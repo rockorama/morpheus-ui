@@ -1,35 +1,26 @@
-import styled, { css, keyframes } from 'styled-components'
+// @flow
 
-/*type Props = {
-  title: string,
+import React, { Component } from 'react'
+import { Text } from 'react-native'
+import { css } from 'styled-components/native'
+
+import HoverView from './HoverView'
+
+type ContainerProps = {
   disabled?: boolean,
-  buttonStyle?: number | Array<number | Object> | Object,
-  textStyle?: number | Array<number | Object> | Object,
   outlined?: boolean,
-  animation?: boolean,
-  onClick?: Function,
-}*/
+  onPress?: Function,
+}
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: rotate(0deg);
-  }
-  33%{
-    transform: rotate(5deg);
-  }
-  66%{
-    transform: rotate(-5deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-`
-const Button = styled.button`
+type Props = ContainerProps & {
+  children: any,
+  title: string,
+}
+
+const mainStyle = css`
   cursor: pointer;
   border-radius: 23px;
-  height: 45px;
+  padding: 10px;
   background-color: #da1157;
   color: white;
   font-size: 13pt;
@@ -48,13 +39,25 @@ const Button = styled.button`
       background-color: #ffc1dc;
       cursor: auto;
     `};
-  ${props =>
-    props.animation &&
-    css`
-      :hover {
-        animation: ${fadeIn} 1.5s linear both;
-      }
-    `};
 `
 
-export default Button
+const hoverStyle = css`
+  background-color: black;
+  transition: all 0.8s;
+`
+
+export default class Button extends Component<Props> {
+  render() {
+    const { children, title, onPress, disabled, ...other } = this.props
+
+    return (
+      <HoverView
+        styles={mainStyle}
+        hoverStyles={hoverStyle}
+        onClick={disabled ? null : onPress}
+        {...other}>
+        {children ? children : <Text>{title}</Text>}
+      </HoverView>
+    )
+  }
+}

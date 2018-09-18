@@ -23,7 +23,9 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "react-art": "^16.4.2",
-    "react-native-web": "^0.8.9"
+    "react-native-web": "^0.8.9",
+    "react-primitives": "^0.6.1",
+    "styled-components": "^4.0.0-beta.5"
   },
   "peerDependencies": {
     "react": "^16.4.2",
