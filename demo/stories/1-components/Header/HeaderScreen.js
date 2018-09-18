@@ -19,7 +19,7 @@ type Props = {
   subhead: string,
 }
 
-class HeaderScreen extends Component<{}> {
+class HeaderScreen extends Component<Props> {
   render() {
     return (
       <UIExplorer title="Header" url="/components/Header.js">
