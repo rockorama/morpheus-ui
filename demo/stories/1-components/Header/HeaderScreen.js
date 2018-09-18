@@ -13,8 +13,7 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer'
 
- import NormalHeader from './examples/NormalHeader'
- import HeaderWithText from './examples/HeaderWithText'
+import Header from './examples/Header'
 
 class HeaderScreen extends Component<{}> {
   render() {
@@ -25,15 +24,17 @@ class HeaderScreen extends Component<{}> {
           <DocItem
             description="The default header style."
             example={{
-              render: () => <NormalHeader />,
+              render: () => <Header />,
             }}
           />
           <DocItem
             name="subhead"
-            typeInfo="?boolean = false"
+            typeInfo="?boolean = true"
             description="The header with a subheader."
             example={{
-              render: () => <HeaderWithText />,
+              render: () => (
+                <Header subhead="this is a sample header with a subhead" />
+              ),
             }}
           />
         </Section>
