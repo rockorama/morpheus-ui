@@ -38,7 +38,7 @@ class ButtonScreen extends Component<{}> {
             }}
           />
           <DocItem
-            name="outlineStyle"
+            name="outlined"
             typeInfo="?boolean = true"
             description="Default outlined style."
             example={{

@@ -2,7 +2,8 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-transform-runtime",
+    ["react-native-web", { "commonjs": true }]
   ],
   "presets": ["@babel/preset-flow", "@babel/preset-react"],
   "env": {
@@ -22,7 +23,8 @@
     },
     "browser-esm": {
       "plugins": [
-        ["@babel/plugin-transform-runtime", { "useESModules": true }]
+        ["@babel/plugin-transform-runtime", { "useESModules": true }],
+        ["react-native-web", { "commonjs": true }]
       ],
       "presets": [
         [

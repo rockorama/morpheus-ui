@@ -16,7 +16,7 @@ setOptions({
   goFullScreen: false,
   addonPanelInRight: false,
   showSearchBox: false,
-  showAddonPanel: false,
+  showAddonPanel: true,
   showStoriesPanel: true,
   sortStoriesByKind: false,
   hierarchySeparator: /\./,
