@@ -3,6 +3,7 @@ module.exports = {
   bail: true,
   collectCoverage: true,
   moduleNameMapper: {
-    'react-native': 'react-native-web',
+    '^react-native$': 'react-native-web',
   },
+  setupFiles: ['jest-canvas-mock'],
 }
