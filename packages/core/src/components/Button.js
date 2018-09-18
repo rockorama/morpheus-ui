@@ -1,82 +1,65 @@
 // @flow
 
-import React, { Component } from 'react'
-import { TouchableOpacity, Text, StyleSheet } from 'react-native-web'
-import COLORS from '../colors'
+import React, { Component, type Node } from 'react'
+import { Text } from 'react-native'
+import { css } from 'styled-components/native'
 
-type Props = {
-  title: string,
+import HoverView from './HoverView'
+
+type ContainerProps = {
   disabled?: boolean,
-  buttonStyle?: number | Array<number | Object> | Object,
-  textStyle?: number | Array<number | Object> | Object,
-  outlineStyle?: boolean,
+  outlined?: boolean,
   onPress?: Function,
 }
 
+type Props = ContainerProps & {
+  children?: Node,
+  title?: string,
+}
+
+const mainStyle = css`
+  cursor: pointer;
+  border-radius: 23px;
+  padding: 10px;
+  background-color: #da1157;
+  color: white;
+  font-size: 13pt;
+  border: 0;
+  text-align: center;
+  transition: all 0.8s;
+  ${props =>
+    props.outlined &&
+    css`
+      background-color: white;
+      color: #da1157;
+      border: 2px solid #da1157;
+    `};
+  ${props =>
+    props.disabled &&
+    css`
+      background-color: #ffc1dc;
+      cursor: auto;
+    `};
+`
+
+const hoverStyle = css`
+  background-color: black;
+  transition: all 0.8s;
+`
+
 export default class Button extends Component<Props> {
   render() {
-    const {
-      title,
-      disabled,
-      outlineStyle,
-      buttonStyle,
-      textStyle,
-      onPress,
-    } = this.props
-
-    const buttonStyles = [styles.button]
-    const textStyles = [styles.text]
-
-    if (disabled) {
-      buttonStyles.push(styles.disabled)
-    }
-
-    if (outlineStyle) {
-      buttonStyles.push(styles.outline)
-      textStyles.push(styles.redText)
-    }
-
-    if (buttonStyle) {
-      buttonStyles.push(buttonStyle)
-    }
-
-    if (textStyle) {
-      textStyles.push(textStyle)
-    }
+    const { children, title, onPress, disabled, ...other } = this.props
 
     return (
-      <TouchableOpacity
-        style={buttonStyles}
+      <HoverView
+        styles={mainStyle}
+        hoverStyles={disabled ? null : hoverStyle}
+        onClick={disabled ? null : onPress}
         disabled={disabled}
-        onPress={onPress}>
-        <Text style={textStyles}>{title}</Text>
-      </TouchableOpacity>
+        {...other}>
+        {children ? children : <Text>{title}</Text>}
+      </HoverView>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    backgroundColor: COLORS.PRIMARY_RED,
-    height: 45,
-    borderRadius: 23,
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 18,
-    color: COLORS.WHITE,
-    textAlign: 'center',
-  },
-  redText: {
-    color: COLORS.PRIMARY_RED,
-  },
-  disabled: {
-    backgroundColor: COLORS.LIGHTEST_RED,
-  },
-  outline: {
-    borderColor: COLORS.PRIMARY_RED,
-    borderWidth: 2,
-    backgroundColor: COLORS.TRANSPARENT_WHITE,
-  },
-})

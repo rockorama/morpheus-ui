@@ -12,11 +12,12 @@ addDecorator(centered)
 
 setOptions({
   name: 'Morpheus-UI',
+  title: 'Morpheus-UI',
   url: 'https://github.com/MainframeHQ/morpheus-ui',
   goFullScreen: false,
   addonPanelInRight: false,
   showSearchBox: false,
-  showAddonPanel: false,
+  showAddonPanel: true,
   showStoriesPanel: true,
   sortStoriesByKind: false,
   hierarchySeparator: /\./,
