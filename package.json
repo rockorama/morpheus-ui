@@ -22,7 +22,8 @@
     "jest": "jest --config jest.config.js",
     "jest:ci": "jest --ci --config jest.config.ci.js --runInBand",
     "test": "yarn lint && yarn flow && yarn jest",
-    "test:ci": "yarn lint && yarn flow && yarn jest:ci"
+    "test:ci": "yarn lint && yarn flow && yarn jest:ci",
+    "ship:demo": "cd demo && yarn ship"
   },
   "repository": {
     "type": "git",
