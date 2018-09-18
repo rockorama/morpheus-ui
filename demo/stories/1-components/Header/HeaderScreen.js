@@ -15,7 +15,11 @@ import UIExplorer, {
 
 import Header from './examples/Header'
 
-class HeaderScreen extends Component<{}> {
+type Props = {
+  subhead: boolean,
+}
+
+class HeaderScreen extends Component<Props> {
   render() {
     return (
       <UIExplorer title="Header" url="/components/Header.js">
