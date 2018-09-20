@@ -2,10 +2,14 @@
 
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import { action } from '@storybook/addon-actions'
 import { Header } from '@morpheus-ui/core'
 
-export default class HeaderExample extends Component<{}> {
+type Props = {
+  header: string,
+  subhead?: string,
+}
+
+export default class HeaderExample extends Component<Props> {
   render() {
     if (this.props.subhead) {
       return (
