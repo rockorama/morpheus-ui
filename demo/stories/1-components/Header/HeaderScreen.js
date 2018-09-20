@@ -29,7 +29,7 @@ class HeaderScreen extends Component<Props> {
           <DocItem
             description="The default header style."
             example={{
-              render: () => <Header />,
+              render: () => <Header header />,
             }}
           />
           <DocItem
@@ -37,7 +37,7 @@ class HeaderScreen extends Component<Props> {
             typeInfo="?boolean = true"
             description="The header with a subheader."
             example={{
-              render: () => <Header subhead />,
+              render: () => <Header header subhead />,
             }}
           />
         </Section>
