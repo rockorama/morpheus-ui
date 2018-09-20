@@ -4,7 +4,12 @@ import React, { Component } from 'react'
 import { View } from 'react-native-web'
 import styled from 'styled-components'
 
-const Header = styled.text`
+type Props = {
+  header: string,
+  subhead?: string,
+}
+
+const HeaderStyle = styled.text`
   font-size: 5em;
   text-align: left;
   color: #1f3464;
@@ -13,7 +18,7 @@ const Header = styled.text`
   margin-bottom: 20px;
 `
 
-const SubHeader = styled.text`
+const SubHeaderStyle = styled.text`
   font-size: 1.5em;
   text-align: left;
   color: #1f3464;
@@ -22,24 +27,19 @@ const SubHeader = styled.text`
   margin-top: 0;
 `
 
-type Props = {
-  header: string,
-  subhead?: string,
-}
-
-export default class HeaderExample extends Component<Props> {
+export default class Header extends Component<Props> {
   render() {
     if (this.props.subhead) {
       return (
         <View>
-          <Header>{this.props.header}</Header>
-          <SubHeader>{this.props.subhead}</SubHeader>
+          <HeaderStyle>{this.props.header}</HeaderStyle>
+          <SubHeaderStyle>{this.props.subhead}</SubHeaderStyle>
         </View>
       )
     } else {
       return (
         <View>
-          <Header>{this.props.header}</Header>
+          <HeaderStyle>{this.props.header}</HeaderStyle>
         </View>
       )
     }

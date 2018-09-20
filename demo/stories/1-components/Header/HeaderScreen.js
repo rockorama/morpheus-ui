@@ -13,7 +13,7 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer'
 
-import Header from './examples/Header'
+import Header from './examples/HeaderExample'
 
 type Props = {
   header: string,
