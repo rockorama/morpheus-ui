@@ -15,12 +15,12 @@ import UIExplorer, {
 
 import Header from './examples/HeaderExample'
 
-type Props = {
-  header: string,
-  subhead?: string,
-}
+// type Props = {
+//   header: string,
+//   subhead?: string,
+// }
 
-class HeaderScreen extends Component<Props> {
+class HeaderScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="Header" url="/components/Header.js">
@@ -29,7 +29,7 @@ class HeaderScreen extends Component<Props> {
           <DocItem
             description="The default header style."
             example={{
-              render: () => <Header header />,
+              render: () => <Header />,
             }}
           />
           <DocItem
@@ -37,7 +37,7 @@ class HeaderScreen extends Component<Props> {
             typeInfo="?boolean = true"
             description="The header with a subheader."
             example={{
-              render: () => <Header header subhead />,
+              render: () => <Header />,
             }}
           />
         </Section>
