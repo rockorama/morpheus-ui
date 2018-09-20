@@ -9,7 +9,7 @@ type Props = {
   subhead?: string,
 }
 
-export default class HeaderExample extends Component<{}> {
+export default class HeaderExample extends Component<Props> {
   render() {
     if (this.props.subhead) {
       return (
