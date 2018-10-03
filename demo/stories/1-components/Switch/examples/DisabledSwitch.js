@@ -14,11 +14,11 @@ const styles = {
   },
 }
 
-export default class NormalSwitchExample extends Component<{}> {
+export default class DisabledSwitchExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <Switch onPress={action('clicked')} />
+        <Switch disabled={true} onPress={action('clicked')} />
       </View>
     )
   }
