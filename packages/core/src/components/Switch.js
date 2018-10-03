@@ -2,6 +2,17 @@ import React, { Component, type Node } from 'react'
 import { Text, TouchableHighlight, View } from 'react-native'
 import styled, { css } from 'styled-components/native'
 
+type State = {
+  on: boolean,
+}
+
+type Props = {
+  defaultState?: boolean,
+  disabled?: boolean,
+  dark?: boolean,
+  onPress?: Function,
+}
+
 const Dot = styled.View`
   background-color: white;
   height: 20px;
@@ -50,17 +61,6 @@ const Container = styled.View`
       cursor: auto;
     `};
 `
-
-type State = {
-  on: boolean,
-}
-
-type Props = {
-  defaultState?: boolean,
-  disabled?: boolean,
-  dark?: boolean,
-  onPress?: Function,
-}
 
 export default class Switch extends Component<Props, State> {
   state = {
