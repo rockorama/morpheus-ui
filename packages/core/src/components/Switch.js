@@ -1,5 +1,6 @@
-import React, { Component, type Node } from 'react'
-import { Text, TouchableHighlight, View } from 'react-native'
+// @flow
+
+import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 
 type State = {
@@ -64,10 +65,10 @@ const Container = styled.View`
 
 export default class Switch extends Component<Props, State> {
   state = {
-    on: this.props.defaultState,
+    on: this.props.defaultState ? this.props.defaultState : false,
   }
 
-  onClicked(onPress, on) {
+  onClicked(onPress: Function, on: boolean) {
     if (!this.props.disabled) {
       onPress()
       this.setState({ on: !on })
@@ -75,10 +76,14 @@ export default class Switch extends Component<Props, State> {
   }
 
   render() {
-    const { defaultState, disabled, dark, onPress } = this.props
+    const { disabled, dark, onPress } = this.props
     return (
       <Container
-        onClick={() => this.onClicked(onPress, this.state.on)}
+        onClick={() =>
+          onPress
+            ? this.onClicked(onPress, this.state.on)
+            : this.setState({ on: !this.state.on })
+        }
         disabled={disabled}>
         <DotBackground dark={dark} />
         <Dot on={this.state.on} dark={dark} disabled={disabled} />
