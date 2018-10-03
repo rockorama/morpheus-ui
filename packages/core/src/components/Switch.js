@@ -41,9 +41,9 @@ const DotBackground = styled.View`
 `
 
 const Container = styled.View`
+  display: flex;
   cursor: pointer;
   justify-content: center;
-  display: flex;
   ${props =>
     props.disabled &&
     css`
