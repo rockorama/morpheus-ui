@@ -2,17 +2,31 @@
 
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import styled, { type ReactComponentStyled } from 'styled-components/native'
+import styled, {
+  css,
+  type ReactComponentStyled,
+} from 'styled-components/native'
 
 type ContainerProps = {
   styles?: any,
   hoverStyles?: any,
   isHover: boolean,
+  showText?: String,
 }
 
 type Props = ContainerProps & {
   children: any,
 }
+
+const HoverText = styled.Text`
+  display: none;
+  ${props =>
+    props.isHover &&
+    props.showText &&
+    css`
+      background-color: red;
+    `};
+`
 
 const Container: ReactComponentStyled<ContainerProps> = styled.View`
   cursor: pointer;
@@ -51,7 +65,13 @@ export default class HoverView extends Component<Props, State> {
   render() {
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-        <Container {...this.props} isHover={this.state.isHover} />
+        <Container {...this.props} isHover={this.state.isHover}>
+          <HoverText
+            isHover={this.state.isHover}
+            showText={this.props.showText}>
+            {this.props.showText}
+          </HoverText>
+        </Container>
       </View>
     )
   }
