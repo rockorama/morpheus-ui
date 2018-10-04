@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
+import { View } from 'react-native-web'
 
 type State = {
   on: boolean,
@@ -26,6 +27,13 @@ const Dot = styled.View`
     !props.on &&
     css`
       left: 0px;
+      transition: all 0.3s;
+    `};
+  ${props =>
+    props.on &&
+    css`
+      left: 20px;
+      transition: all 0.3s;
     `};
   ${props =>
     props.disabled &&
@@ -52,10 +60,9 @@ const DotBackground = styled.View`
     `};
 `
 
-const Container = styled.View`
-  display: flex;
+const Container = styled.TouchableOpacity`
   cursor: pointer;
-  justify-content: center;
+  border-radius: 25px;
   ${props =>
     props.disabled &&
     css`
@@ -63,30 +70,35 @@ const Container = styled.View`
     `};
 `
 
+const TouchView = styled.View`
+  justify-content: center;
+  display: flex;
+`
+
 export default class Switch extends Component<Props, State> {
+  constructor(props) {
+    super(props)
+    this.onPressed = this.onPressed.bind(this)
+  }
   state = {
-    on: this.props.defaultState ? this.props.defaultState : false,
+    on: this.props.defaultState && this.props.defaultState,
   }
 
-  onClicked(onPress: Function, on: boolean) {
+  onPressed() {
     if (!this.props.disabled) {
-      onPress()
-      this.setState({ on: !on })
+      this.setState({ on: !this.state.on })
+      this.props.onPress && this.props.onPress()
     }
   }
 
   render() {
     const { disabled, dark, onPress } = this.props
     return (
-      <Container
-        onClick={() =>
-          onPress
-            ? this.onClicked(onPress, this.state.on)
-            : this.setState({ on: !this.state.on })
-        }
-        disabled={disabled}>
-        <DotBackground dark={dark} />
-        <Dot on={this.state.on} dark={dark} disabled={disabled} />
+      <Container disabled={disabled} onPress={this.onPressed}>
+        <TouchView>
+          <DotBackground dark={dark} />
+          <Dot on={this.state.on} dark={dark} disabled={disabled} />
+        </TouchView>
       </Container>
     )
   }
