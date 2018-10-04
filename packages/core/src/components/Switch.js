@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
-import { View } from 'react-native-web'
+import { TouchableOpacity } from 'react-native-web'
 
 type State = {
   on: boolean,
@@ -12,6 +12,7 @@ type Props = {
   defaultState?: boolean,
   disabled?: boolean,
   dark?: boolean,
+  control?: Function,
   onPress?: Function,
 }
 
@@ -60,7 +61,9 @@ const DotBackground = styled.View`
     `};
 `
 
-const Container = styled.TouchableOpacity`
+const Container = styled.View`
+  justify-content: center;
+  display: flex;
   cursor: pointer;
   border-radius: 25px;
   ${props =>
@@ -70,36 +73,47 @@ const Container = styled.TouchableOpacity`
     `};
 `
 
-const TouchView = styled.View`
-  justify-content: center;
-  display: flex;
-`
-
 export default class Switch extends Component<Props, State> {
   constructor(props) {
     super(props)
     this.onPressed = this.onPressed.bind(this)
+    this.handleOn = this.handleOn.bind(this)
   }
   state = {
-    on: this.props.defaultState && this.props.defaultState,
+    on:
+      (this.props.defaultState && this.props.defaultState) ||
+      (this.props.control && this.props.control),
   }
 
   onPressed() {
-    if (!this.props.disabled) {
+    if (!this.props.disabled && !this.props.control) {
       this.setState({ on: !this.state.on })
       this.props.onPress && this.props.onPress()
+    }
+  }
+
+  handleOn() {
+    if (this.props.control) {
+      this.props.onPress && this.props.onPress()
+      return this.props.control
+    } else {
+      return this.state.on
     }
   }
 
   render() {
     const { disabled, dark, onPress } = this.props
     return (
-      <Container disabled={disabled} onPress={this.onPressed}>
-        <TouchView>
+      <TouchableOpacity onPress={this.onPressed}>
+        <Container disabled={disabled}>
           <DotBackground dark={dark} />
-          <Dot on={this.state.on} dark={dark} disabled={disabled} />
-        </TouchView>
-      </Container>
+          <Dot
+            on={this.props.control ? this.props.control : this.state.on}
+            dark={dark}
+            disabled={disabled}
+          />
+        </Container>
+      </TouchableOpacity>
     )
   }
 }

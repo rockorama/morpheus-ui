@@ -11,6 +11,7 @@ import NormalSwitch from './examples/NormalSwitch'
 import DefaultSwitch from './examples/DefaultSwitch'
 import DisabledSwitch from './examples/DisabledSwitch'
 import DarkSwitch from './examples/DarkSwitch'
+import ControlSwitch from './examples/ControlSwitch'
 
 class SwitchScreen extends Component<{}> {
   render() {
@@ -24,6 +25,14 @@ class SwitchScreen extends Component<{}> {
             description="The normal switch style with onPress prop. Defaults to off (left)."
             example={{
               render: () => <NormalSwitch />,
+            }}
+          />
+          <DocItem
+            name="control"
+            description="Control switch behavior externally (in example the bottom switch is controlled by top switch). Overrides defaultState prop."
+            typeInfo="?Function"
+            example={{
+              render: () => <ControlSwitch />,
             }}
           />
           <DocItem
