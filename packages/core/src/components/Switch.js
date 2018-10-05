@@ -12,8 +12,8 @@ type Props = {
   defaultState?: boolean,
   disabled?: boolean,
   dark?: boolean,
-  control?: Function | boolean,
-  onPress?: Function,
+  control?: () => boolean | boolean,
+  onPress?: (value: boolean) => void,
 }
 
 const Dot = styled.View`
@@ -73,8 +73,11 @@ const Container = styled.View`
 `
 
 export default class Switch extends Component<Props, State> {
-  state = {
-    on: this.props.defaultState ? this.props.defaultState : false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      on: this.props.defaultState ? this.props.defaultState : false,
+    }
   }
 
   onPressed = () => {
@@ -85,17 +88,24 @@ export default class Switch extends Component<Props, State> {
     }
   }
 
+  handleOn() {
+    if (this.props.control == null) {
+      return this.state.on
+    } else if (typeof this.props.control === 'function') {
+      console.log(this.props.control)
+      this.props.control()
+    } else {
+      return this.props.control
+    }
+  }
+
   render() {
     const { disabled, dark } = this.props
     return (
       <TouchableOpacity onPress={this.onPressed}>
         <Container disabled={disabled}>
           <DotBackground dark={dark} />
-          <Dot
-            on={this.props.control ? this.props.control : this.state.on}
-            dark={dark}
-            disabled={disabled}
-          />
+          <Dot on={this.handleOn()} dark={dark} disabled={disabled} />
         </Container>
       </TouchableOpacity>
     )
