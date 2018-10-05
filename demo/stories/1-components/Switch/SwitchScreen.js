@@ -29,8 +29,8 @@ class SwitchScreen extends Component<{}> {
           />
           <DocItem
             name="control"
-            description="Control switch behavior externally (in example the bottom switch is controlled by top switch). Overrides defaultState prop."
-            typeInfo="?Function"
+            description="Pass a function or boolean to control switch behavior externally. In the example below, the second switch is controlled by the first."
+            typeInfo="?Function | ?boolean"
             example={{
               render: () => <ControlSwitch />,
             }}

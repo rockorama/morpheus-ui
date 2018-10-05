@@ -12,7 +12,7 @@ type Props = {
   defaultState?: boolean,
   disabled?: boolean,
   dark?: boolean,
-  control?: Function,
+  control?: Function | boolean,
   onPress?: Function,
 }
 
@@ -77,27 +77,15 @@ export default class Switch extends Component<Props, State> {
   constructor(props) {
     super(props)
     this.onPressed = this.onPressed.bind(this)
-    this.handleOn = this.handleOn.bind(this)
   }
   state = {
-    on:
-      (this.props.defaultState && this.props.defaultState) ||
-      (this.props.control && this.props.control),
+    on: this.props.defaultState && this.props.defaultState,
   }
 
   onPressed() {
-    if (!this.props.disabled && !this.props.control) {
+    if (!this.props.disabled && this.props.control === undefined) {
       this.setState({ on: !this.state.on })
       this.props.onPress && this.props.onPress()
-    }
-  }
-
-  handleOn() {
-    if (this.props.control) {
-      this.props.onPress && this.props.onPress()
-      return this.props.control
-    } else {
-      return this.state.on
     }
   }
 
