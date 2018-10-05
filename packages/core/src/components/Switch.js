@@ -73,7 +73,7 @@ const Container = styled.View`
 `
 
 export default class Switch extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
     this.state = {
       on: this.props.defaultState ? this.props.defaultState : false,
