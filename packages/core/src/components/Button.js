@@ -26,11 +26,12 @@ const mainStyle = css`
   font-size: 13pt;
   border: 0;
   text-align: center;
-  transition: all 0.8s;
+  border: 2px solid #da1157;
+  transition: all 0.3s;
   ${props =>
     props.outlined &&
     css`
-      background-color: white;
+      background-color: transparent;
       color: #da1157;
       border: 2px solid #da1157;
     `};
@@ -38,13 +39,22 @@ const mainStyle = css`
     props.disabled &&
     css`
       background-color: #ffc1dc;
+      border-color: #ffc1dc;
       cursor: auto;
     `};
 `
 
 const hoverStyle = css`
-  background-color: black;
-  transition: all 0.8s;
+  background-color: #fff;
+  color: #da1157;
+  transition: all 0.2s;
+  ${props =>
+    props.outlined &&
+    css`
+      background-color: #da1157;
+      color: #fff;
+      border: 2px solid #da1157;
+    `};
 `
 
 export default class Button extends Component<Props> {
