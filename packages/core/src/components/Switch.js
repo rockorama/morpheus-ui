@@ -91,7 +91,7 @@ export default class Switch extends Component<Props, State> {
   }
 
   render() {
-    const { disabled, dark, onPress } = this.props
+    const { disabled, dark } = this.props
     return (
       <TouchableOpacity onPress={this.onPressed}>
         <Container disabled={disabled}>
