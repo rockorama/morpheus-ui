@@ -32,7 +32,7 @@ export default class ControlSwitchExample extends Component<{}> {
     return (
       <View style={styles.background}>
         <Switch onPress={this.copyState} />
-        <Switch control={this.state.myBool} onPress={action('clicked')} />
+        <Switch control={this.state.myBool} />
       </View>
     )
   }
