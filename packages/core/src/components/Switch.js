@@ -92,8 +92,7 @@ export default class Switch extends Component<Props, State> {
     if (this.props.control == null) {
       return this.state.on
     } else if (typeof this.props.control === 'function') {
-      console.log(this.props.control)
-      this.props.control()
+      return this.props.control()
     } else {
       return this.props.control
     }
