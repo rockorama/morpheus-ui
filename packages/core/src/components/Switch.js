@@ -73,16 +73,11 @@ const Container = styled.View`
 `
 
 export default class Switch extends Component<Props, State> {
-  constructor(props) {
-    super(props)
-    this.onPressed = this.onPressed.bind(this)
-  }
-
   state = {
     on: this.props.defaultState ? this.props.defaultState : false,
   }
 
-  onPressed() {
+  onPressed = () => {
     if (!this.props.disabled && this.props.control === undefined) {
       const currentState = !this.state.on
       this.setState({ on: currentState })

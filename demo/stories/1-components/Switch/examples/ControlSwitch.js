@@ -13,17 +13,16 @@ const styles = {
   },
 }
 
-export default class ControlSwitchExample extends Component<{}> {
-  constructor(props) {
-    super(props)
-    this.copyState = this.copyState.bind(this)
-  }
+type State = {
+  myBool: boolean,
+}
 
+export default class ControlSwitchExample extends Component<{}, State> {
   state = {
     myBool: false,
   }
 
-  copyState() {
+  copyState = () => {
     this.setState({ myBool: !this.state.myBool })
   }
 
