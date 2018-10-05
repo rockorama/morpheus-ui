@@ -20,18 +20,17 @@ const Dot = styled.View`
   background-color: white;
   height: 20px;
   width: 20px;
-  left: 20px;
   border-radius: 50%;
   position: absolute;
   background-color: #fff;
   ${props =>
-    !props.on &&
+    props.on === false &&
     css`
       left: 0px;
       transition: all 0.3s;
     `};
   ${props =>
-    props.on &&
+    props.on === true &&
     css`
       left: 20px;
       transition: all 0.3s;
@@ -78,14 +77,16 @@ export default class Switch extends Component<Props, State> {
     super(props)
     this.onPressed = this.onPressed.bind(this)
   }
+
   state = {
-    on: this.props.defaultState && this.props.defaultState,
+    on: this.props.defaultState ? this.props.defaultState : false,
   }
 
   onPressed() {
     if (!this.props.disabled && this.props.control === undefined) {
-      this.setState({ on: !this.state.on })
-      this.props.onPress && this.props.onPress()
+      const currentState = !this.state.on
+      this.setState({ on: currentState })
+      this.props.onPress && this.props.onPress(currentState)
     }
   }
 

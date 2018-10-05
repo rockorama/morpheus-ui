@@ -22,7 +22,7 @@ class SwitchScreen extends Component<{}> {
           <DocItem
             name="onPress"
             typeInfo="?Function"
-            description="The normal switch style with onPress prop. Defaults to off (left)."
+            description="The normal switch style with onPress prop. Defaults to left (false)."
             example={{
               render: () => <NormalSwitch />,
             }}
