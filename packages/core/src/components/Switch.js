@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
-import { TouchableOpacity } from 'react-native-web'
+import { TouchableWithoutFeedback, View } from 'react-native'
 
 type State = {
   on: boolean,
@@ -23,17 +23,12 @@ const Dot = styled.View`
   border-radius: 50%;
   position: absolute;
   background-color: #fff;
+  transition: left 0.3s;
+  left: 0px;
   ${props =>
-    props.on === false &&
-    css`
-      left: 0px;
-      transition: all 0.3s;
-    `};
-  ${props =>
-    props.on === true &&
+    props.on &&
     css`
       left: 20px;
-      transition: all 0.3s;
     `};
   ${props =>
     props.disabled &&
@@ -52,11 +47,23 @@ const DotBackground = styled.View`
   background-color: #fff;
   opacity: 0.2;
   border-radius: 25px;
+  transition: all 0.3s;
+  ${props =>
+    props.on &&
+    css`
+      opacity: 0.6;
+    `};
   ${props =>
     props.dark &&
     css`
       background-color: #1a2d57;
       opacity: 0.6;
+    `};
+  ${props =>
+    props.dark &&
+    props.on &&
+    css`
+      opacity: 0.85;
     `};
 `
 
@@ -100,13 +107,22 @@ export default class Switch extends Component<Props, State> {
 
   render() {
     const { disabled, dark } = this.props
+    const on = this.handleOn()
+    const switchElement = (
+      <Container disabled={disabled}>
+        <DotBackground on={on} dark={dark} />
+        <Dot on={on} dark={dark} disabled={disabled} />
+      </Container>
+    )
+
+    if (disabled) {
+      return <View>{switchElement}</View>
+    }
+
     return (
-      <TouchableOpacity onPress={this.onPressed}>
-        <Container disabled={disabled}>
-          <DotBackground dark={dark} />
-          <Dot on={this.handleOn()} dark={dark} disabled={disabled} />
-        </Container>
-      </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={this.onPressed}>
+        {switchElement}
+      </TouchableWithoutFeedback>
     )
   }
 }
