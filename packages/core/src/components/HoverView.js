@@ -7,24 +7,45 @@ import styled, {
   type ReactComponentStyled,
 } from 'styled-components/native'
 
+import plusSymbol from '../../src/images/plus-symbol.svg'
+
 type ContainerProps = {
   styles?: any,
   hoverStyles?: any,
-  isHover: boolean,
-  showText?: String,
+  hoverText?: String,
+  hoverLogo?: String,
 }
 
 type Props = ContainerProps & {
   children: any,
 }
 
+const Logo = styled.View`
+  opacity: 0;
+  background-size: 15px 15px;
+  background-position: center left;
+  background-repeat: no-repeat;
+  ${props =>
+    props.logo === 'plus' &&
+    props.isHover &&
+    css`
+      opacity: 1;
+      background-image: url(${plusSymbol});
+      transition: all 0.5s;
+    `};
+`
+
 const HoverText = styled.Text`
-  display: none;
+  opacity: 0;
   ${props =>
     props.isHover &&
-    props.showText &&
     css`
-      background-color: red;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 20px;
+      opacity: 1;
+      transition: opacity 1s;
     `};
 `
 
@@ -39,6 +60,15 @@ const Container: ReactComponentStyled<ContainerProps> = styled.View`
   text-align: center;
   ${props => props.styles};
   ${props => props.isHover && props.hoverStyles};
+  ${props =>
+    props.isHover &&
+    props.logo === 'plus' &&
+    css`
+      background-size: 15px 15px;
+      background-position: center left;
+      background-repeat: no-repeat;
+      background-image: url(${plusSymbol});
+    `};
 `
 
 type State = {
@@ -65,11 +95,12 @@ export default class HoverView extends Component<Props, State> {
   render() {
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-        <Container {...this.props} isHover={this.state.isHover}>
-          <HoverText
-            isHover={this.state.isHover}
-            showText={this.props.showText}>
-            {this.props.showText}
+        <Container
+          {...this.props}
+          isHover={this.state.isHover}
+          logo={this.props.hoverLogo}>
+          <HoverText isHover={this.state.isHover}>
+            {this.props.hoverText}
           </HoverText>
         </Container>
       </View>

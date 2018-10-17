@@ -7,7 +7,6 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer'
 
-import NormalGrow from './examples/NormalGrow'
 import HoverGrow from './examples/HoverGrow'
 
 class GrowScreen extends Component<{}> {
@@ -16,13 +15,6 @@ class GrowScreen extends Component<{}> {
       <UIExplorer title="Switch" url="/components/Switch.js">
         <Description>Displays a customizable switch button</Description>
         <Section title="Props">
-          <DocItem
-            typeInfo="?boolean = true"
-            description="Normal button with default symbol and no hover."
-            example={{
-              render: () => <NormalGrow />,
-            }}
-          />
           <DocItem
             name="hover"
             typeInfo="?String"
