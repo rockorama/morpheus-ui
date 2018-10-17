@@ -14,11 +14,11 @@ const styles = {
   },
 }
 
-export default class HoverGrowExample extends Component<{}> {
+export default class SymbolHoverGrowExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <GrowButton onPress={action('clicked')} hover={'Install'} />
+        <GrowButton onPress={action('clicked')} logo={'plus'} />
       </View>
     )
   }
