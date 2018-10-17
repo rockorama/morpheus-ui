@@ -20,7 +20,7 @@ const mainStyles = css`
 `
 
 const hoverStyles = css`
-  width: 90px;
+  width: 70px;
   transition: width 0.5s;
 `
 
@@ -36,7 +36,7 @@ export default class GrowButton extends Component<Props, State> {
     return (
       <HoverView
         styles={mainStyles}
-        hoverStyles={hover ? hoverStyles : null}
+        hoverStyles={hoverStyles}
         onClick={onPress}
         hoverText={hover ? hover : 'Install'}
         logo={logo ? logo : 'plus'}
