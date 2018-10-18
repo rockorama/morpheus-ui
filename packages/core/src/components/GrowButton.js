@@ -33,9 +33,7 @@ const hoverStyles = css`
 const textHoverStyles = css`
   display: block;
   color: white;
-  height: auto;
   font-size: 12px;
-  transition: visibility 1s ease-in-out;
 `
 
 type Props = {

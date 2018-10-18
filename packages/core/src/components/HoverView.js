@@ -26,6 +26,7 @@ const HoverText = styled.Text`
 const Container: ReactComponentStyled<ContainerProps> = styled.View`
   cursor: pointer;
   border-radius: 23px;
+  padding: 10px;
   background-color: #da1157;
   color: white;
   font-size: 13pt;
