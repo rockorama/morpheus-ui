@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View } from 'react-native'
 import styled, {
   css,
   type ReactComponentStyled,
@@ -9,9 +9,9 @@ import styled, {
 
 type ContainerProps = {
   styles?: any,
-  isHover: boolean,
   hoverStyles?: any,
-  hoverText?: String,
+  isHover: boolean,
+  hoverText?: any,
   textHoverStyles?: any,
 }
 

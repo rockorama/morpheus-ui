@@ -44,7 +44,7 @@ type Props = {
 
 export default class GrowButton extends Component<Props, State> {
   render() {
-    const { hover, onPress, logo } = this.props
+    const { children, hover, onPress, logo } = this.props
     return (
       <HoverView
         styles={mainStyles}
