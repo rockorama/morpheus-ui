@@ -9,8 +9,9 @@ import styled, {
 
 type ContainerProps = {
   styles?: any,
+  isHover: boolean,
   hoverStyles?: any,
-  hoverText?: any,
+  hoverText?: String,
   textHoverStyles?: any,
 }
 
