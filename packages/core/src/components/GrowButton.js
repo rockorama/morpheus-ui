@@ -8,14 +8,11 @@ import HoverView from './HoverView'
 
 const mainStyles = css`
   cursor: pointer;
-  padding: 0;
-  height: 20px;
-  width: 27px;
-  border-radius: 25px;
+  padding: 10px 13px;
   border: 1px white solid;
   background-color: transparent;
-  background-size: 13px 13px;
-  background-position: 6px center;
+  background-size: 12px 12px;
+  background-position: 7px center;
   background-repeat: no-repeat;
   ${props =>
     props.logo === 'plus' &&
@@ -26,13 +23,19 @@ const mainStyles = css`
     props.logo === 'cross' &&
     css`
       background-image: url(${crossSymbol});
-      background-size: 12px 12px;
     `};
 `
 
 const hoverStyles = css`
-  padding: 0 35px;
-  transition: padding 0.5s;
+  padding: 3px 15px 4px 25px;
+`
+
+const textHoverStyles = css`
+  display: block;
+  color: white;
+  height: auto;
+  font-size: 12px;
+  transition: visibility 1s ease-in-out;
 `
 
 type Props = {
@@ -50,6 +53,7 @@ export default class GrowButton extends Component<Props, State> {
         hoverStyles={hoverStyles}
         onClick={onPress}
         hoverText={hover ? hover : 'Install'}
+        textHoverStyles={textHoverStyles}
         logo={logo ? logo : 'plus'}
       />
     )
