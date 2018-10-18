@@ -35,23 +35,6 @@ const hoverStyles = css`
   transition: padding 0.5s;
 `
 
-const textHoverStyles = css`
-  color: white;
-  position: absolute;
-  top: 1px;
-  right: 13px;
-  font-size: 11px;
-  font-family: 'Poppins';
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 1s ease-in-out;
-`
-
-const HoverText = styled.Text`
-  visibility: hidden;
-  opacity: 0;
-`
-
 type Props = {
   hover?: String,
   logo?: String,
@@ -66,10 +49,9 @@ export default class GrowButton extends Component<Props, State> {
         styles={mainStyles}
         hoverStyles={hoverStyles}
         onClick={onPress}
-        hoverText={textHoverStyles}
-        logo={logo ? logo : 'plus'}>
-        <HoverText>{hover ? hover : 'Install'}</HoverText>
-      </HoverView>
+        hoverText={hover ? hover : 'Install'}
+        logo={logo ? logo : 'plus'}
+      />
     )
   }
 }
