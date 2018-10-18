@@ -24,8 +24,10 @@ const HoverText = styled.Text`
     css`
       color: white;
       position: absolute;
-      top: 1px;
-      right: 7px;
+      top: 2px;
+      right: 9px;
+      font-size: 11px;
+      font-family: 'Poppins';
       opacity: 1;
       transition: opacity 1s ease-in-out;
     `};

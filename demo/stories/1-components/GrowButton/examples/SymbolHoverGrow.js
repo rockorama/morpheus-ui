@@ -18,7 +18,7 @@ export default class SymbolHoverGrowExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <GrowButton onPress={action('clicked')} logo={'plus'} />
+        <GrowButton onPress={action('clicked')} logo={'cross'} />
       </View>
     )
   }
