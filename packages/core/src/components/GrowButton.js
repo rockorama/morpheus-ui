@@ -8,14 +8,14 @@ import HoverView from './HoverView'
 
 const mainStyles = css`
   cursor: pointer;
-  height: 18px;
-  width: 25px;
+  padding: 0;
+  height: 20px;
+  width: 27px;
   border-radius: 25px;
   border: 1px white solid;
-  display: flex;
   background-color: transparent;
-  background-size: 15px 15px;
-  background-position: 4px center;
+  background-size: 13px 13px;
+  background-position: 6px center;
   background-repeat: no-repeat;
   ${props =>
     props.logo === 'plus' &&
@@ -26,14 +26,30 @@ const mainStyles = css`
     props.logo === 'cross' &&
     css`
       background-image: url(${crossSymbol});
-      background-size: 13px 13px;
-      background-position: 5px center;
+      background-size: 12px 12px;
     `};
 `
 
 const hoverStyles = css`
-  width: 70px;
-  transition: width 0.5s;
+  padding: 0 35px;
+  transition: padding 0.5s;
+`
+
+const textHoverStyles = css`
+  color: white;
+  position: absolute;
+  top: 1px;
+  right: 13px;
+  font-size: 11px;
+  font-family: 'Poppins';
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out;
+`
+
+const HoverText = styled.Text`
+  visibility: hidden;
+  opacity: 0;
 `
 
 type Props = {
@@ -50,9 +66,10 @@ export default class GrowButton extends Component<Props, State> {
         styles={mainStyles}
         hoverStyles={hoverStyles}
         onClick={onPress}
-        hoverText={hover ? hover : 'Install'}
-        logo={logo ? logo : 'plus'}
-      />
+        hoverText={textHoverStyles}
+        logo={logo ? logo : 'plus'}>
+        <HoverText>{hover ? hover : 'Install'}</HoverText>
+      </HoverView>
     )
   }
 }

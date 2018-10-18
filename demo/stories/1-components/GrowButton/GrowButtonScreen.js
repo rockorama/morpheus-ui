@@ -26,7 +26,7 @@ class GrowScreen extends Component<{}> {
           <DocItem
             name="hover"
             typeInfo="?String"
-            description="What the button will say when hovered on."
+            description="Select what the button will say on hover."
             example={{
               render: () => <TextHoverGrow />,
             }}
@@ -34,7 +34,7 @@ class GrowScreen extends Component<{}> {
           <DocItem
             name="logo"
             typeInfo="?String"
-            description="Which symbol shows up."
+            description="Select which symbol will appear. Current options are 'plus' and 'cross'."
             example={{
               render: () => <SymbolHoverGrow />,
             }}

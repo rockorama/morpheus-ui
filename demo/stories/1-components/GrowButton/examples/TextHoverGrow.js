@@ -18,7 +18,7 @@ export default class TextHoverGrowExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <GrowButton onPress={action('clicked')} hover={'Open'} />
+        <GrowButton onPress={action('clicked')} hover={'Open me'} />
       </View>
     )
   }
