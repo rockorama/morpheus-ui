@@ -6,8 +6,9 @@ import crossSymbol from '../../src/images/cross.svg'
 
 import HoverView from './HoverView'
 
-const mainStyles = css`
+const Container: ReactComponentStyled<ContainerProps> = styled.View`
   cursor: pointer;
+  border-radius: 23px;
   padding: 10px 13px;
   border: 1px white solid;
   background-color: transparent;
@@ -24,16 +25,22 @@ const mainStyles = css`
     css`
       background-image: url(${crossSymbol});
     `};
+  ${props =>
+    props.isHover &&
+    css`
+      padding: 3px 15px 4px 25px;
+    `};
 `
 
-const hoverStyles = css`
-  padding: 3px 15px 4px 25px;
-`
-
-const textHoverStyles = css`
-  display: block;
-  color: white;
-  font-size: 12px;
+const HoverText = styled.Text`
+  display: none;
+  ${props =>
+    props.isHover &&
+    css`
+      display: block;
+      color: white;
+      font-size: 12px;
+    `};
 `
 
 type Props = {
@@ -43,17 +50,34 @@ type Props = {
 }
 
 export default class GrowButton extends Component<Props, State> {
+  state = {
+    isHover: false,
+  }
+
+  onMouseOver = () => {
+    this.setState({
+      isHover: true,
+    })
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      isHover: false,
+    })
+  }
+
   render() {
-    const { children, hover, onPress, logo } = this.props
+    const { hover, onPress, logo } = this.props
     return (
-      <HoverView
-        styles={mainStyles}
-        hoverStyles={hoverStyles}
-        onClick={onPress}
-        hoverText={hover ? hover : 'Install'}
-        textHoverStyles={textHoverStyles}
-        logo={logo ? logo : 'plus'}
-      />
+      <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
+        <Container
+          isHover={this.state.isHover}
+          logo={this.props.logo ? this.props.logo : 'plus'}>
+          <HoverText isHover={this.state.isHover}>
+            {this.props.hover ? this.props.hover : 'Install'}
+          </HoverText>
+        </Container>
+      </View>
     )
   }
 }

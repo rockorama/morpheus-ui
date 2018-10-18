@@ -9,7 +9,6 @@ const styles = {
   background: {
     backgroundColor: '#102043',
     height: 50,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },

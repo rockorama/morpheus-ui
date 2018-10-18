@@ -61,13 +61,7 @@ export default class HoverView extends Component<Props, State> {
   render() {
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-        <Container {...this.props} isHover={this.state.isHover}>
-          <HoverText
-            isHover={this.state.isHover}
-            textHoverStyles={this.props.textHoverStyles}>
-            {this.props.hoverText}
-          </HoverText>
-        </Container>
+        <Container {...this.props} isHover={this.state.isHover} />
       </View>
     )
   }
