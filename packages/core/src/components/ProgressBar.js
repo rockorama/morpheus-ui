@@ -22,14 +22,19 @@ const ActiveBar = styled.View`
       left: ${props.active * 75};
     `};
 `
+
 const BarWidth = styled.View`
   border-radius: 1px;
   height: 2px;
-  width: 150px;
   background-color: #d3d3d3;
   margin: 12px 20px;
   display: inline;
-  position: relative;
+  position: absolute;
+  ${props =>
+    props.length &&
+    css`
+      width: ${props.length * 75};
+    `};
 `
 
 const Number = styled.Text`
@@ -55,13 +60,17 @@ const Number = styled.Text`
     `};
 `
 
+const Container = styled.View`
+  height: 20px;
+`
+
 type State = {
   active: integer,
 }
 
 export default class ProgressBar extends Component<Props> {
   state = {
-    active: 1,
+    active: 0,
   }
 
   render() {
@@ -69,30 +78,23 @@ export default class ProgressBar extends Component<Props> {
     const { active } = this.state
 
     return (
-      <>
+      <Container>
         <Number active={active} which={0}>
           {0}
         </Number>
-        <BarWidth>
+        <BarWidth length={length}>
           {[...Array(length)].map((key, index) => {
             if (length === 2) {
               return <ActiveBar active={active} />
             } else if (index > 0 && index < length - 1) {
-              return (
-                <>
-                  <Number active={active} which={index}>
-                    {index}
-                  </Number>
-                  <ActiveBar active={active} />
-                </>
-              )
+              return <ActiveBar active={active} />
             }
           })}
         </BarWidth>
         <Number active={active} which={length - 1} length={length}>
           {length - 1}
         </Number>
-      </>
+      </Container>
     )
   }
 }

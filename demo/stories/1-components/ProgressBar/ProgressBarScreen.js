@@ -10,17 +10,24 @@ import UIExplorer, {
 } from '../../../ui-explorer'
 
 import NormalProgressBar from './examples/NormalProgressBar'
+import LongerProgressBar from './examples/LongerProgressBar'
 
 class ProgressBarScreen extends Component<{}> {
   render() {
     return (
-      <UIExplorer title="Button" url="/components/Button.js">
-        <Description>Displays a customizable button</Description>
+      <UIExplorer title="ProgressBar" url="/components/ProgressBar.js">
+        <Description>Displays a customizable progress bar</Description>
         <Section title="Props">
           <DocItem
-            description="The default button style."
+            description="The default progress bar style."
             example={{
               render: () => <NormalProgressBar />,
+            }}
+          />
+          <DocItem
+            description="A longer progress bar."
+            example={{
+              render: () => <LongerProgressBar />,
             }}
           />
         </Section>
