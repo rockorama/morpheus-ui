@@ -3,7 +3,6 @@
 import React, { Component, type Node } from 'react'
 import { Text, View } from 'react-native'
 import styled, { css } from 'styled-components/native'
-import _ from 'lodash'
 
 type Props = {
   children?: Node,
@@ -73,26 +72,36 @@ export default class ProgressBar extends Component<Props> {
     active: 0,
   }
 
+  handleActive() {
+    if (this.props.control == null) {
+      return this.state.active
+    } else if (typeof this.props.control === 'function') {
+      return () => this.props.control()
+    } else {
+      return this.props.control
+    }
+  }
+
   render() {
-    const { length } = this.props
+    const { length, control } = this.props
     const { active } = this.state
 
     return (
       <Container>
-        <Number active={active} which={0}>
-          {0}
+        <Number active={this.handleActive()} which={0}>
+          {1}
         </Number>
         <BarWidth length={length}>
           {[...Array(length)].map((key, index) => {
             if (length === 2) {
-              return <ActiveBar active={active} />
+              return <ActiveBar active={this.handleActive()} />
             } else if (index > 0 && index < length - 1) {
-              return <ActiveBar active={active} />
+              return <ActiveBar active={this.handleActive()} />
             }
           })}
         </BarWidth>
-        <Number active={active} which={length - 1} length={length}>
-          {length - 1}
+        <Number active={this.handleActive()} which={length - 1} length={length}>
+          {length}
         </Number>
       </Container>
     )

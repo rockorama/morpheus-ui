@@ -11,6 +11,7 @@ import UIExplorer, {
 
 import NormalProgressBar from './examples/NormalProgressBar'
 import LongerProgressBar from './examples/LongerProgressBar'
+import ControlProgressBar from './examples/ControlProgressBar'
 
 class ProgressBarScreen extends Component<{}> {
   render() {
@@ -25,9 +26,15 @@ class ProgressBarScreen extends Component<{}> {
             }}
           />
           <DocItem
-            description="A longer progress bar."
+            description="A longer progress bar (they can be of any length)."
             example={{
               render: () => <LongerProgressBar />,
+            }}
+          />
+          <DocItem
+            description="Control progress."
+            example={{
+              render: () => <ControlProgressBar />,
             }}
           />
         </Section>
