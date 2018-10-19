@@ -19,7 +19,6 @@ export default class TextHoverGrowExample extends Component<{}> {
     return (
       <View style={styles.background}>
         <GrowButton
-          style={styles.button}
           onPress={action('clicked')}
           hover={'Button grows & shrinks with title length'}
         />

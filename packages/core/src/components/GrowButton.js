@@ -1,10 +1,17 @@
+// @flow
 import React, { Component } from 'react'
-import { Text, View } from 'react-native-web'
-import styled, { css } from 'styled-components/native'
-import plusSymbol from '../../src/images/plus-symbol.svg'
-import crossSymbol from '../../src/images/cross.svg'
+import styled, {
+  css,
+  type ReactComponentStyled,
+} from 'styled-components/native'
+import { View } from 'react-native'
+import plusSymbol from '../../src/components/images/plus-symbol.svg'
+import crossSymbol from '../../src/components/images/cross.svg'
 
-import HoverView from './HoverView'
+type ContainerProps = {
+  logo?: String,
+  isHover: boolean,
+}
 
 const Container: ReactComponentStyled<ContainerProps> = styled.View`
   cursor: pointer;
@@ -49,6 +56,10 @@ type Props = {
   onPress?: Function,
 }
 
+type State = {
+  isHover: boolean,
+}
+
 export default class GrowButton extends Component<Props, State> {
   state = {
     isHover: false,
@@ -71,10 +82,11 @@ export default class GrowButton extends Component<Props, State> {
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
         <Container
+          onClick={onPress}
           isHover={this.state.isHover}
-          logo={this.props.logo ? this.props.logo : 'plus'}>
+          logo={logo ? logo : 'plus'}>
           <HoverText isHover={this.state.isHover}>
-            {this.props.hover ? this.props.hover : 'Install'}
+            {hover ? hover : 'Install'}
           </HoverText>
         </Container>
       </View>

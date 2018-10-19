@@ -2,27 +2,17 @@
 
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import styled, {
-  css,
-  type ReactComponentStyled,
-} from 'styled-components/native'
+import styled, { type ReactComponentStyled } from 'styled-components/native'
 
 type ContainerProps = {
   styles?: any,
   hoverStyles?: any,
   isHover: boolean,
-  hoverText?: any,
-  textHoverStyles?: any,
 }
 
 type Props = ContainerProps & {
   children: any,
 }
-
-const HoverText = styled.Text`
-  display: none;
-  ${props => props.isHover && props.textHoverStyles};
-`
 
 const Container: ReactComponentStyled<ContainerProps> = styled.View`
   cursor: pointer;
