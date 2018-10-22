@@ -26,12 +26,16 @@ class ProgressBarScreen extends Component<{}> {
             }}
           />
           <DocItem
-            description="A longer progress bar (they can be of any length)."
+            name="length"
+            description="A longer progress bar."
+            typeInfo="?integer"
             example={{
               render: () => <LongerProgressBar />,
             }}
           />
           <DocItem
+            name="control"
+            typeInfo="? () => integer | ?integer"
             description="Control progress."
             example={{
               render: () => <ControlProgressBar />,
