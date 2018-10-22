@@ -9,7 +9,7 @@ export default class NormalProgressBarExample extends Component<{}> {
   render() {
     return (
       <View>
-        <ProgressBar length={2} />
+        <ProgressBar />
       </View>
     )
   }

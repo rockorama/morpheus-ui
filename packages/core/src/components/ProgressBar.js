@@ -83,8 +83,9 @@ export default class ProgressBar extends Component<Props> {
   }
 
   render() {
-    const { length, control } = this.props
+    const { control } = this.props
     const { active } = this.state
+    const length = this.props.length ? this.props.length : 2
 
     return (
       <Container>
