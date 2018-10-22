@@ -76,7 +76,7 @@ export default class ProgressBar extends Component<Props> {
     if (this.props.control == null) {
       return this.state.active
     } else if (typeof this.props.control === 'function') {
-      return () => this.props.control()
+      return this.props.control()
     } else {
       return this.props.control
     }
