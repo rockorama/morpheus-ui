@@ -1,12 +1,15 @@
 // @flow
 
-import React, { Component, type Node } from 'react'
-import { Text, View } from 'react-native'
+import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 
 type Props = {
-  children?: Node,
-  title?: string,
+  length: ?number,
+  control: ?() => number | ?number,
+}
+
+type State = {
+  active: number,
 }
 
 const ActiveBar = styled.View`
@@ -63,11 +66,7 @@ const Container = styled.View`
   height: 20px;
 `
 
-type State = {
-  active: integer,
-}
-
-export default class ProgressBar extends Component<Props> {
+export default class ProgressBar extends Component<Props, State> {
   state = {
     active: 0,
   }
@@ -83,8 +82,6 @@ export default class ProgressBar extends Component<Props> {
   }
 
   render() {
-    const { control } = this.props
-    const { active } = this.state
     const length = this.props.length ? this.props.length : 2
 
     return (
@@ -93,13 +90,7 @@ export default class ProgressBar extends Component<Props> {
           {1}
         </Number>
         <BarWidth length={length}>
-          {[...Array(length)].map((key, index) => {
-            if (length === 2) {
-              return <ActiveBar active={this.handleActive()} />
-            } else if (index > 0 && index < length - 1) {
-              return <ActiveBar active={this.handleActive()} />
-            }
-          })}
+          <ActiveBar active={this.handleActive()} />
         </BarWidth>
         <Number active={this.handleActive()} which={length - 1} length={length}>
           {length}

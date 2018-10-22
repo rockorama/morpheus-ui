@@ -35,7 +35,7 @@ class ProgressBarScreen extends Component<{}> {
           />
           <DocItem
             name="control"
-            typeInfo="? () => integer | ?integer"
+            typeInfo="?() => integer | ?integer"
             description="Control progress."
             example={{
               render: () => <ControlProgressBar />,
