@@ -17,7 +17,7 @@ class SwitchScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="Switch" url="/components/Switch.js">
-        <Description>Displays a customizable switch button</Description>
+        <Description>{'Displays a customizable switch button'}</Description>
         <Section title="Props">
           <DocItem
             name="onPress"

@@ -17,7 +17,7 @@ class ProgressBarScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="ProgressBar" url="/components/ProgressBar.js">
-        <Description>Displays a customizable progress bar</Description>
+        <Description>{'Displays a customizable progress bar'}</Description>
         <Section title="Props">
           <DocItem
             description="The default progress bar style."

@@ -21,7 +21,7 @@ class ButtonScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="Button" url="/components/Button.js">
-        <Description>Displays a customizable button</Description>
+        <Description>{'Displays a customizable button'}</Description>
         <Section title="Props">
           <DocItem
             description="The default button style."
