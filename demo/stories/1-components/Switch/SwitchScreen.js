@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Text } from 'react-native'
 
 import UIExplorer, {
   Description,
@@ -17,7 +18,9 @@ class SwitchScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="Switch" url="/components/Switch.js">
-        <Description>{'Displays a customizable switch button'}</Description>
+        <Description>
+          <Text>Displays a customizable switch button</Text>
+        </Description>
         <Section title="Props">
           <DocItem
             name="onPress"
