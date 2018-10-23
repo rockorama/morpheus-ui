@@ -32,7 +32,7 @@ class GrowScreen extends Component<{}> {
             }}
           />
           <DocItem
-            name="logo"
+            name="icon"
             typeInfo="?String"
             description="Select which symbol will appear. Current options are 'plus' and 'cross'."
             example={{

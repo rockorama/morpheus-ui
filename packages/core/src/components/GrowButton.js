@@ -9,7 +9,7 @@ import plusSymbol from '../../src/components/images/plus-symbol.svg'
 import crossSymbol from '../../src/components/images/cross.svg'
 
 type ContainerProps = {
-  logo?: String,
+  icon?: String,
   isHover: boolean,
 }
 
@@ -23,12 +23,12 @@ const Container: ReactComponentStyled<ContainerProps> = styled.View`
   background-position: 7px center;
   background-repeat: no-repeat;
   ${props =>
-    props.logo === 'plus' &&
+    props.icon === 'plus' &&
     css`
       background-image: url(${plusSymbol});
     `};
   ${props =>
-    props.logo === 'cross' &&
+    props.icon === 'cross' &&
     css`
       background-image: url(${crossSymbol});
     `};
@@ -52,7 +52,7 @@ const HoverText = styled.Text`
 
 type Props = {
   hover?: String,
-  logo?: String,
+  icon?: String,
   onPress?: Function,
 }
 
@@ -78,13 +78,13 @@ export default class GrowButton extends Component<Props, State> {
   }
 
   render() {
-    const { hover, onPress, logo } = this.props
+    const { hover, onPress, icon } = this.props
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
         <Container
           onClick={onPress}
           isHover={this.state.isHover}
-          logo={logo ? logo : 'plus'}>
+          icon={icon ? icon : 'plus'}>
           <HoverText isHover={this.state.isHover}>
             {hover ? hover : 'Install'}
           </HoverText>

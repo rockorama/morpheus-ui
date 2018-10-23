@@ -58,11 +58,9 @@
     "jest": "^23.5.0",
     "jest-canvas-mock": "^1.1.0",
     "jest-junit": "^5.0.0",
+    "jest-svg-transformer": "^1.0.0",
     "lerna": "^3.1.2",
     "openurl": "^1.1.1",
     "prettier": "^1.14.2"
-  },
-  "dependencies": {
-    "jest-svg-transformer": "^1.0.0"
   }
 }
