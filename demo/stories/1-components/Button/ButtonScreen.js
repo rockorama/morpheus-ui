@@ -6,8 +6,6 @@
 
 import React, { Component } from 'react'
 
-import { Text } from 'react-native'
-
 import UIExplorer, {
   Description,
   DocItem,
@@ -23,9 +21,7 @@ class ButtonScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="Button" url="/components/Button.js">
-        <Description>
-          <Text>Displays a customizable button</Text>
-        </Description>
+        <Description>Displays a customizable button</Description>
         <Section title="Props">
           <DocItem
             description="The default button style."
