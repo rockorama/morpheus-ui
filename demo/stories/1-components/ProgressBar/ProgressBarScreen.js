@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
+import { Text } from 'react-native-web'
 
 import UIExplorer, {
   Description,
@@ -17,7 +18,9 @@ class ProgressBarScreen extends Component<{}> {
   render() {
     return (
       <UIExplorer title="ProgressBar" url="/components/ProgressBar.js">
-        <Description>Displays a customizable progress bar</Description>
+        <Description>
+          <Text>Displays a customizable progress bar</Text>
+        </Description>
         <Section title="Props">
           <DocItem
             description="The default progress bar style."
