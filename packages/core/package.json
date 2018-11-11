@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "hoist-non-react-statics": "^3.0.1",
+    "lodash": "^4.17.11",
     "react-art": "^16.4.2",
     "react-native-web": "^0.8.9",
     "styled-components": "^4.0.0-beta.5"

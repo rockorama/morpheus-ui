@@ -18,7 +18,7 @@ export default class DefaultSwitchExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <Switch defaultState={true} onPress={action('clicked')} />
+        <Switch defaultState={true} onChange={action('clicked')} />
       </View>
     )
   }

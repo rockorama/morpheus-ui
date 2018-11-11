@@ -4,16 +4,18 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
+import { turnIntoField } from './formact'
+
 type State = {
   on: boolean,
 }
 
 type Props = {
-  defaultState?: boolean,
+  defaultValue?: boolean,
   disabled?: boolean,
   dark?: boolean,
   control?: () => boolean | boolean,
-  onPress?: (value: boolean) => void,
+  onChange?: (value: boolean) => void,
 }
 
 const Dot = styled.View`
@@ -79,11 +81,13 @@ const Container = styled.View`
     `};
 `
 
-export default class Switch extends Component<Props, State> {
+class Switch extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
+    const initialValue =
+      props.fieldValue == null ? props.defaultValue || false : props.fieldValue
     this.state = {
-      on: this.props.defaultState ? this.props.defaultState : false,
+      on: initialValue,
     }
   }
 
@@ -91,13 +95,18 @@ export default class Switch extends Component<Props, State> {
     if (!this.props.disabled && this.props.control === undefined) {
       const currentState = !this.state.on
       this.setState({ on: currentState })
-      this.props.onPress && this.props.onPress(currentState)
+      this.props.onChange(currentState)
+      if (!this.props.dirty) {
+        this.props.setDirty()
+      }
     }
   }
 
   handleOn() {
     if (this.props.control == null) {
-      return this.state.on
+      return this.props.fieldValue == null
+        ? this.state.on
+        : this.props.fieldValue
     } else if (typeof this.props.control === 'function') {
       return this.props.control()
     } else {
@@ -106,6 +115,7 @@ export default class Switch extends Component<Props, State> {
   }
 
   render() {
+    console.log(this.props)
     const { disabled, dark } = this.props
     const on = this.handleOn()
     const switchElement = (
@@ -126,3 +136,5 @@ export default class Switch extends Component<Props, State> {
     )
   }
 }
+
+export default turnIntoField(Switch)

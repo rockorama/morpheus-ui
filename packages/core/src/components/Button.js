@@ -6,10 +6,14 @@ import { css } from 'styled-components/native'
 
 import HoverView from './HoverView'
 
+import { turnIntoField } from './formact'
+
 type ContainerProps = {
+  submit?: boolean,
   disabled?: boolean,
   outlined?: boolean,
-  onPress?: Function,
+  onPress?: () => {},
+  submitForm?: () => {},
 }
 
 type Props = ContainerProps & {
@@ -57,15 +61,22 @@ const hoverStyle = css`
     `};
 `
 
-export default class Button extends Component<Props> {
+export class Button extends Component<Props> {
+  onPress = () => {
+    if (this.props.submit) {
+      this.props.submitForm && this.props.submitForm()
+    }
+    this.props.onPress && this.props.onPress()
+  }
+
   render() {
-    const { children, title, onPress, disabled, ...other } = this.props
+    const { children, title, disabled, ...other } = this.props
 
     return (
       <HoverView
         styles={mainStyle}
         hoverStyles={disabled ? null : hoverStyle}
-        onClick={disabled ? null : onPress}
+        onClick={disabled ? null : this.onPress}
         disabled={disabled}
         {...other}>
         {children ? children : <Text>{title}</Text>}
@@ -73,3 +84,5 @@ export default class Button extends Component<Props> {
     )
   }
 }
+
+export default turnIntoField(Button)

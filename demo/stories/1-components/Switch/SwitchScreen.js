@@ -12,6 +12,7 @@ import DefaultSwitch from './examples/DefaultSwitch'
 import DisabledSwitch from './examples/DisabledSwitch'
 import DarkSwitch from './examples/DarkSwitch'
 import ControlSwitch from './examples/ControlSwitch'
+import WithFormSwitch from './examples/WithFormSwitch'
 
 class SwitchScreen extends Component<{}> {
   render() {
@@ -57,6 +58,12 @@ class SwitchScreen extends Component<{}> {
             typeInfo="?boolean"
             example={{
               render: () => <DarkSwitch />,
+            }}
+          />
+          <DocItem
+            description="Switch inside Form component."
+            example={{
+              render: () => <WithFormSwitch />,
             }}
           />
         </Section>

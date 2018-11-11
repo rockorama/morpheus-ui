@@ -18,7 +18,7 @@ export default class DarkSwitchExample extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <Switch dark={true} onPress={action('clicked')} />
+        <Switch dark={true} onChange={action('clicked')} />
       </View>
     )
   }
