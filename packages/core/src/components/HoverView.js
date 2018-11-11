@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component, type Node } from 'react'
 import { View } from 'react-native'
 import styled, { type ReactComponentStyled } from 'styled-components/native'
 
@@ -11,7 +11,7 @@ type ContainerProps = {
 }
 
 type Props = ContainerProps & {
-  children: any,
+  children: ?Node,
 }
 
 const Container: ReactComponentStyled<ContainerProps> = styled.View`

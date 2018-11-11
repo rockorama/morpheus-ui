@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
-import { Switch } from '@morpheus-ui/core'
+import { Switch, Form } from '@morpheus-ui/core'
 
 const styles = {
   background: {
@@ -14,11 +14,13 @@ const styles = {
   },
 }
 
-export default class DisabledSwitchExample extends Component<{}> {
+export default class WithFormSwitch extends Component<{}> {
   render() {
     return (
       <View style={styles.background}>
-        <Switch disabled={true} onChange={action('clicked')} />
+        <Form>
+          <Switch onChange={action('clicked')} name="switch" />
+        </Form>
       </View>
     )
   }

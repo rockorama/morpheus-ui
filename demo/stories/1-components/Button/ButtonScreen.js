@@ -16,6 +16,7 @@ import UIExplorer, {
 import NormalButton from './examples/NormalButton'
 import DisabledButton from './examples/DisabledButton'
 import OutlinedButton from './examples/OutlinedButton'
+import SubmitButton from './examples/SubmitButton'
 
 class ButtonScreen extends Component<{}> {
   render() {
@@ -43,6 +44,14 @@ class ButtonScreen extends Component<{}> {
             description="Default outlined style."
             example={{
               render: () => <OutlinedButton />,
+            }}
+          />
+          <DocItem
+            name="submit"
+            typeInfo="?boolean = true"
+            description="Button inside Form to submit."
+            example={{
+              render: () => <SubmitButton />,
             }}
           />
         </Section>
