@@ -36,12 +36,14 @@ export type FormChangePayload = FormSubmitPayload & {
   lastChanged: FieldName,
 }
 
+export type AddFieldParams = {
+  name: FieldName,
+  value: FieldValue,
+  validate?: (value: FieldValue) => string,
+}
+
 export type FormContext = {
-  addField: ({
-    name: FieldName,
-    value: FieldValue,
-    validate?: FieldValidateFunctionParams,
-  }) => void,
+  addField: (params: AddFieldParams) => void,
   removeField: (name: FieldName) => void,
   valueChanged: (name: FieldName, value: FieldValue) => void,
   isSubmitted: () => boolean,

@@ -9,11 +9,7 @@ export default class NormalButtonExample extends Component<{}> {
   render() {
     return (
       <View>
-        <Form
-          onSubmit={data => {
-            console.log(data)
-            action('submitted')
-          }}>
+        <Form onSubmit={action('clicked')}>
           <Button submit title="Submit button" />
         </Form>
       </View>

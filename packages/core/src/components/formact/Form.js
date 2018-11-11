@@ -8,10 +8,13 @@ import type {
   FieldValue,
   FormChangePayload,
   FormSubmitPayload,
+  FormContext,
+  AddFieldParams,
 } from './types'
 
+/* eslint-disable */
 const DEFAULT_CONTEXT: FormContext = {
-  addField: (name: FieldName, value: FieldValue) => {},
+  addField: ({ name, value }: AddFieldParams) => {},
   removeField: (name: FieldName) => {},
   valueChanged: (name: FieldName, value: FieldValue) => {},
   isSubmitted: () => {
@@ -21,12 +24,12 @@ const DEFAULT_CONTEXT: FormContext = {
   values: {},
   errors: {},
 }
-
+/* eslint-enable */
 export const { Provider, Consumer } = createContext(DEFAULT_CONTEXT)
 
 type Props = {
-  onSubmit: FormSubmitPayload,
-  onChange: FormChangePayload,
+  onSubmit?: (payload: FormSubmitPayload) => void,
+  onChange?: (payload: FormChangePayload) => void,
   children: Node,
 }
 
@@ -54,7 +57,7 @@ export default class Form extends Component<Props, State> {
   }: {
     name: FieldName,
     value: FieldValue,
-    validate?: FieldValidateFunctionParams,
+    validate?: (value: FieldValue) => string,
   }) => {
     this.fields[name] = value
     this.validators[name] = {
@@ -94,7 +97,7 @@ export default class Form extends Component<Props, State> {
       onChange({
         fields: this.fields,
         errors: this.errors,
-        lastChange: name,
+        lastChanged: name,
         valid: this.isValid(),
       })
     }
@@ -129,21 +132,18 @@ export default class Form extends Component<Props, State> {
     return errors < 0
   }
 
-  onSubmit = (event: any) => {
+  onSubmit = () => {
     const valid = this.isValid()
     this.setState({
       submitted: true,
     })
 
     if (this.props.onSubmit) {
-      this.props.onSubmit(
-        {
-          valid,
-          fields: this.fields,
-          errors: this.errors,
-        },
-        event,
-      )
+      this.props.onSubmit({
+        valid,
+        fields: this.fields,
+        errors: this.errors,
+      })
     }
   }
 

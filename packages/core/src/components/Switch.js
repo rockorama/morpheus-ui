@@ -6,6 +6,8 @@ import { TouchableWithoutFeedback, View } from 'react-native'
 
 import { turnIntoField } from './formact'
 
+import { type FieldValue } from './formact/types'
+
 type State = {
   on: boolean,
 }
@@ -14,8 +16,11 @@ type Props = {
   defaultValue?: boolean,
   disabled?: boolean,
   dark?: boolean,
+  fieldValue?: FieldValue,
+  dirty: boolean,
+  setDirty: () => void,
   control?: () => boolean | boolean,
-  onChange?: (value: boolean) => void,
+  onChange: (value: boolean) => void,
 }
 
 const Dot = styled.View`
@@ -86,7 +91,7 @@ class Switch extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     const initialValue =
-      props.fieldValue == null ? props.defaultValue || false : props.fieldValue
+      props.fieldValue == null ? !!props.defaultValue : !!props.fieldValue
     this.state = {
       on: initialValue,
     }
@@ -107,7 +112,7 @@ class Switch extends Component<Props, State> {
     if (this.props.control == null) {
       return this.props.fieldValue == null
         ? this.state.on
-        : this.props.fieldValue
+        : !!this.props.fieldValue
     } else if (typeof this.props.control === 'function') {
       return this.props.control()
     } else {
@@ -116,7 +121,6 @@ class Switch extends Component<Props, State> {
   }
 
   render() {
-    console.log(this.props)
     const { disabled, dark } = this.props
     const on = this.handleOn()
     const switchElement = (

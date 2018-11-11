@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, type Node } from 'react'
+import React, { Component } from 'react'
 import hoistStatics from 'hoist-non-react-statics'
 
 import { Consumer } from './Form'
@@ -24,6 +24,7 @@ type Props = FormContext & {
   validation?: ?FieldValidateFunction | ?Array<FieldValidateFunction>,
   type?: ?string,
   errorMessages: DefaultErrorMessages,
+  render: (component: any) => void,
 }
 
 type State = {
@@ -63,30 +64,31 @@ class Field extends Component<Props, State> {
     }
   }
 
-  validate = (fieldValue: ?FieldValue, props: Props = this.props) => {
-    let { validation, required, type } = props
+  validate = (fieldValue: ?FieldValue): string => {
+    const { validation, required, type } = this.props
     let errorMessage = ''
 
-    if (!validation) {
-      validation = []
-    } else if (!Array.isArray(validation)) {
-      validation = [validation]
+    let newValidation = validation
+    if (!newValidation) {
+      newValidation = []
+    } else if (!Array.isArray(newValidation)) {
+      newValidation = [newValidation]
     }
 
     if (required) {
-      validation = [REQUIRED, ...validation]
+      newValidation = [REQUIRED, ...newValidation]
     }
 
     if (type === 'email') {
-      validation = [EMAIL, ...validation]
+      newValidation = [EMAIL, ...newValidation]
     }
 
-    errorMessage = validation
+    errorMessage = newValidation
       .map(fun =>
         fun({
           value: fieldValue,
-          name: props.label || props.name,
-          errorMessages: props.errorMessages,
+          name: this.props.label || this.props.name,
+          errorMessages: this.props.errorMessages,
         }),
       )
       .filter(m => m)
@@ -123,8 +125,8 @@ class Field extends Component<Props, State> {
   }
 }
 
-export default (Component: Node) => {
-  return props => {
+export default (Component: any) => {
+  return (props: Object) => {
     const FinalComponent = (
       <Consumer>
         {(value: FormContext) => {
@@ -132,7 +134,7 @@ export default (Component: Node) => {
             <Field
               {...props}
               {...value}
-              render={(fieldProps: FieldProps) => <Component {...fieldProps} />}
+              render={(fieldProps: Props) => <Component {...fieldProps} />}
             />
           )
         }}

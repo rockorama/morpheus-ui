@@ -19,7 +19,7 @@ export default class WithFormSwitch extends Component<{}> {
     return (
       <View style={styles.background}>
         <Form>
-          <Switch name="switch" />
+          <Switch onChange={action('clicked')} name="switch" />
         </Form>
       </View>
     )
