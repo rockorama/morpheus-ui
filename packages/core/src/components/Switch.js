@@ -27,6 +27,7 @@ const Dot = styled.View`
   background-color: #fff;
   transition: left 0.3s;
   left: 0px;
+  top: -1px;
   ${props =>
     props.on &&
     css`
