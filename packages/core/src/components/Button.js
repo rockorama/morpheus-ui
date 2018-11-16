@@ -3,10 +3,9 @@
 import React, { Component, type Node } from 'react'
 import { Text } from 'react-native'
 import { css } from 'styled-components/native'
+import { turnIntoField } from '@morpheus-ui/forms'
 
 import HoverView from './HoverView'
-
-import { turnIntoField } from './formact'
 
 type ContainerProps = {
   submit?: boolean,

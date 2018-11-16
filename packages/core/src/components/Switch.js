@@ -4,9 +4,7 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
-import { turnIntoField } from './formact'
-
-import { type FieldValue } from './formact/types'
+import { turnIntoField, type FieldValue } from '@morpheus-ui/forms'
 
 type State = {
   on: boolean,
