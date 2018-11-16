@@ -13,6 +13,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "start:forms": "cd packages/forms && yarn start",
     "start:core": "cd packages/core && yarn start",
     "start:demo": "cd demo && yarn start",
     "start": "yarn build && nf start",

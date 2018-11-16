@@ -1,7 +1,7 @@
 {
-  "name": "@morpheus-ui/core",
+  "name": "@morpheus-ui/forms",
   "version": "0.0.1",
-  "description": "UI Library from Mainframe",
+  "description": "Form context for react components",
   "module": "lib/index.js",
   "main": "lib/index.js",
   "repository": {
@@ -18,20 +18,16 @@
     "build": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js",
     "start": "BABEL_ENV='test' babel src --out-dir lib  --watch --ignore test.js",
     "flow:install": "flow-typed install --ignoreDeps=dev",
+    "build:flow": "flow-copy-source src lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@morpheus-ui/forms": "*",
     "hoist-non-react-statics": "^3.0.1",
-    "lodash": "^4.17.11",
-    "react-art": "^16.4.2",
-    "react-native-web": "^0.8.9",
-    "styled-components": "^4.0.0-beta.5"
+    "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react": "^16.4.2"
   },
   "devDependencies": {
     "flow-bin": "^0.80.0"

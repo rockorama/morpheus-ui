@@ -3,7 +3,8 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
-import { Switch, Form } from '@morpheus-ui/core'
+import { Switch } from '@morpheus-ui/core'
+import { Form } from '@morpheus-ui/forms'
 
 const styles = {
   background: {

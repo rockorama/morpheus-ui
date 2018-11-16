@@ -140,10 +140,6 @@ export default (Component: any) => {
         }}
       </Consumer>
     )
-    //
-    // FinalComponent.displayName = `withFormContext(${Component.displayName ||
-    //   Component.name})`
-    // FinalComponent.WrappedComponent = Component
 
     return hoistStatics(FinalComponent, Component)
   }
