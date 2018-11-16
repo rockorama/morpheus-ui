@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
-    "build": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js",
+    "build": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js && yarn build:flow",
     "start": "BABEL_ENV='test' babel src --out-dir lib  --watch --ignore test.js",
     "flow:install": "flow-typed install --ignoreDeps=dev",
     "build:flow": "flow-copy-source src lib",
