@@ -8,8 +8,18 @@ import { View } from 'react-native'
 import plusSymbol from '../../src/components/images/plus-symbol.svg'
 import crossSymbol from '../../src/components/images/cross.svg'
 
+type Props = {
+  hover?: string,
+  icon?: string,
+  onPress?: Function,
+}
+
+type State = {
+  isHover: boolean,
+}
+
 type ContainerProps = {
-  icon?: String,
+  icon?: string,
   isHover: boolean,
 }
 
@@ -49,16 +59,6 @@ const HoverText = styled.Text`
       font-size: 12px;
     `};
 `
-
-type Props = {
-  hover?: String,
-  icon?: String,
-  onPress?: Function,
-}
-
-type State = {
-  isHover: boolean,
-}
 
 export default class GrowButton extends Component<Props, State> {
   state = {

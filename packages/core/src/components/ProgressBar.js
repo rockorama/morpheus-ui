@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 
 type Props = {
-  length: ?number,
-  control: ?() => number | ?number,
+  length?: number,
+  control?: number | (() => number),
 }
 
 type State = {
