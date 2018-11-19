@@ -5,8 +5,7 @@ import styled, {
   type ReactComponentStyled,
 } from 'styled-components/native'
 import { View } from 'react-native'
-import plusSymbol from '../../src/components/images/plus-symbol.svg'
-import crossSymbol from '../../src/components/images/cross.svg'
+import { PlusSymbol, Cross } from '@morpheus-ui/icons'
 
 type Props = {
   hover?: string,
@@ -24,6 +23,7 @@ type ContainerProps = {
 }
 
 const Container: ReactComponentStyled<ContainerProps> = styled.View`
+  flex-direction: row;
   cursor: pointer;
   border-radius: 23px;
   padding: 10px 13px;
@@ -32,31 +32,20 @@ const Container: ReactComponentStyled<ContainerProps> = styled.View`
   background-size: 12px 12px;
   background-position: 7px center;
   background-repeat: no-repeat;
-  ${props =>
-    props.icon === 'plus' &&
-    css`
-      background-image: url(${plusSymbol});
-    `};
-  ${props =>
-    props.icon === 'cross' &&
-    css`
-      background-image: url(${crossSymbol});
-    `};
-  ${props =>
-    props.isHover &&
-    css`
-      padding: 3px 15px 4px 25px;
-    `};
 `
 
 const HoverText = styled.Text`
-  display: none;
+  font-size: 0;
+  transition: all 0.3s;
+
   ${props =>
     props.isHover &&
     css`
-      display: block;
-      color: white;
+      width: auto;
+      overflow: auto;
       font-size: 12px;
+      margin-left: 13px;
+      color: white;
     `};
 `
 
@@ -81,10 +70,8 @@ export default class GrowButton extends Component<Props, State> {
     const { hover, onPress, icon } = this.props
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-        <Container
-          onClick={onPress}
-          isHover={this.state.isHover}
-          icon={icon ? icon : 'plus'}>
+        <Container onClick={onPress} isHover={this.state.isHover}>
+          {icon === 'cross' ? <Cross fill="red" /> : <PlusSymbol />}
           <HoverText isHover={this.state.isHover}>
             {hover ? hover : 'Install'}
           </HoverText>
