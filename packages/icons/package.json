@@ -1,9 +1,13 @@
 {
-  "name": "@morpheus-ui/forms",
+  "name": "@morpheus-ui/icons",
   "version": "0.0.1",
-  "description": "Form context for react components",
+  "description": "Morpheus UI - Icon Collection",
   "module": "lib/index.js",
   "main": "lib/index.js",
+  "svgr": {
+    "icon": true,
+    "out-dir": "components"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
@@ -15,12 +19,11 @@
   },
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
-    "build:clean": "rm -rf ./lib",
-    "build:js": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js",
-    "build:flow": "flow-copy-source src lib",
-    "build": "yarn build:clean && yarn build:js && yarn build:flow",
-    "start": "BABEL_ENV='test' babel src --out-dir lib  --watch --ignore test.js",
-    "flow:install": "flow-typed install --ignoreDeps=dev",
+    "build:clean": "rm -rf ./lib && rm -rf ./components",
+    "build:components": "npx @svgr/cli -d ./components ./svgs",
+    "build:js": "create-index ./components && BABEL_ENV='browser-cjs' babel components --out-dir lib --ignore test.js",
+    "build": "yarn build:clean && yarn build:components && yarn build:js",
+    "start": "watch 'yarn build' ./svgs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
