@@ -13,9 +13,9 @@
   "dependencies": {
     "@morpheus-ui/core": "*",
     "@morpheus-ui/forms": "*",
-    "react": "^16.4.2",
+    "react": "^16.6.0",
     "react-native": "^0.57.0",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.6.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.10",

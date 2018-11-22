@@ -3,8 +3,9 @@
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 import { TouchableWithoutFeedback, View } from 'react-native'
-
 import { turnIntoField, type FieldValue } from '@morpheus-ui/forms'
+
+import Theme from '../theme'
 
 type State = {
   on: boolean,
@@ -86,6 +87,8 @@ const Container = styled.View`
 `
 
 class Switch extends Component<Props, State> {
+  static contextType = Theme
+
   constructor(props: Props) {
     super(props)
     const initialValue =

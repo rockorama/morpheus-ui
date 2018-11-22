@@ -3,6 +3,8 @@
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 
+import Theme from '../theme'
+
 type Props = {
   length?: number,
   control?: number | (() => number),
@@ -67,6 +69,8 @@ const Container = styled.View`
 `
 
 export default class ProgressBar extends Component<Props, State> {
+  static contextType = Theme
+
   state = {
     active: 0,
   }

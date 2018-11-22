@@ -7,6 +7,8 @@ import styled, {
 import { View } from 'react-native'
 import { PlusSymbol, Cross } from '@morpheus-ui/icons'
 
+import Theme from '../theme'
+
 type Props = {
   hover?: string,
   icon?: string,
@@ -50,6 +52,8 @@ const HoverText = styled.Text`
 `
 
 export default class GrowButton extends Component<Props, State> {
+  static contextType = Theme
+
   state = {
     isHover: false,
   }
@@ -71,7 +75,11 @@ export default class GrowButton extends Component<Props, State> {
     return (
       <View onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
         <Container onClick={onPress} isHover={this.state.isHover}>
-          {icon === 'cross' ? <Cross fill="red" /> : <PlusSymbol />}
+          {icon === 'cross' ? (
+            <Cross color="white" />
+          ) : (
+            <PlusSymbol color="white" />
+          )}
           <HoverText isHover={this.state.isHover}>
             {hover ? hover : 'Install'}
           </HoverText>
