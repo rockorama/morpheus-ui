@@ -18,7 +18,7 @@
     "start:core": "cd packages/core && yarn start",
     "start:demo": "cd demo && yarn start",
     "start": "yarn build && nf start",
-    "lint": "eslint demo/stories packages/*/src",
+    "lint": "eslint packages/*/src",
     "lint:fix": "yarn lint --fix",
     "flow": "flow check",
     "jest": "jest --config jest.config.js",
