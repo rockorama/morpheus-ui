@@ -4,7 +4,7 @@ import React, { createContext, Component } from 'react'
 
 export const DEFAULT_THEME = {
   typography: {
-    fontSize: 12,
+    fontSize: 13,
     fontFamily: 'Poppins',
   },
   spacing: {
@@ -21,10 +21,11 @@ export const DEFAULT_THEME = {
       primary: '#102043',
       secondary: '#D72323',
       error: '#D72323',
-      alert: '#3A5084',
+      alert: '#E51111',
       success: 'green',
-      border: '#2D2D2D',
-      text: '#313131',
+      border: '#F9F9F9',
+      text: '#232323',
+      activeText: '#1F3464',
     },
     dark: {
       primary: 'black',

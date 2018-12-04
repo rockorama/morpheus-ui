@@ -158,6 +158,7 @@ export default class Form extends Component<Props, State> {
           valueChanged: this.valueChanged,
           isSubmitted: this.checkSubmitted,
           submitForm: this.onSubmit,
+          inForm: true,
           values,
           errors,
         }}>
