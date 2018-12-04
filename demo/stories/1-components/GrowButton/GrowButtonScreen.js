@@ -14,7 +14,7 @@ import SymbolHoverGrow from './examples/SymbolHoverGrow'
 class GrowScreen extends Component<{}> {
   render() {
     return (
-      <UIExplorer title="Switch" url="/components/Switch.js">
+      <UIExplorer title="GrowButton" url="/components/GrowButton.js">
         <Description>Displays a customizable switch button</Description>
         <Section title="Props">
           <DocItem

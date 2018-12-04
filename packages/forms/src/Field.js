@@ -8,24 +8,16 @@ import { Consumer } from './Form'
 import { REQUIRED, EMAIL } from './validation'
 
 import type {
-  FieldName,
   FieldValue,
-  FieldValidateFunction,
-  DefaultErrorMessages,
   FormContext,
+  PreFieldProps,
+  FieldProps,
 } from './types'
 
-type Props = FormContext & {
-  name: FieldName,
-  defaultValue?: ?FieldValue,
-  label?: string,
-  required?: ?boolean,
-  onChange?: ?(value: ?FieldValue) => void,
-  validation?: ?FieldValidateFunction | ?Array<FieldValidateFunction>,
-  type?: ?string,
-  errorMessages: DefaultErrorMessages,
-  render: (component: any) => void,
-}
+type Props = FormContext &
+  PreFieldProps & {
+    render: (component: any) => void,
+  }
 
 type State = {
   dirty: boolean,
@@ -65,7 +57,7 @@ class Field extends Component<Props, State> {
   }
 
   validate = (fieldValue: ?FieldValue): string => {
-    const { validation, required, type } = this.props
+    const { validation, required, type, values } = this.props
     let errorMessage = ''
 
     let newValidation = validation
@@ -87,6 +79,7 @@ class Field extends Component<Props, State> {
       .map(fun =>
         fun({
           value: fieldValue,
+          values: values,
           name: this.props.label || this.props.name,
           errorMessages: this.props.errorMessages,
         }),
@@ -134,7 +127,7 @@ export default (Component: any) => {
             <Field
               {...props}
               {...value}
-              render={(fieldProps: Props) => <Component {...fieldProps} />}
+              render={(fieldProps: FieldProps) => <Component {...fieldProps} />}
             />
           )
         }}

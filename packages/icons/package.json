@@ -4,10 +4,6 @@
   "description": "Morpheus UI - Icon Collection",
   "module": "lib/index.js",
   "main": "lib/index.js",
-  "svgr": {
-    "icon": true,
-    "out-dir": "components"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
@@ -20,7 +16,7 @@
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
     "build:clean": "rm -rf ./lib && rm -rf ./components",
-    "build:components": "npx @svgr/cli -d ./components ./svgs",
+    "build:components": "npx @svgr/cli -d ./components ./svgs --icon --replace-attr-values \"#000000=currentColor\"",
     "build:js": "create-index ./components && BABEL_ENV='browser-cjs' babel components --out-dir lib --ignore test.js",
     "build": "yarn build:clean && yarn build:components && yarn build:js",
     "start": "watch 'yarn build' ./svgs",
@@ -32,7 +28,7 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "react": "^16.4.2"
+    "react": "^16.6.0"
   },
   "devDependencies": {
     "flow-bin": "^0.80.0"

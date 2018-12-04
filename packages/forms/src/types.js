@@ -18,6 +18,7 @@ export type DefaultErrorMessages = {
 
 export type FieldValidateFunctionParams = {
   value?: FieldValue,
+  values?: Object,
   name?: FieldName,
   errorMessages: DefaultErrorMessages,
 }
@@ -50,4 +51,28 @@ export type FormContext = {
   submitForm: () => void,
   values: Object,
   errors: Object,
+  inForm?: boolean,
+}
+
+export type PreFieldProps = {
+  name: FieldName,
+  defaultValue?: ?FieldValue,
+  label?: string,
+  required?: ?boolean,
+  onChange?: ?(value: ?FieldValue) => void,
+  validation?: ?FieldValidateFunction | ?Array<FieldValidateFunction>,
+  type?: ?string,
+  errorMessages: DefaultErrorMessages,
+  inForm?: boolean,
+}
+
+export type FieldProps = PreFieldProps & {
+  dirty: boolean,
+  fieldValue: ?FieldValue,
+  errorMessage: ?string,
+  values: Object,
+  errors: Object,
+  setDirty: () => void,
+  isSubmitted: () => boolean,
+  submitForm: () => void,
 }

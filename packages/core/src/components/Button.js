@@ -4,6 +4,7 @@ import React, { Component, type Node } from 'react'
 import { Text } from 'react-native'
 import { css } from 'styled-components/native'
 import { turnIntoField } from '@morpheus-ui/forms'
+import Theme from '../theme'
 
 import HoverView from './HoverView'
 
@@ -61,6 +62,8 @@ const hoverStyle = css`
 `
 
 export class Button extends Component<Props> {
+  static contextType = Theme
+
   onPress = () => {
     if (this.props.submit) {
       this.props.submitForm && this.props.submitForm()
@@ -70,7 +73,6 @@ export class Button extends Component<Props> {
 
   render() {
     const { children, title, disabled, ...other } = this.props
-
     return (
       <HoverView
         styles={mainStyle}

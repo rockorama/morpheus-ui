@@ -29,13 +29,14 @@
     "@morpheus-ui/icons": "*",
     "hoist-non-react-statics": "^3.0.1",
     "lodash": "^4.17.11",
-    "react-art": "^16.4.2",
-    "react-native-web": "^0.8.9",
-    "styled-components": "^4.0.0-beta.5"
+    "react-art": "^16.6.0",
+    "react-native-web": "^0.9.4",
+    "react-sizes": "^1.0.4",
+    "styled-components": "^4.0.3"
   },
   "peerDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
   "devDependencies": {
     "flow-bin": "^0.80.0"
