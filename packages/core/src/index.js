@@ -3,9 +3,6 @@
 // COMPONENTS
 export { default as TextField } from './components/TextField'
 export { default as Button } from './components/Button'
-export { default as GrowButton } from './components/GrowButton'
-export { default as ProgressBar } from './components/ProgressBar'
-export { default as Switch } from './components/Switch'
 
 //Grid
 export { default as Row } from './components/Grid/Row'
