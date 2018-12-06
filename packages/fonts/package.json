@@ -1,0 +1,16 @@
+  {
+  "name": "@morpheus-ui/fonts",
+  "version": "0.0.1",
+  "description": "Morpheus UI - Fonts",
+  "main": "index.css",
+  "keywords": [
+    "morpheus-ui",
+    "fonts"
+  ],
+  "author": "Mainframe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
+  }
+}

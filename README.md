@@ -2,7 +2,17 @@
 
 A React UI Library designed by Mainframe
 
-## Overview
+## Collection
+
+This library contains 4 packages:
+
+@morpheus-ui/core - Set of UI Components
+@morpheus-ui/fonts - Fonts used by Morpheus UI
+@morpheus-ui/forms - Used by Morpheus UI to add a form context to some UI components
+@morpheus-ui/icons - Collection of Icon Components designed by Mainframe
+
+
+## Development Overview
 
 This library contains a set of UI/UX components used to build Mainframe dApps
 

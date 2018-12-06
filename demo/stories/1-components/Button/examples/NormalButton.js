@@ -1,12 +1,10 @@
-// @flow
-
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
 import { Button, Row, Column } from '@morpheus-ui/core'
 import { CircleArrowRight, User, UserFilled } from '@morpheus-ui/icons'
 
-export default class NormalButtonExample extends Component<{}> {
+export default class NormalButtonExample extends Component {
   render() {
     return (
       <View>
