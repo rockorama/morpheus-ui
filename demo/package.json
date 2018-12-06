@@ -13,6 +13,7 @@
   "dependencies": {
     "@morpheus-ui/core": "*",
     "@morpheus-ui/forms": "*",
+    "@morpheus-ui/icons": "*",
     "react": "^16.6.0",
     "react-native": "^0.57.0",
     "react-dom": "^16.6.0"
