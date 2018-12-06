@@ -15,14 +15,14 @@
 
 Morpheus-UI is available as an [npm package](https://www.npmjs.com/package/@morpheus-ui/core).
 
-You'll need to install `react-native-web` as well
+You'll need to install `@morpheus-ui/fonts` and `react-native-web` as dependencies
 
 ```sh
 // with npm
-npm install react-native-web @morpheus-ui/core
+npm install react-native-web @morpheus-ui/fonts @morpheus-ui/core
 
 // with yarn
-yarn add react-native-web @morpheus-ui/core
+yarn add react-native-web @morpheus-ui/fonts @morpheus-ui/core
 ```
 
 ## Usage
@@ -33,6 +33,9 @@ Here is a quick example to get you started, **it's all you need**:
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Button } from '@morpheus-ui/core'
+
+//Import the fonts in your root component
+import '@morpheus-ui/fonts'
 
 function App() {
   return <Button title="Hello World" />
