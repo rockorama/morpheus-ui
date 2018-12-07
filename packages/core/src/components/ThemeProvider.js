@@ -12,52 +12,13 @@ export const DEFAULT_THEME = {
       spacing: 15,
     },
   },
-  typography: {
-    fontSize: 13,
-    fontFamily: 'Poppins',
-  },
-  spacing: {
-    basic: 15,
-    small: 5,
-    large: 30,
-  },
-  borders: {
-    width: 1,
-    roundness: 5,
-  },
-  colors: {
-    main: {
-      primary: '#102043',
-      secondary: '#D72323',
-      error: '#D72323',
-      alert: '#E51111',
-      success: 'green',
-      border: '#F9F9F9',
-      text: '#232323',
-      activeText: '#1F3464',
-    },
-    dark: {
-      primary: 'black',
-      secondary: 'red',
-      error: 'red',
-      alert: 'yellow',
-      success: 'green',
-    },
-    light: {
-      primary: 'gray',
-      secondary: 'red',
-      error: 'red',
-      alert: 'yellow',
-      success: 'green',
-    },
-  },
 }
 
 // Get a theme property and provide trace info so a developer can see where
 // a particular property is coming from. Use `traceTheme={true}` on the
 // component to show trace.
-const getKeyTrace = (themeProps : Object, key: string, trace: string) => {
-  if (themeProps.hasOwnProperty(key) && !!themeProps[key]) {
+const getKeyTrace = (themeProps: Object, key: string, trace: string) => {
+  if (themeProps && themeProps.hasOwnProperty(key) && !!themeProps[key]) {
     return { ...themeProps[key], trace: trace }
   } else {
     return {}
@@ -82,18 +43,28 @@ export const getTheme = (
     theme = {
       ...theme,
       ...(DEFAULT_THEME[componentName]
-        ? getKeyTrace(DEFAULT_THEME[componentName], key, `${componentName}/${key}`)
+        ? getKeyTrace(
+            DEFAULT_THEME[componentName],
+            key,
+            `${componentName}/${key}`,
+          )
         : {}),
-      ...(context[componentName] 
-        ? getKeyTrace(context[componentName], key, `context/${componentName}/${key}`)
+      ...(context[componentName]
+        ? getKeyTrace(
+            context[componentName],
+            key,
+            `context/${componentName}/${key}`,
+          )
         : {}),
     }
   })
 
   if (props.traceTheme) {
-    console.log("theme", theme)
+    /*eslint-disable*/
+    console.log('theme', theme)
+    /*eslint-enable*/
   }
-  
+
   return { ...theme, ...(props.theme || {}) }
 }
 
