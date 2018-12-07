@@ -32,7 +32,6 @@ const InnerContainer = styled.View`
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    background-color: ${muitheme.backgroundColor};
     padding: ${muitheme.padding}px;
     background-color: ${muitheme.backgroundColor};
     border-color: ${muitheme.borderColor};
