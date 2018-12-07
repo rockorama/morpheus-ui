@@ -2,19 +2,6 @@
 
 exports[`Button renders 1`] = `
 <Button
-  borderColor="#979797"
-  borderHoverColor="#DA1157"
-  iconColor="#979797"
-  iconHoverColor="#DA1157"
-  iconPosition="right"
-  iconSize={
-    Object {
-      "height": 24,
-      "width": 24,
-    }
-  }
   title="Hello test"
-  titleColor="#979797"
-  titleHoverColor="#DA1157"
 />
 `;

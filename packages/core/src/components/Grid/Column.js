@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import withSize, { type ScreenSizes } from '../../screenSize'
 
+import { getTheme } from '../ThemeProvider'
 import { RowContext } from './Row'
 
 type Props = ScreenSizes & {
@@ -96,7 +97,7 @@ const getColOffset = ({
 
 const ColumnView = styled.View`
   width: ${props => getColWidth(props)};
-  padding: 0 ${props => props.muiTheme.spacing.basic / 2}px;
+  padding: 0 ${props => props.muiTheme.spacing / 2}px;
   margin-left: ${props => getColOffset(props)};
   ${props => (isHidden(props) ? 'display: none' : '')};
   ${props => props.styles};
@@ -114,11 +115,12 @@ class Column extends Component<Props> {
   }
 
   render() {
+    const theme = getTheme('Grid', this.props, this.context.theme)
     return (
       <ColumnView
         {...this.props}
         rowSize={this.context.rowSize}
-        muiTheme={this.context.theme}>
+        muiTheme={theme}>
         {this.props.children}
       </ColumnView>
     )

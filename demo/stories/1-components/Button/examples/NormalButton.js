@@ -8,36 +8,76 @@ export default class NormalButtonExample extends Component {
   render() {
     return (
       <View>
-        <Row size={2}>
+        <Row size={1}>
           <Column>
             <Button
               onPress={action('clicked')}
-              title="NORMAL BUTTON"
+              title="Normal"
               Icon={CircleArrowRight}
-              // backgroundColor="yellow"
-              // backgroundHoverColor="red"
-              iconPosition="right"
-              // titleColor="red"
-              // titleHoverColor="blue"
-              // iconColor="red"
-              // iconHoverColor="blue"
-              // noBorder
-              // borderColor="red"
-              // borderHoverColor="blue"
-              // hoverShadow
             />
           </Column>
-
+        </Row>
+        <Row size={1}>
           <Column>
             <Button
               onPress={action('clicked')}
-              title="NORMAL BUTTON"
+              title="Small Button"
               Icon={User}
               HoverIcon={UserFilled}
-              iconSize={{ width: 60, height: 60 }}
-              iconPosition="top"
-              iconColor="red"
-              titleHoverColor="red"
+              variant="small"
+            />
+          </Column>
+        </Row>
+        <Row size={1}>
+          <Column>
+            <Button
+              onPress={action('clicked')}
+              title="Large Button"
+              Icon={User}
+              HoverIcon={UserFilled}
+              variant="large"
+            />
+          </Column>
+        </Row>
+        <Row size={1}>
+          <Column>
+            <Button
+              onPress={action('clicked')}
+              title="Disabled"
+              Icon={User}
+              HoverIcon={UserFilled}
+              disabled
+            />
+          </Column>
+        </Row>
+        <Row size={1}>
+          <Column>
+            <Button
+              onPress={action('clicked')}
+              title="Icon Top"
+              Icon={User}
+              HoverIcon={UserFilled}
+              variant="icon-top"
+            />
+          </Column>
+        </Row>
+        <Row size={1}>
+          <Column>
+            <Button
+              onPress={action('clicked')}
+              title="No Border"
+              Icon={CircleArrowRight}
+              variant="no-border"
+            />
+          </Column>
+        </Row>
+        <Row size={1}>
+          <Column>
+            <Button
+              onPress={action('clicked')}
+              title="Hover Shadow"
+              Icon={CircleArrowRight}
+              variant={['no-border', 'hover-shadow']}
             />
           </Column>
         </Row>

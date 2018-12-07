@@ -2,7 +2,16 @@
 
 import React, { createContext, Component } from 'react'
 
+import { BUTTON_THEME, TEXT_FIELD_THEME } from '../themes'
+
 export const DEFAULT_THEME = {
+  Button: BUTTON_THEME,
+  TextField: TEXT_FIELD_THEME,
+  Grid: {
+    default: {
+      spacing: 15,
+    },
+  },
   typography: {
     fontSize: 13,
     fontFamily: 'Poppins',
@@ -42,6 +51,30 @@ export const DEFAULT_THEME = {
       success: 'green',
     },
   },
+}
+
+export const getTheme = (
+  componentName: string,
+  props: Object,
+  context: Object,
+) => {
+  const variants = Array.isArray(props.variant)
+    ? props.variant
+    : [props.variant]
+
+  let theme = { ...(DEFAULT_THEME[componentName].default || {}) }
+
+  variants.forEach(key => {
+    theme = {
+      ...theme,
+      ...(DEFAULT_THEME[componentName]
+        ? DEFAULT_THEME[componentName][key] || {}
+        : {}),
+      ...(context[componentName] ? context[componentName][key] || {} : {}),
+    }
+  })
+
+  return { ...theme, ...(props.theme || {}) }
 }
 
 const ThemeContext = createContext(DEFAULT_THEME)

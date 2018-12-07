@@ -3,7 +3,7 @@
 import React, { Component, createContext } from 'react'
 import styled from 'styled-components/native'
 
-import Theme, { DEFAULT_THEME } from '../../theme'
+import Theme, { DEFAULT_THEME, getTheme } from '../ThemeProvider'
 import withSize, { type ScreenSizes } from '../../screenSize'
 
 export const RowContext = createContext({
@@ -17,6 +17,7 @@ type Props = ScreenSizes & {
   nowrap: boolean,
   top: boolean,
   bottom: boolean,
+  inner: boolean,
 }
 
 const RowView = styled.View`
@@ -24,10 +25,10 @@ const RowView = styled.View`
   flex-direction: 'row';
   flex-wrap: ${props => (props.nowrap ? 'nowrap' : 'wrap')};
   justify-content: flex-start;
-  margin: ${props => props.muiTheme.spacing.basic / 2}px -${props => props.muiTheme.spacing.basic / 2}px;
+  margin: ${props => props.muiTheme.spacing / 2}px -${props => props.muiTheme.spacing / 2}px;
+  ${props => (props.inner ? `margin: ${props.muiTheme.spacing / 2}px 0;` : '')};
   ${props => (props.top ? 'margin-top: 0' : '')};
   ${props => (props.bottom ? 'margin-bottom: 0' : '')};
-  ${props => props.styles};
 `
 
 class Row extends Component<Props> {
@@ -39,7 +40,8 @@ class Row extends Component<Props> {
   }
 
   render() {
-    const theme = this.context
+    const theme = getTheme('Grid', this.props, this.context)
+
     return (
       <RowView {...this.props} muiTheme={theme}>
         <RowContext.Provider value={{ rowSize: this.props.size, theme }}>
