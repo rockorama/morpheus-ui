@@ -8,13 +8,16 @@ import {
   removeFieldProps,
   type FieldProps,
 } from '@morpheus-ui/forms'
-import Theme from '../theme'
+
+import Theme, { getTheme } from './ThemeProvider'
 
 type Props = FieldProps & {
   placeholder?: string,
   value?: ?string,
   defaultValue?: ?string,
   multiline: boolean,
+  disabled: boolean,
+  variant: string | Array<string>,
 }
 
 type State = {
@@ -25,46 +28,67 @@ type State = {
 const Container = styled.View``
 
 const FieldContainer = styled.View`
-  transition: all 0.3s
-  background-color: ${props => props.muitheme.colors.main.border};
-  border-radius: ${props => props.muitheme.borders.roundness}px;
-  border-color: ${props => props.muitheme.colors.main.border};
-  border-width: ${props => props.muitheme.borders.width}px;
-  padding: ${props => props.muitheme.spacing.basic}px
-    ${props => props.muitheme.spacing.basic}px
-    ${props => props.muitheme.spacing.basic - 2}px
-    ${props => props.muitheme.spacing.basic}px;
+  transition: all 0.3s;
+  background-color: ${props => props.muitheme.backgroundColor};
+  border-radius: ${props => props.muitheme.borderRadius}px;
+  border-color: ${props => props.muitheme.borderColor};
+  border-width: ${props => props.muitheme.borderWidth}px;
+  padding: ${props => props.muitheme.padding}px
+    ${props => props.muitheme.padding}px
+    ${props => props.muitheme.padding - 2}px
+    ${props => props.muitheme.padding}px;
 
   ${props =>
+    props.muitheme.shadow &&
+    ` shadow-color: #000;
+          shadow-offset: {width: 0, height: 0};
+          shadow-opacity: 0.1;
+          shadow-radius: 8;
+      `}
+
+  ${props =>
+    !props.disabled &&
     props.hasFocus &&
     css`
-      background-color: #fff;
-      shadow-color: #000;
-      shadow-offset: {width: 0, height: 0};
-      shadow-opacity: 0.1;
-      shadow-radius: 8;
+      background-color: ${props => props.muitheme.backgroundActiveColor};
+      border-color: ${props => props.muitheme.borderActiveColor};
+      ${props.muitheme.activeShadow &&
+        ` shadow-color: #000;
+          shadow-offset: {width: 0, height: 0};
+          shadow-opacity: 0.1;
+          shadow-radius: 8;
+      `}
     `};
 
-    ${props =>
-      props.showError &&
-      css`
-        border-color: ${props => props.muitheme.colors.main.alert};
-      `};
+  ${props =>
+    props.disabled &&
+    css`
+      background-color: ${props => props.muitheme.backgroundDisabledColor};
+      border-color: ${props => props.muitheme.borderDisabledColor};
+      cursor: not-allowed;
+    `};
+
+  ${props =>
+    props.showError &&
+    css`
+      border-color: ${props => props.muitheme.errorColor};
+    `};
 `
 
 const Label = styled.Text`
-  font-family: 'Muli';
-  font-size: ${props => props.muitheme.typography.fontSize}px;
-  color: #a9a9a9;
+  font-family: ${props => props.muitheme.fontFamily};
+  font-size: ${props => props.muitheme.fontSize}px;
+  color: ${props => props.muitheme.labelColor};
   position: absolute;
   transition: all 0.3s;
 
   ${props =>
+    !props.disabled &&
     (props.hasFocus || props.hasContent) &&
     css`
-      color: #a9a9a9;
-      font-size: ${props => props.muitheme.typography.fontSize - 5}px;
-      margin-top: -${props => props.muitheme.spacing.basic - 5}px;
+      color: ${props => props.muitheme.labelActiveColor};
+      font-size: ${props => props.muitheme.fontSize - 5}px;
+      margin-top: -${props => props.muitheme.padding - 5}px;
       text-transform: uppercase;
     `};
 
@@ -74,26 +98,40 @@ const Label = styled.Text`
     css`
       color: transparent;
     `};
+
+  ${props =>
+    props.disabled &&
+    css`
+      color: ${props => props.muitheme.labelDisabledColor};
+      cursor: not-allowed;
+    `};
 `
 
 const Field = styled.TextInput`
-  font-family: 'Muli';
+  font-family: ${props => props.muitheme.fontFamily};
   outline: none;
-  font-size: ${props => props.muitheme.typography.fontSize}px;
+  font-size: ${props => props.muitheme.fontSize}px;
   position: relative;
-  color: ${props => props.muitheme.colors.main.text};
+  color: ${props => props.muitheme.textColor};
   ${props =>
     props.hasFocus &&
     css`
-      color: ${props => props.muitheme.colors.main.activeText};
+      color: ${props => props.muitheme.textActiveColor};
+    `};
+
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: not-allowed;
     `};
 `
 
 const ErrorMessage = styled.Text`
-  font-family: 'Muli';
+  font-family: ${props => props.muitheme.fontFamily};
   font-size: 10px;
-  color: ${props => props.muitheme.colors.main.alert};
-  min-height: ${props => props.muitheme.typography.fontSize}px;
+  height: 18px;
+  color: ${props => props.muitheme.errorColor};
+  min-height: ${props => props.muitheme.fontSize}px;
   padding: 2px;
   margin-bottom: 2px;
 `
@@ -153,7 +191,9 @@ export class TextField extends Component<Props, State> {
 
   render() {
     const { label, errorMessage, isSubmitted, dirty } = this.props
-    const { placeholder, multiline, ...other } = removeFieldProps(this.props)
+    const { placeholder, multiline, disabled, ...other } = removeFieldProps(
+      this.props,
+    )
 
     const showError = (isSubmitted() || dirty) && !!errorMessage
 
@@ -162,23 +202,27 @@ export class TextField extends Component<Props, State> {
 
     const type = this.getType()
 
+    const muitheme = getTheme('TextField', this.props, this.context)
+
     return (
       <Container>
         <FieldContainer
-          muitheme={this.context}
+          muitheme={muitheme}
           hasFocus={this.state.focus}
           hasContent={hasValue}
-          showError={showError}>
+          showError={showError}
+          disabled={disabled}>
           <Label
-            muitheme={this.context}
+            muitheme={muitheme}
             hasFocus={this.state.focus}
-            hasContent={hasValue}>
+            hasContent={hasValue}
+            disabled={disabled}>
             {label || placeholder}
           </Label>
           <Field
             hasFocus={this.state.focus}
             hasContent={hasValue}
-            muitheme={this.context}
+            muitheme={muitheme}
             value={value}
             onChangeText={this.onChange}
             onFocus={this.onFocus}
@@ -188,10 +232,11 @@ export class TextField extends Component<Props, State> {
             onSubmitEditing={this.onSubmit}
             multiline={multiline}
             placeholder={this.state.focus ? placeholder : null}
+            disabled={disabled}
             {...other}
           />
         </FieldContainer>
-        <ErrorMessage muitheme={this.context}>
+        <ErrorMessage muitheme={muitheme}>
           {showError ? errorMessage : ''}
         </ErrorMessage>
       </Container>

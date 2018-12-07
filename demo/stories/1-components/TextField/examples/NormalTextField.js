@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
 import { TextField, Row, Column } from '@morpheus-ui/core'
 import { Form } from '@morpheus-ui/forms'
@@ -42,6 +41,25 @@ export default class NormaltextFieldExample extends Component<{}> {
                 multiline
                 required
                 numberOfLines={6}
+              />
+            </Column>
+
+            <Column sm={2}>
+              <TextField
+                name="disabled"
+                label="disabled"
+                required
+                disabled
+                defaultValue="This field can't be edited"
+              />
+            </Column>
+
+            <Column sm={2}>
+              <TextField
+                name="outlined"
+                label="Outlined"
+                required
+                variant="outlined"
               />
             </Column>
           </Row>

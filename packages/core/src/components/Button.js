@@ -4,198 +4,109 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
-import Theme from '../theme'
+import Theme, { getTheme } from './ThemeProvider'
 
 type Props = FieldProps & {
   title?: string,
   Icon?: any,
   HoverIcon?: any,
-  iconSize: { width: number, height: number },
-  backgroundColor?: string,
-  backgroundHoverColor?: string,
-  iconPosition?: 'top' | 'right' | 'left' | 'bottom',
-  titleColor?: string,
-  titleHoverColor?: string,
-  iconColor?: string,
-  iconHoverColor?: string,
-  borderColor?: string,
-  borderHoverColor?: string,
-  shadow?: boolean,
-  hoverShadow?: boolean,
-  noBorder?: boolean,
   submit?: boolean,
-
+  variant: string | Array<string>,
+  theme: Object,
+  disabled: boolean,
   onPress?: () => void,
 }
 
 type State = {
   isHover: boolean,
 }
-
 const Container = styled.View`
   align-items: center;
   flex-direction: row;
 `
-
 const Clicker = styled.TouchableWithoutFeedback``
 
 const InnerContainer = styled.View`
-  transition: all 0.3s;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  padding: ${props => props.muitheme.spacing.basic}px;
-  border-radius: ${props => props.muitheme.borders.roundness}px;
+  ${({ muitheme, isHover, disabled }) => css`
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: ${muitheme.padding}px;
+    background-color: ${muitheme.backgroundColor};
+    border-color: ${muitheme.borderColor};
+    border-width: ${muitheme.borderWidth};
+    border-radius: ${muitheme.borderRadius};
+    ${(muitheme.iconPosition === 'top' || muitheme.iconPosition === 'bottom') &&
+      `flex-direction: column;`} 
+   ${muitheme.shadow &&
+     ` shadow-color: #000;
+       shadow-offset: {width: 0, height: 0};
+       shadow-opacity: 0.1;
+       shadow-radius: 8;
+    `}
 
-  ${props =>
-    props.backgroundColor &&
-    css`
-      background-color: ${props.backgroundColor};
-    `};
-
-  ${props =>
-    !props.noBorder &&
-    css`
-      border-color: ${props =>
-        props.borderColor || props.muitheme.colors.main.border};
-      border-width: ${props => props.muitheme.borders.width}px;
-    `};
-
-  ${props =>
-    (props.iconPosition === 'top' || props.iconPosition === 'bottom') &&
-    css`
-      flex-direction: column;
-    `};
-
-  ${props =>
-    props.shadow &&
-    css`
-        shadow-color: #000;
-        shadow-offset: {width: 0, height: 0};
-        shadow-opacity: 0.1;
-        shadow-radius: 8;
-        `};
-
-  ${props => props.containerStyles};
-
-  ${props =>
-    props.isHover &&
-    css`
-      ${props =>
-        !props.noBorder &&
-        css`
-          border-color: ${props =>
-            props.borderHoverColor ||
-            props.borderColor ||
-            props.muitheme.colors.main.border};
-        `};
-
-      ${props =>
-        props.hoverShadow &&
-        css`
-          shadow-color: #000;
+  ${isHover &&
+    ` background-color: ${muitheme.backgroundHoverColor};
+      border-color: ${muitheme.borderHoverColor};
+      ${muitheme.hoverShadow &&
+        ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
-          `};
+        `}
+     `}
 
-      ${props =>
-        props.backgroundHoverColor &&
-        css`
-          background-color: ${props.backgroundHoverColor ||
-            props.backgroundColor ||
-            'transparent'};
-        `};
-
-      ${props => props.containerHoverStyles};
-    `};
+    ${disabled &&
+      ` background-color: ${muitheme.backgroundDisabledColor};
+      border-color: ${muitheme.borderDisabledColor};
+      cursor: not-allowed;
+     `}
+  `}
 `
 
 const IconContainer = styled.View`
-  transition: all 0.3s
-  align-items: center;
-  justify-content: center;
-  ${props =>
-    props.iconColor &&
+  ${({ muitheme, title, isHover, disabled }) =>
     css`
-      color: ${props.iconColor};
-    `};
+      transition: all 0.3s;
+      align-items: center;
+      justify-content: center;
+      color: ${muitheme.iconColor};
+      ${!!title &&
+        muitheme.iconPosition === 'top' &&
+        `margin-bottom: ${muitheme.iconMargin}px;`}
+      ${!!title &&
+        muitheme.iconPosition === 'right' &&
+        `margin-left: ${muitheme.iconMargin}px;`}
+      ${!!title &&
+        muitheme.iconPosition === 'bottom' &&
+        `margin-top: ${muitheme.iconMargin}px;`}
+      ${!!title &&
+        muitheme.iconPosition === 'left' &&
+        `margin-right: ${muitheme.iconMargin}px;`}
 
-  ${props =>
-    !!props.title &&
-    props.iconPosition === 'top' &&
-    css`
-      margin-bottom: 10px;
-    `};
-
-  ${props =>
-    !!props.title &&
-    props.iconPosition === 'right' &&
-    css`
-      margin-left: 20px;
-    `};
-
-  ${props =>
-    !!props.title &&
-    props.iconPosition === 'bottom' &&
-    css`
-      margin-top: 10px;
-    `};
-
-  ${props =>
-    !!props.title &&
-    props.iconPosition === 'left' &&
-    css`
-      margin-right: 20px;
-    `};
-
-  ${props =>
-    props.isHover &&
-    css`
-      ${props =>
-        (props.iconHoverColor || props.iconColor) &&
-        css`
-          color: ${props.iconHoverColor || props.iconColor};
-        `};
-      ${props => props.iconHoverStyles};
-    `};
+       ${isHover && `color: ${muitheme.iconHoverColor};`}
+       ${disabled && `color: ${muitheme.iconDisabledColor};`}
+  `}
 `
 
 const Title = styled.Text`
-  font-family: 'Muli';
-  font-size: ${props => props.muitheme.typography.fontSize - 2}px;
-  color: #a9a9a9;
-  transition: all 0.3s;
-  font-weight: bold;
-  color: ${props => props.titleColor || props.muitheme.colors.main.text};
-  ${props => props.titleStyles};
-
-  ${props =>
-    props.isHover &&
+  ${({ muitheme, isHover, disabled }) =>
     css`
-      color: ${props =>
-        props.titleHoverColor ||
-        props.titleColor ||
-        props.muitheme.colors.main.activeText};
-      ${props => props.titleHoverStyles};
-    `};
+      transition: all 0.3s;
+      font-family: ${muitheme.fontFamily};
+      font-size: ${muitheme.fontSize};
+      font-weight: ${muitheme.fontWeight};
+      color: ${muitheme.titleColor};
+      ${isHover && `color: ${muitheme.titleHoverColor};`}
+
+      ${disabled &&
+        `color: ${muitheme.titleDisabledColor}; cursor: not-allowed;`}
+    `}
 `
+
 export class Button extends Component<Props, State> {
   static contextType = Theme
-
-  static defaultProps = {
-    iconPosition: 'right',
-    iconSize: {
-      width: 24,
-      height: 24,
-    },
-    titleColor: '#979797',
-    titleHoverColor: '#DA1157',
-    iconColor: '#979797',
-    iconHoverColor: '#DA1157',
-    borderColor: '#979797',
-    borderHoverColor: '#DA1157',
-  }
 
   state = {
     isHover: false,
@@ -214,49 +125,56 @@ export class Button extends Component<Props, State> {
   }
 
   onSubmit = () => {
-    if (this.props.inForm && this.props.submit) {
-      this.props.submitForm()
+    if (!this.props.disabled) {
+      if (this.props.inForm && this.props.submit) {
+        this.props.submitForm()
+      }
+      this.props.onPress && this.props.onPress()
     }
-    this.props.onPress && this.props.onPress()
   }
 
-  renderIcon() {
-    const { Icon, HoverIcon } = this.props
+  renderIcon(muitheme: Object) {
+    const { Icon, HoverIcon, disabled } = this.props
     if (!Icon) return null
 
-    const TheIcon = this.state.isHover ? HoverIcon || Icon : Icon
+    const TheIcon = this.state.isHover && !disabled ? HoverIcon || Icon : Icon
     return (
-      <IconContainer {...this.props} isHover={this.state.isHover}>
-        <TheIcon
-          width={this.props.iconSize.width}
-          height={this.props.iconSize.height}
-        />
+      <IconContainer
+        muitheme={muitheme}
+        title={this.props.title}
+        isHover={this.state.isHover}
+        disabled={disabled}>
+        <TheIcon width={muitheme.iconWidth} height={muitheme.iconHeight} />
       </IconContainer>
     )
   }
 
   render() {
-    const { title, iconPosition } = this.props
+    const { title, disabled } = this.props
+    const muitheme: Object = getTheme('Button', this.props, this.context)
 
     return (
       <Container>
-        <Clicker onPress={this.onSubmit}>
+        <Clicker disabled={disabled} onPress={this.onSubmit}>
           <InnerContainer
             {...this.props}
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
-            muitheme={this.context}
+            muitheme={muitheme}
+            disabled={disabled}
             isHover={this.state.isHover}>
-            {(iconPosition === 'left' || iconPosition === 'top') &&
-              this.renderIcon()}
+            {(muitheme.iconPosition === 'left' ||
+              muitheme.iconPosition === 'top') &&
+              this.renderIcon(muitheme)}
             <Title
-              {...this.props}
               isHover={this.state.isHover}
-              muitheme={this.context}>
+              muitheme={muitheme}
+              disabled={disabled}>
               {title}
             </Title>
-            {(iconPosition === 'right' || iconPosition === 'bottom') &&
-              this.renderIcon()}
+            {(muitheme.iconPosition === 'right' ||
+              muitheme.iconPosition === 'bottom') &&
+              this.renderIcon(muitheme)}
           </InnerContainer>
         </Clicker>
       </Container>

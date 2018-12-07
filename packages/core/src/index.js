@@ -9,4 +9,4 @@ export { default as Row } from './components/Grid/Row'
 export { default as Column } from './components/Grid/Column'
 
 // THEME PROVIDER
-export { ThemeProvider } from './theme'
+export { ThemeProvider } from './components/ThemeProvider'
