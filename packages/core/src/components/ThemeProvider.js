@@ -53,6 +53,17 @@ export const DEFAULT_THEME = {
   },
 }
 
+// Get a theme property and provide trace info so a developer can see where
+// a particular property is coming from. Use `traceTheme={true}` on the
+// component to show trace.
+const getKeyTrace = (themeProps : Object, key: string, trace: string) => {
+  if (themeProps.hasOwnProperty(key) && !!themeProps[key]) {
+    return { ...themeProps[key], trace: trace }
+  } else {
+    return {}
+  }
+}
+
 export const getTheme = (
   componentName: string,
   props: Object,
@@ -62,18 +73,27 @@ export const getTheme = (
     ? props.variant
     : [props.variant]
 
-  let theme = { ...(DEFAULT_THEME[componentName].default || {}) }
+  let theme = {
+    ...getKeyTrace(DEFAULT_THEME[componentName], 'default', `root/default`),
+    ...getKeyTrace(context[componentName], 'default', 'context/default'),
+  }
 
   variants.forEach(key => {
     theme = {
       ...theme,
       ...(DEFAULT_THEME[componentName]
-        ? DEFAULT_THEME[componentName][key] || {}
+        ? getKeyTrace(DEFAULT_THEME[componentName], key, `${componentName}/${key}`)
         : {}),
-      ...(context[componentName] ? context[componentName][key] || {} : {}),
+      ...(context[componentName] 
+        ? getKeyTrace(context[componentName], key, `context/${componentName}/${key}`)
+        : {}),
     }
   })
 
+  if (props.traceTheme) {
+    console.log("theme", theme)
+  }
+  
   return { ...theme, ...(props.theme || {}) }
 }
 
