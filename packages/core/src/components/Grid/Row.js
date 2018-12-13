@@ -6,7 +6,9 @@ import styled from 'styled-components/native'
 import Theme, { DEFAULT_THEME, getTheme } from '../ThemeProvider'
 import withSize, { type ScreenSizes } from '../../screenSize'
 
-export const RowContext = createContext({
+type ContextType = { theme: Object, rowSize: number }
+
+export const RowContext = createContext<ContextType>({
   theme: DEFAULT_THEME,
   rowSize: 12,
 })

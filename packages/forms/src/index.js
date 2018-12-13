@@ -4,7 +4,7 @@ export { default as Form } from './Form'
 export { default as turnIntoField } from './Field'
 export * from './types'
 
-export const removeFieldProps = props => {
+export const removeFieldProps = (props: Object) => {
   const {
     name,
     defaultValue,
@@ -27,7 +27,7 @@ export const removeFieldProps = props => {
   return other
 }
 
-export const getFieldProps = props => {
+export const getFieldProps = (props: Object) => {
   const {
     name,
     defaultValue,

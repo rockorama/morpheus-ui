@@ -1,4 +1,5 @@
 [ignore]
+<PROJECT_ROOT>/demo/.*
 <PROJECT_ROOT>/packages/*/lib/.*
 .*/node_modules/config-chain/test/.*
 .*/node_modules/react-native/.*
