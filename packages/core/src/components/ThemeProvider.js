@@ -2,11 +2,12 @@
 
 import React, { createContext, Component } from 'react'
 
-import { BUTTON_THEME, TEXT_FIELD_THEME } from '../themes'
+import { BUTTON_THEME, TEXT_FIELD_THEME, TEXT_THEME } from '../themes'
 
 export const DEFAULT_THEME = {
   Button: BUTTON_THEME,
   TextField: TEXT_FIELD_THEME,
+  Text: TEXT_THEME,
   Grid: {
     default: {
       spacing: 15,
@@ -75,6 +76,22 @@ const { Provider } = ThemeContext
 type Props = {
   theme: Object,
   children: any,
+}
+
+const REPLACE_EXP = /([a-z])([A-Z])/g
+
+const camelCaseToDash = (text: string): string => {
+  return text.replace(REPLACE_EXP, '$1-$2').toLowerCase()
+}
+
+export const getPropertiesFromTheme = (theme: Object): string => {
+  const keys = Object.keys(theme)
+  const props = keys
+    .filter(key => theme[key] !== 'initial' && theme[key] !== 'inherit')
+    .map(key => `${camelCaseToDash(key)}: ${theme[key]};`)
+    .join(' ')
+
+  return props
 }
 
 export class ThemeProvider extends Component<Props> {

@@ -1,6 +1,7 @@
 // @flow
 
 // COMPONENTS
+export { default as Text } from './components/Text'
 export { default as TextField } from './components/TextField'
 export { default as Button } from './components/Button'
 

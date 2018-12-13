@@ -41,7 +41,7 @@ ReactDOM.render(<App />, document.querySelector('#app'))
 ## Documentation
 
 ### Available Components
-
+- Text
 - Row
 - Column
 - Button
