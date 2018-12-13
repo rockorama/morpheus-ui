@@ -17,7 +17,7 @@ type Props = FieldProps & {
   defaultValue?: ?string,
   multiline: boolean,
   disabled: boolean,
-  variant: string | Array<string>,
+  variant?: string | Array<string>,
 }
 
 type State = {

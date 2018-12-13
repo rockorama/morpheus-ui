@@ -4,13 +4,14 @@ import styled from 'styled-components/native'
 import Theme, { getTheme, getPropertiesFromTheme } from './ThemeProvider'
 
 type Props = {
-  variant: string | Array<string>,
+  variant?: string | Array<string>,
   children: any,
   bold?: boolean,
   italic?: boolean,
   size?: number,
   color?: string,
   uppercase?: boolean,
+  styles?: string,
 }
 
 const TheThext = styled.Text`
@@ -25,6 +26,7 @@ const TheThext = styled.Text`
         ? 'uppercase'
         : props.muitheme.textTransform,
     })}
+  ${props => props.styles}
 `
 
 export default class Text extends Component<Props> {

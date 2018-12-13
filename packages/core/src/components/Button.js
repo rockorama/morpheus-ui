@@ -11,7 +11,7 @@ type Props = FieldProps & {
   Icon?: any,
   HoverIcon?: any,
   submit?: boolean,
-  variant: string | Array<string>,
+  variant?: string | Array<string>,
   theme: Object,
   disabled: boolean,
   onPress?: () => void,
