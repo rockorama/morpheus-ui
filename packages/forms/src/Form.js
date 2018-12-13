@@ -25,7 +25,9 @@ const DEFAULT_CONTEXT: FormContext = {
   errors: {},
 }
 /* eslint-enable */
-export const { Provider, Consumer } = createContext(DEFAULT_CONTEXT)
+export const { Provider, Consumer } = createContext<FormContext>(
+  DEFAULT_CONTEXT,
+)
 
 type Props = {
   onSubmit?: (payload: FormSubmitPayload) => void,

@@ -114,6 +114,7 @@ class Field extends Component<Props, State> {
       errorMessage: this.props.errors[this.props.name],
     }
 
+    //$FlowFixMe
     return render(props)
   }
 }

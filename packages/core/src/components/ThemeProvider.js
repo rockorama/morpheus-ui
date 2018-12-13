@@ -68,7 +68,7 @@ export const getTheme = (
   return { ...theme, ...(props.theme || {}) }
 }
 
-const ThemeContext = createContext(DEFAULT_THEME)
+const ThemeContext = createContext<Object>(DEFAULT_THEME)
 
 const { Provider } = ThemeContext
 
