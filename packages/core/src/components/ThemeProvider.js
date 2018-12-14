@@ -2,6 +2,8 @@
 
 import React, { createContext, Component } from 'react'
 
+import { ThemeProvider as StyledThemeProvider } from 'styled-components/native'
+
 import { BUTTON_THEME, TEXT_FIELD_THEME, TEXT_THEME } from '../themes'
 
 export const DEFAULT_THEME = {
@@ -96,6 +98,16 @@ export const getPropertiesFromTheme = (theme: Object): string => {
 
 export class ThemeProvider extends Component<Props> {
   render() {
+    if (this.props.theme && this.props.theme.styled) {
+      return (
+        <Provider value={this.props.theme}>
+          <StyledThemeProvider theme={this.props.theme.styled}>
+            {this.props.children}
+          </StyledThemeProvider>
+        </Provider>
+      )
+    }
+
     return <Provider value={this.props.theme}>{this.props.children}</Provider>
   }
 }

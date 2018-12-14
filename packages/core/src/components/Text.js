@@ -1,6 +1,8 @@
 //@flow
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
+import memoize from 'memoize-one'
+
 import Theme, { getTheme, getPropertiesFromTheme } from './ThemeProvider'
 
 type Props = {
@@ -15,29 +17,31 @@ type Props = {
 }
 
 const TheThext = styled.Text`
-  ${props =>
-    getPropertiesFromTheme({
-      ...props.muitheme,
-      color: props.color || props.muitheme.color,
-      fontWeight: props.bold ? 'bold' : props.muitheme.fontWeight,
-      fontStyle: props.italic ? 'italic' : props.muitheme.fontStyle,
-      fontSize: props.size || props.muitheme.fontSize,
-      textTransform: props.uppercase
-        ? 'uppercase'
-        : props.muitheme.textTransform,
-    })}
+  ${props => props.muistyles}
   ${props => props.styles}
 `
 
 export default class Text extends Component<Props> {
   static contextType = Theme
 
+  getTextTheme = memoize((props, context) => {
+    const theme: Object = getTheme('Text', props, context)
+    return getPropertiesFromTheme({
+      ...theme,
+      color: this.props.color || theme.color,
+      fontWeight: this.props.bold ? 'bold' : theme.fontWeight,
+      fontStyle: this.props.italic ? 'italic' : theme.fontStyle,
+      fontSize: this.props.size || theme.fontSize,
+      textTransform: this.props.uppercase ? 'uppercase' : theme.textTransform,
+    })
+  })
+
   render() {
     const { children, ...other } = this.props
-    const muitheme = getTheme('Text', this.props, this.context)
+    const muistyles = this.getTextTheme(this.props, this.context)
 
     return (
-      <TheThext muitheme={muitheme} {...other}>
+      <TheThext muistyles={muistyles} {...other}>
         {children}
       </TheThext>
     )

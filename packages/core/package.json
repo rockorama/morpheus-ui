@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "UI Library from Mainframe",
   "module": "lib/index.js",
   "main": "lib/index.js",
@@ -28,6 +28,7 @@
     "@morpheus-ui/forms": "^0.0.2",
     "hoist-non-react-statics": "^3.0.1",
     "lodash": "^4.17.11",
+    "memoize-one": "^4.1.0",
     "react-art": "^16.6.0",
     "react-native-web": "^0.9.4",
     "react-sizes": "^1.0.4",

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
+import memoize from 'memoize-one'
 
 import {
   turnIntoField,
@@ -189,6 +190,10 @@ export class TextField extends Component<Props, State> {
     }
   }
 
+  getTextFieldTheme = memoize((props, context) =>
+    getTheme('TextField', props, context),
+  )
+
   render() {
     const { label, errorMessage, isSubmitted, dirty } = this.props
     const { placeholder, multiline, disabled, ...other } = removeFieldProps(
@@ -202,7 +207,7 @@ export class TextField extends Component<Props, State> {
 
     const type = this.getType()
 
-    const muitheme = getTheme('TextField', this.props, this.context)
+    const muitheme = this.getTextFieldTheme(this.props, this.context)
 
     return (
       <Container>

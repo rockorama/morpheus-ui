@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components/native'
+import memoize from 'memoize-one'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
 import Theme, { getTheme } from './ThemeProvider'
@@ -149,9 +150,13 @@ export class Button extends Component<Props, State> {
     )
   }
 
+  getButtonTheme = memoize((props, context) =>
+    getTheme('Button', props, context),
+  )
+
   render() {
     const { title, disabled } = this.props
-    const muitheme: Object = getTheme('Button', this.props, this.context)
+    const muitheme: Object = this.getButtonTheme(this.props, this.context)
 
     return (
       <Container>

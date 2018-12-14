@@ -2,18 +2,27 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
 import { Button, Row, Column } from '@morpheus-ui/core'
-import { CircleArrowRight, User, UserFilled } from '@morpheus-ui/icons'
+import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
+import { User, UserFilled } from '@morpheus-ui/icons'
 
 export default class NormalButtonExample extends Component {
+  state = {
+    large: false,
+  }
+
   render() {
     return (
       <View>
         <Row size={1}>
           <Column>
             <Button
-              onPress={action('clicked')}
+              onPress={() => {
+                this.setState({ large: !this.state.large })
+                console.log(!this.state.large)
+              }}
               title="Normal"
               Icon={CircleArrowRight}
+              variant={this.state.large ? 'large' : null}
             />
           </Column>
         </Row>
