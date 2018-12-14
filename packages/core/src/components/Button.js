@@ -150,7 +150,7 @@ export class Button extends Component<Props, State> {
     )
   }
 
-  getButtonTheme = memoize((props, context) =>
+  getButtonTheme = memoize((props: Props, context: Object) =>
     getTheme('Button', props, context),
   )
 

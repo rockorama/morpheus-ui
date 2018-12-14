@@ -24,7 +24,7 @@ const TheThext = styled.Text`
 export default class Text extends Component<Props> {
   static contextType = Theme
 
-  getTextTheme = memoize((props, context) => {
+  getTextTheme = memoize((props: Props, context: Object) => {
     const theme: Object = getTheme('Text', props, context)
     return getPropertiesFromTheme({
       ...theme,

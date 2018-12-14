@@ -190,7 +190,7 @@ export class TextField extends Component<Props, State> {
     }
   }
 
-  getTextFieldTheme = memoize((props, context) =>
+  getTextFieldTheme = memoize((props: Props, context: Object) =>
     getTheme('TextField', props, context),
   )
 
