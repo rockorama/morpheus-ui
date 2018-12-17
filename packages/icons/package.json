@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/icons",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Morpheus UI - Icon Collection",
   "module": "./index.js",
   "main": "./index.js",
@@ -15,23 +15,12 @@
   },
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
-    "build:clean": "rm -rf ./lib && rm -rf ./components",
+    "build:clean": "rm -rf ./components && rm ./*.js",
     "build:components": "npx @svgr/cli -d ./components ./svgs --icon --replace-attr-values \"#D3D3D3=currentColor\"",
     "build:js": "create-index ./components && BABEL_ENV='browser-cjs' babel components --out-dir ./ --ignore test.js",
     "build": "yarn build:clean && yarn build:components && yarn build:js",
     "deploy": "npm publish --access public",
     "start": "watch 'yarn build' ./svgs",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.0.0",
-    "hoist-non-react-statics": "^3.0.1",
-    "lodash": "^4.17.11"
-  },
-  "peerDependencies": {
-    "react": "^16.6.0"
-  },
-  "devDependencies": {
-    "flow-bin": "^0.80.0"
   }
 }

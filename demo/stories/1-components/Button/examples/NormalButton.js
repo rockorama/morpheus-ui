@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { action } from '@storybook/addon-actions'
 import { Button, Row, Column } from '@morpheus-ui/core'
 import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
-import { User, UserFilled } from '@morpheus-ui/icons'
+import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
 
 export default class NormalButtonExample extends Component {
   state = {
@@ -31,8 +31,8 @@ export default class NormalButtonExample extends Component {
             <Button
               onPress={action('clicked')}
               title="Small Button"
-              Icon={User}
-              HoverIcon={UserFilled}
+              Icon={WalletsMd}
+              HoverIcon={WalletsMdFilled}
               variant="small"
             />
           </Column>
@@ -42,8 +42,8 @@ export default class NormalButtonExample extends Component {
             <Button
               onPress={action('clicked')}
               title="Large Button"
-              Icon={User}
-              HoverIcon={UserFilled}
+              Icon={WalletsMd}
+              HoverIcon={WalletsMdFilled}
               variant="large"
             />
           </Column>
@@ -53,8 +53,8 @@ export default class NormalButtonExample extends Component {
             <Button
               onPress={action('clicked')}
               title="Disabled"
-              Icon={User}
-              HoverIcon={UserFilled}
+              Icon={WalletsMd}
+              HoverIcon={WalletsMdFilled}
               disabled
             />
           </Column>
@@ -64,8 +64,8 @@ export default class NormalButtonExample extends Component {
             <Button
               onPress={action('clicked')}
               title="Icon Top"
-              Icon={User}
-              HoverIcon={UserFilled}
+              Icon={WalletsMd}
+              HoverIcon={WalletsMdFilled}
               variant="icon-top"
             />
           </Column>
