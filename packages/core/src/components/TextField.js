@@ -241,7 +241,7 @@ export class TextField extends Component<Props, State> {
             {...other}
           />
         </FieldContainer>
-        <ErrorMessage muitheme={muitheme} testID={testID + '-warning'}>
+        <ErrorMessage muitheme={muitheme} testID={testID? testID + '-errorMessage': {}}>
           {showError ? errorMessage : ''}
         </ErrorMessage>
       </Container>
