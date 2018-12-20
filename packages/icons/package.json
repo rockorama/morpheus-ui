@@ -15,9 +15,9 @@
   },
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
-    "build:clean": "rm -rf ./components && rm ./*.js",
+    "build:clean": "del-cli components *js",
     "build:components": "npx @svgr/cli -d ./components ./svgs --icon --replace-attr-values \"#D3D3D3=currentColor\"",
-    "build:js": "create-index ./components && BABEL_ENV='browser-cjs' babel components --out-dir ./ --ignore test.js",
+    "build:js": "create-index ./components && cross-env BABEL_ENV=browser-cjs babel components --out-dir ./ --ignore test.js",
     "build": "yarn build:clean && yarn build:components && yarn build:js",
     "deploy": "npm publish --access public",
     "start": "watch 'yarn build' ./svgs",
