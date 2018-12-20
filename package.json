@@ -7,7 +7,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "demo"
+      "demo",
+      "docs"
     ]
   },
   "scripts": {
@@ -16,7 +17,7 @@
     "start:forms": "cd packages/forms && yarn start",
     "start:icons": "cd packages/icons && yarn start",
     "start:core": "cd packages/core && yarn start",
-    "start:demo": "cd demo && yarn start",
+    "start:demo": "cd docs && yarn start",
     "start": "yarn build && nf start",
     "lint": "eslint packages/*/src",
     "lint:fix": "yarn lint --fix",
