@@ -195,7 +195,7 @@ export class TextField extends Component<Props, State> {
   )
 
   render() {
-    const { label, errorMessage, isSubmitted, dirty } = this.props
+    const { label, errorMessage, isSubmitted, dirty, testID } = this.props
     const { placeholder, multiline, disabled, ...other } = removeFieldProps(
       this.props,
     )
@@ -241,7 +241,7 @@ export class TextField extends Component<Props, State> {
             {...other}
           />
         </FieldContainer>
-        <ErrorMessage muitheme={muitheme}>
+        <ErrorMessage muitheme={muitheme} testID={testID + '-warning'}>
           {showError ? errorMessage : ''}
         </ErrorMessage>
       </Container>
