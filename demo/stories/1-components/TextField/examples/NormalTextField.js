@@ -21,6 +21,7 @@ export default class NormaltextFieldExample extends Component<{}> {
                 placeholder="put the vault name here"
                 name="email"
                 label="Email"
+                defaultValue="some@email.com"
                 required
               />
             </Column>
