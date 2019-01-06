@@ -1,0 +1,14 @@
+
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Button/Install/off" transform="translate(-25.000000, -25.000000)" stroke="#D3D3D3">
+            <g id="Group-9" transform="translate(26.000000, 26.000000)">
+                <g id="Group-7">
+                    <path d="M20,9.99613889 C20,15.5183611 15.5261111,20.0000278 10.0038889,20.0000278 C4.47388889,20.0000278 0.0075,15.5261389 0,10.0036389 L0,9.99613889 C0,4.47391667 4.47388889,2.77777778e-05 10.0038889,2.77777778e-05 C15.5261111,2.77777778e-05 20,4.47391667 20,9.99613889 Z" id="Stroke-1"></path>
+                    <path d="M13.5355556,10.0392778 L6.46444444,10.0392778" id="Stroke-3"></path>
+                    <path d="M10,6.50372222 L10,13.5748333" id="Stroke-5"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
