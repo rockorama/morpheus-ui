@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql, Link, navigateTo } from 'gatsby'
 import { Text } from '@morpheus-ui/core'
 import styled from 'styled-components/native'
 
@@ -16,18 +16,55 @@ const ListContainer = styled.ScrollView`
   flex: 1;
 `
 
+const Button = styled.TouchableOpacity`
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid ${props => props.theme.linkColor};
+`
+
+const LinkText = styled.Text`
+  color: ${props => props.theme.linkColor};
+  font-size: 18px;
+`
+
+const ButtonContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 170px;
+`
+
 type Props = {
-  sllSitePage: Object,
+  allSitePage: Object,
 }
 
 class LeftNav extends Component<Props> {
   render() {
-    // console.log(this.props)
+    const regex = /\/(\w+)\/(\w+)/
+    let lastMatch = ''
     return (
       <Container>
         <Text variant="h2">Morpheus-UI</Text>
         <ListContainer>
-          <Text>Menu items</Text>
+          <ButtonContainer>
+            {this.props.allSitePage.edges.map(edge => {
+              const match = edge.node.path.match(regex)
+              if (match) {
+                const renderHeader = match[1] !== lastMatch && (
+                  <Text variant={'h3'}>{match[1]}</Text>
+                )
+                lastMatch = match[1]
+                return (
+                  <>
+                    {renderHeader}
+                    <Button onPress={() => navigateTo(edge.node.path)}>
+                      <LinkText>{match[2]}</LinkText>
+                    </Button>
+                  </>
+                )
+              }
+            })}
+          </ButtonContainer>
         </ListContainer>
       </Container>
     )

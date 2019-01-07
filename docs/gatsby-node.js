@@ -1,5 +1,5 @@
-exports.onCreateNode = ({ node, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
   if (node.internal.type === 'SitePage') {
     createNodeField({
       node,

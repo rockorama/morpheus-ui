@@ -11,7 +11,7 @@ export default class IndexPage extends Component<{}> {
     return (
       <Layout>
         <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-        <Text variant="h1">Hi people</Text>
+        <Text variant="h1">Hi</Text>
       </Layout>
     )
   }
