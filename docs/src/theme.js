@@ -15,8 +15,9 @@ const colors = {
 export default {
   styled: {
     spacing: 20,
-    leftNavColor: '#e3e3e3',
-    linkColor: '#DA1157',
+    leftNavColor: '#fff',
+    demoContainerColor: '#F2F2F2',
+    linkColor: '#B5B5B5',
   },
   Button: {
     yellow: {

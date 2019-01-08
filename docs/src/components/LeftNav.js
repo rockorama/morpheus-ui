@@ -7,7 +7,7 @@ import styled from 'styled-components/native'
 
 const Container = styled.View`
   padding: ${props => props.theme.spacing}px;
-  width: 300px;
+  width: 250px;
   background: ${props => props.theme.leftNavColor};
 `
 
@@ -17,9 +17,9 @@ const ListContainer = styled.ScrollView`
 `
 
 const Button = styled.TouchableOpacity`
-  border-radius: 5px;
-  padding: 5px;
-  border: 1px solid ${props => props.theme.linkColor};
+  padding: 5px 0;
+  margin: 5px 0;
+  border-bottom: 1px solid ${props => props.theme.linkColor};
 `
 
 const LinkText = styled.Text`
@@ -31,7 +31,7 @@ const ButtonContainer = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 170px;
+  height: 100%;
 `
 
 type Props = {
@@ -57,7 +57,9 @@ class LeftNav extends Component<Props> {
                 return (
                   <>
                     {renderHeader}
-                    <Button onPress={() => navigateTo(edge.node.path)}>
+                    <Button
+                      onPress={() => navigateTo(edge.node.path)}
+                      variant={'grayHover'}>
                       <LinkText>{match[2]}</LinkText>
                     </Button>
                   </>
