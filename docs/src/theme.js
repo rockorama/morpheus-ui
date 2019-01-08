@@ -15,9 +15,10 @@ const colors = {
 export default {
   styled: {
     spacing: 20,
-    leftNavColor: '#fff',
-    demoContainerColor: '#F2F2F2',
-    linkColor: '#B5B5B5',
+    leftNavColor: '#EAE4E0',
+    backgroundColor: '#f5f2f0',
+    codeContainer: colors.white,
+    linkColor: colors.blue,
   },
   Button: {
     yellow: {
@@ -32,6 +33,15 @@ export default {
     h3: {
       fontSize: 20,
       fontWeight: 600,
+    },
+    light: {
+      color: colors.white,
+    },
+    red: {
+      color: colors.red,
+    },
+    gray: {
+      color: colors.darkGray,
     },
   },
 }

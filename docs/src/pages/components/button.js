@@ -4,14 +4,13 @@ import { Button, Row, Column, Text } from '@morpheus-ui/core'
 import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
 import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
 import SyntaxHighlighter from 'react-native-syntax-highlighter'
-import { tomorrowNightBlue } from 'react-syntax-highlighter/styles/hljs'
 import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
 
-const importStatement = "import { Button } from '@morpheus-ui/core'\n"
+const importStatement = "import { Button } from '@morpheus-ui/core'"
 
 const normalButtonCode =
-  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal' \n/>"
+  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal'\n/>"
 
 const iconButtonCode =
   "import { Button } from '@morpheus-ui/core'\nimport CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'\n\n<Button \n onPress={action('clicked')} \n title='Icon Button' \n Icon={CircleArrowRight} \n/>"
@@ -38,13 +37,7 @@ const buttons = [
   {
     code: normalButtonCode,
     title: 'Normal button',
-    toRender: (
-      <Button
-        onPress={action('clicked')}
-        title="Normal Button"
-        Icon={CircleArrowRight}
-      />
-    ),
+    toRender: <Button onPress={action('clicked')} title="Normal Button" />,
   },
   {
     code: iconButtonCode,
@@ -139,20 +132,12 @@ const Background = styled.View`
   padding: 50px;
 `
 const Container = styled.View`
-  padding: 30px 0;
+  padding: 0 0 30px 0;
 `
 const CodeContainer = styled.View`
-  padding: 20px 0;
-`
-const DemoContainer = styled.View`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 10px 0;
-  margin-bottom: 20px;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  background-color: ${props => props.theme.codeContainer} !important;
 `
 
 export default class NormalButtonExample extends Component {
@@ -165,12 +150,14 @@ export default class NormalButtonExample extends Component {
             <Text variant="h3">{'Import statement'}</Text>
           </Row>
           <Row inner>
-            <SyntaxHighlighter
-              language="javascript"
-              highlighter={'hljs'}
-              style={tomorrowNightBlue}>
-              {importStatement}
-            </SyntaxHighlighter>
+            <Column lg={10}>
+              <SyntaxHighlighter
+                customStyle={{ backgroundColor: '#fff' }}
+                language="javascript"
+                highlighter={'prism'}>
+                {importStatement}
+              </SyntaxHighlighter>
+            </Column>
           </Row>
           {buttons.map(button => (
             <>
@@ -181,12 +168,12 @@ export default class NormalButtonExample extends Component {
                   </Container>
                   {button.toRender}
                 </Column>
-                <Column lg={9}>
+                <Column lg={7}>
                   <CodeContainer>
                     <SyntaxHighlighter
+                      customStyle={{ backgroundColor: '#fff' }}
                       language="javascript"
-                      highlighter={'hljs'}
-                      style={tomorrowNightBlue}>
+                      highlighter={'prism'}>
                       {button.code}
                     </SyntaxHighlighter>
                   </CodeContainer>

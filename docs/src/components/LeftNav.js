@@ -17,14 +17,14 @@ const ListContainer = styled.ScrollView`
 `
 
 const Button = styled.TouchableOpacity`
-  padding: 5px 0;
+  padding: 5px;
   margin: 5px 0;
   border-bottom: 1px solid ${props => props.theme.linkColor};
 `
 
 const LinkText = styled.Text`
   color: ${props => props.theme.linkColor};
-  font-size: 18px;
+  font-size: 16px;
 `
 
 const ButtonContainer = styled.View`
@@ -39,19 +39,25 @@ type Props = {
 }
 
 class LeftNav extends Component<Props> {
+  capitalize = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   render() {
     const regex = /\/(\w+)\/(\w+)/
     let lastMatch = ''
     return (
       <Container>
-        <Text variant="h2">Morpheus-UI</Text>
+        <Text variant={['h2']}>Morpheus-UI</Text>
         <ListContainer>
           <ButtonContainer>
             {this.props.allSitePage.edges.map(edge => {
               const match = edge.node.path.match(regex)
               if (match) {
                 const renderHeader = match[1] !== lastMatch && (
-                  <Text variant={'h3'}>{match[1]}</Text>
+                  <Text variant={['h3', 'italic']}>
+                    {this.capitalize(match[1])}
+                  </Text>
                 )
                 lastMatch = match[1]
                 return (
@@ -60,7 +66,7 @@ class LeftNav extends Component<Props> {
                     <Button
                       onPress={() => navigateTo(edge.node.path)}
                       variant={'grayHover'}>
-                      <LinkText>{match[2]}</LinkText>
+                      <LinkText>{this.capitalize(match[2])}</LinkText>
                     </Button>
                   </>
                 )

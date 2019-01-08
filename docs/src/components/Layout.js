@@ -16,7 +16,7 @@ const Container = styled.View`
   width: 100vw;
   height: 100vh;
   flex-direction: row;
-  background-color: ${props => props.theme.demoContainerColor};
+  background-color: ${props => props.theme.backgroundColor};
 `
 
 const ChildrenContainer = styled.ScrollView`
