@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { StaticQuery, graphql, Link, navigateTo } from 'gatsby'
+import { StaticQuery, graphql, Link, navigate } from 'gatsby'
 import { Text } from '@morpheus-ui/core'
 import styled from 'styled-components/native'
 
@@ -48,7 +48,7 @@ class LeftNav extends Component<Props> {
     let lastMatch = ''
     return (
       <Container>
-        <Button onPress={() => navigateTo('/')}>
+        <Button onPress={() => navigate('/')}>
           <Text variant={'h1'}>{'Morpheus-UI'}</Text>
         </Button>
         <ListContainer>
@@ -66,7 +66,7 @@ class LeftNav extends Component<Props> {
                   <>
                     {renderHeader}
                     <Button
-                      onPress={() => navigateTo(edge.node.path)}
+                      onPress={() => navigate(edge.node.path)}
                       variant={'grayHover'}>
                       <LinkText>{this.capitalize(match[2])}</LinkText>
                     </Button>
