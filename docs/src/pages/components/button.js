@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { action } from '@storybook/addon-actions'
 import { Button, Row, Column, Text } from '@morpheus-ui/core'
 import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
 import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
@@ -10,39 +9,39 @@ import Layout from '../../components/Layout'
 const importStatement = "import { Button } from '@morpheus-ui/core'"
 
 const normalButtonCode =
-  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal button'\n/>"
+  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={console.log('clicked')} \n title='Normal button'\n/>"
 
 const iconButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'\n\n<Button \n onPress={action('clicked')} \n title='Icon Button' \n Icon={CircleArrowRight} \n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'\n\n<Button \n onPress={console.log('clicked')} \n title='Icon Button' \n Icon={CircleArrowRight} \n/>"
 
 const smallButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Small Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'small'}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='Small Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'small'}\n/>"
 
 const largeButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Large Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'large'}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='Large Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'large'}\n/>"
 
 const disabledButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Disabled Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'disabled'}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='Disabled Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'disabled'}\n/>"
 
 const iconTopButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Icon Top' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'icon-top'}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='Icon Top' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'icon-top'}\n/>"
 
 const noBorderButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { CircleArrowRight } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='No Border' \n Icon={CircleArrowRight} \n variant={'no-border'}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { CircleArrowRight } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='No Border' \n Icon={CircleArrowRight} \n variant={'no-border'}\n/>"
 
 const hoverShadowButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { CircleArrowRight } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Hover Shadow' \n Icon={CircleArrowRight}\n variant={['no-border', 'hover-shadow']}\n/>"
+  "import { Button } from '@morpheus-ui/core'\nimport { CircleArrowRight } from '@morpheus-ui/icons'\n\n<Button \n onPress={console.log('clicked')} \n title='Hover Shadow' \n Icon={CircleArrowRight}\n variant={['no-border', 'hover-shadow']}\n/>"
 
 const buttons = [
   {
     code: normalButtonCode,
-    toRender: <Button onPress={action('clicked')} title="Normal Button" />,
+    toRender: <Button onPress={console.log('clicked')} title="Normal Button" />,
   },
   {
     code: iconButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Icon Button"
         Icon={CircleArrowRight}
       />
@@ -52,7 +51,7 @@ const buttons = [
     code: smallButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Small Button"
         Icon={WalletsMd}
         HoverIcon={WalletsMdFilled}
@@ -64,7 +63,7 @@ const buttons = [
     code: largeButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Large Button"
         Icon={WalletsMd}
         HoverIcon={WalletsMdFilled}
@@ -76,7 +75,7 @@ const buttons = [
     code: disabledButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Disabled"
         Icon={WalletsMd}
         HoverIcon={WalletsMdFilled}
@@ -88,7 +87,7 @@ const buttons = [
     code: iconTopButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Icon Top"
         Icon={WalletsMd}
         HoverIcon={WalletsMdFilled}
@@ -100,7 +99,7 @@ const buttons = [
     code: noBorderButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="No Border"
         Icon={CircleArrowRight}
         variant="no-border"
@@ -111,7 +110,7 @@ const buttons = [
     code: hoverShadowButtonCode,
     toRender: (
       <Button
-        onPress={action('clicked')}
+        onPress={console.log('clicked')}
         title="Hover Shadow"
         Icon={CircleArrowRight}
         variant={['no-border', 'hover-shadow']}

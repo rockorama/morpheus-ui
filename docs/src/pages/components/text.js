@@ -1,9 +1,6 @@
 //@flow
 import React, { Component } from 'react'
-import { action } from '@storybook/addon-actions'
 import { Button, Row, Column, Text } from '@morpheus-ui/core'
-import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
-import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
 import SyntaxHighlighter from 'react-native-syntax-highlighter'
 import styled from 'styled-components/native'
 import Layout from '../../components/Layout'

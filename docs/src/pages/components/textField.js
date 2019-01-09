@@ -1,6 +1,5 @@
 //@flow
 import React, { Component } from 'react'
-import { action } from '@storybook/addon-actions'
 import { Button, Row, Column, TextField, Text } from '@morpheus-ui/core'
 import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
 import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
@@ -11,24 +10,6 @@ import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
 
 const importStatement = "import { TextField } from '@morpheus-ui/core'"
-
-const normalButtonCode =
-  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal button'\n/>"
-
-const iconButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'\n\n<Button \n onPress={action('clicked')} \n title='Icon Button' \n Icon={CircleArrowRight} \n/>"
-
-const smallButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Small Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'small'}\n/>"
-
-const largeButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Large Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'large'}\n/>"
-
-const disabledButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Disabled Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'disabled'}\n/>"
-
-const iconTopButtonCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Icon Top' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'icon-top'}\n/>"
 
 const Background = styled.View`
   padding: 50px;
@@ -66,7 +47,7 @@ export default class NormalButtonExample extends Component {
             </Column>
           </Row>
 
-          <Form onSubmit={action('clicked')}>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField name="name" label="Name" required />
@@ -85,7 +66,7 @@ export default class NormalButtonExample extends Component {
               </Column>
             </Row>
           </Form>
-          <Form onSubmit={action('clicked')}>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField
@@ -110,7 +91,7 @@ export default class NormalButtonExample extends Component {
               </Column>
             </Row>
           </Form>
-          <Form>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField
@@ -134,7 +115,7 @@ export default class NormalButtonExample extends Component {
               </Column>
             </Row>
           </Form>
-          <Form>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField
@@ -159,7 +140,7 @@ export default class NormalButtonExample extends Component {
               </Column>
             </Row>
           </Form>
-          <Form>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField
@@ -184,7 +165,7 @@ export default class NormalButtonExample extends Component {
               </Column>
             </Row>
           </Form>
-          <Form>
+          <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
                 <TextField
