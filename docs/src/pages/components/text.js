@@ -10,58 +10,47 @@ import Layout from '../../components/Layout'
 
 const importStatement = "import { Text } from '@morpheus-ui/core'"
 
-const normalTextCode =
-  "import { Text } from '@morpheus-ui/core'\n\n<Text>\n  {'Hello World'}\n</Text>"
+const normalTextCode = "<Text>\n  {'Normal text'}\n</Text>"
 
-const boldTextCode =
-  "import { Text } from '@morpheus-ui/core'\n\n<Text variant='bold'>\n  {'Hello World'}\n</Text>"
+const boldTextCode = "<Text variant='bold'>\n  {'Bold text'}\n</Text>"
 
-const italicTextCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Small Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'small'}\n/>"
+const italicTextCode = "<Text variant='italic'>\n  {'Italic text'}\n</Text>"
 
 const styledTextCode =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Large Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'large'}\n/>"
+  "<Text \n  italic \n  uppercase \n  size={35} \n  color='#da1157'>\n    {'Styled text'}\n</Text>"
 
-const h1Code =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Disabled Button' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'disabled'}\n/>"
+const h1Code = "<Text variant='h1'>\n  {'Header 1 (h1)'}\n</Text>"
 
-const h2Code =
-  "import { Button } from '@morpheus-ui/core'\nimport { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'\n\n<Button \n onPress={action('clicked')} \n title='Icon Top' \n Icon={WalletsMd} \n HoverIcon={WalletsMdFilled} \n variant={'icon-top'}\n/>"
+const h2Code = "<Text variant='h2'>\n  {'Header 2 (h2)'}\n</Text>"
 
 const textExamples = [
   {
     code: normalTextCode,
-    title: 'Normal text',
-    toRender: <Text>{'Hello World'}</Text>,
+    toRender: <Text>{'Normal text'}</Text>,
   },
   {
     code: boldTextCode,
-    title: 'Bold text',
-    toRender: <Text variant="bold">{'Hello World'}</Text>,
+    toRender: <Text variant="bold">{'Bold text'}</Text>,
   },
   {
     code: italicTextCode,
-    title: 'Italic text',
-    toRender: <Text variant="italic">{'Hello World'}</Text>,
+    toRender: <Text variant="italic">{'Italic text'}</Text>,
   },
   {
     code: styledTextCode,
-    title: 'Styled text',
     toRender: (
-      <Text italic uppercase size={40} color="red">
-        {'hello world'}
+      <Text italic uppercase size={35} color="#da1157">
+        {'Styled text'}
       </Text>
     ),
   },
   {
     code: h1Code,
-    title: 'h1',
-    toRender: <Text variant="h1">{'Hello World'}</Text>,
+    toRender: <Text variant="h1">{'Header 1 (h1)'}</Text>,
   },
   {
     code: h2Code,
-    title: 'h2',
-    toRender: <Text variant="h2">{'Hello World'}</Text>,
+    toRender: <Text variant="h2">{'Header 2 (h2)'}</Text>,
   },
 ]
 
@@ -69,7 +58,9 @@ const Background = styled.View`
   padding: 50px;
 `
 const Container = styled.View`
-  padding: 0 0 30px 0;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 `
 const CodeContainer = styled.View`
   padding: 10px 20px;
@@ -98,23 +89,20 @@ export default class NormalButtonExample extends Component {
               </CodeContainer>
             </Column>
           </Row>
-          {textExamples.map(button => (
+          {textExamples.map(text => (
             <Row inner>
-              <Column sm={3}>
-                <Container>
-                  <Text variant="h3">{button.title}</Text>
-                </Container>
-                {button.toRender}
-              </Column>
-              <Column lg={7}>
+              <Column lg={5}>
                 <CodeContainer>
                   <SyntaxHighlighter
                     customStyle={{ backgroundColor: '#fff' }}
                     language="javascript"
                     highlighter={'prism'}>
-                    {button.code}
+                    {text.code}
                   </SyntaxHighlighter>
                 </CodeContainer>
+              </Column>
+              <Column sm={5}>
+                <Container>{text.toRender}</Container>
               </Column>
             </Row>
           ))}

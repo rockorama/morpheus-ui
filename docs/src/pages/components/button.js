@@ -10,7 +10,7 @@ import Layout from '../../components/Layout'
 const importStatement = "import { Button } from '@morpheus-ui/core'"
 
 const normalButtonCode =
-  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal'\n/>"
+  "import { Button } from '@morpheus-ui/core'\n\n<Button \n onPress={action('clicked')} \n title='Normal button'\n/>"
 
 const iconButtonCode =
   "import { Button } from '@morpheus-ui/core'\nimport CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'\n\n<Button \n onPress={action('clicked')} \n title='Icon Button' \n Icon={CircleArrowRight} \n/>"
@@ -36,12 +36,10 @@ const hoverShadowButtonCode =
 const buttons = [
   {
     code: normalButtonCode,
-    title: 'Normal button',
     toRender: <Button onPress={action('clicked')} title="Normal Button" />,
   },
   {
     code: iconButtonCode,
-    title: 'Icon button',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -52,7 +50,6 @@ const buttons = [
   },
   {
     code: smallButtonCode,
-    title: 'Small button',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -65,7 +62,6 @@ const buttons = [
   },
   {
     code: largeButtonCode,
-    title: 'Large button',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -78,7 +74,6 @@ const buttons = [
   },
   {
     code: disabledButtonCode,
-    title: 'Disabled button',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -91,7 +86,6 @@ const buttons = [
   },
   {
     code: iconTopButtonCode,
-    title: 'Icon top',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -104,7 +98,6 @@ const buttons = [
   },
   {
     code: noBorderButtonCode,
-    title: 'Borderless button',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -116,7 +109,6 @@ const buttons = [
   },
   {
     code: hoverShadowButtonCode,
-    title: 'Hover shadow',
     toRender: (
       <Button
         onPress={action('clicked')}
@@ -132,7 +124,9 @@ const Background = styled.View`
   padding: 50px;
 `
 const Container = styled.View`
-  padding: 0 0 30px 0;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 `
 const CodeContainer = styled.View`
   padding: 10px 20px;
@@ -163,12 +157,6 @@ export default class NormalButtonExample extends Component {
           </Row>
           {buttons.map(button => (
             <Row inner>
-              <Column sm={3}>
-                <Container>
-                  <Text variant="h3">{button.title}</Text>
-                </Container>
-                {button.toRender}
-              </Column>
               <Column lg={7}>
                 <CodeContainer>
                   <SyntaxHighlighter
@@ -178,6 +166,9 @@ export default class NormalButtonExample extends Component {
                     {button.code}
                   </SyntaxHighlighter>
                 </CodeContainer>
+              </Column>
+              <Column sm={3}>
+                <Container>{button.toRender}</Container>
               </Column>
             </Row>
           ))}
