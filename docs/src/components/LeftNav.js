@@ -18,13 +18,12 @@ const ListContainer = styled.ScrollView`
 
 const Button = styled.TouchableOpacity`
   padding: 5px;
-  margin: 5px 0;
+  margin: 2px 0;
 `
 
 const LinkText = styled.Text`
   color: ${props => props.theme.linkColor};
   font-size: 16px;
-  border-bottom: 1px solid ${props => props.theme.linkColor};
 `
 
 const ButtonContainer = styled.View`

@@ -46,7 +46,22 @@ export default class NormalButtonExample extends Component {
               </CodeContainer>
             </Column>
           </Row>
-
+          <Row inner size={2}>
+            <Column>
+              <Text variant="h3">{'Props'}</Text>
+              <Text>{'name: string'}</Text>
+              <Text>{'label: string'}</Text>
+              <Text>{'required: ?boolean'}</Text>
+              <Text>{'placeholder: ?string'}</Text>
+            </Column>
+            <Column>
+              <Text>{'numberOfLines: ?number'}</Text>
+              <Text>{'disabled: ?boolean'}</Text>
+              <Text>{'defaultValue: ?string'}</Text>
+              <Text>{'variant: ?VariantType'}</Text>
+              <Text>{'VariantType: "outlined" | "h3"'}</Text>
+            </Column>
+          </Row>
           <Form onSubmit={data => console.log(data)}>
             <Row size={2} inner>
               <Column>
