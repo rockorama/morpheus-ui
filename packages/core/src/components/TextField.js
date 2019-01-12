@@ -10,26 +10,12 @@ import {
   type FieldProps,
 } from '@morpheus-ui/forms'
 
+import transition from '../transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
-
-type Props = FieldProps & {
-  placeholder?: string,
-  value?: ?string,
-  defaultValue?: ?string,
-  multiline: boolean,
-  disabled: boolean,
-  variant?: string | Array<string>,
-}
-
-type State = {
-  focus: boolean,
-  innerValue: string,
-}
 
 const Container = styled.View``
 
 const FieldContainer = styled.View`
-  transition: all 0.3s;
   background-color: ${props => props.muitheme.backgroundColor};
   border-radius: ${props => props.muitheme.borderRadius}px;
   border-color: ${props => props.muitheme.borderColor};
@@ -49,7 +35,7 @@ const FieldContainer = styled.View`
 
   ${props =>
     !props.disabled &&
-    props.hasFocus &&
+    props.hasfocus.on &&
     css`
       background-color: ${props => props.muitheme.backgroundActiveColor};
       border-color: ${props => props.muitheme.borderActiveColor};
@@ -81,11 +67,10 @@ const Label = styled.Text`
   font-size: ${props => props.muitheme.fontSize}px;
   color: ${props => props.muitheme.labelColor};
   position: absolute;
-  transition: all 0.3s;
 
   ${props =>
     !props.disabled &&
-    (props.hasFocus || props.hasContent) &&
+    (props.hasfocus.on || props.hascontent.on) &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
       font-size: ${props => props.muitheme.fontSize - 5}px;
@@ -94,8 +79,8 @@ const Label = styled.Text`
     `};
 
   ${props =>
-    !props.hasFocus &&
-    props.hasContent &&
+    !props.hasfocus.on &&
+    props.hascontent.on &&
     css`
       color: transparent;
     `};
@@ -115,7 +100,7 @@ const Field = styled.TextInput`
   position: relative;
   color: ${props => props.muitheme.textColor};
   ${props =>
-    props.hasFocus &&
+    props.hasfocus.on &&
     css`
       color: ${props => props.muitheme.textActiveColor};
     `};
@@ -136,6 +121,20 @@ const ErrorMessage = styled.Text`
   padding: 2px;
   margin-bottom: 2px;
 `
+
+type Props = FieldProps & {
+  placeholder?: string,
+  value?: ?string,
+  defaultValue?: ?string,
+  multiline: boolean,
+  disabled: boolean,
+  variant?: string | Array<string>,
+}
+
+type State = {
+  focus: boolean,
+  innerValue: string,
+}
 
 export class TextField extends Component<Props, State> {
   static contextType = Theme
@@ -196,9 +195,13 @@ export class TextField extends Component<Props, State> {
 
   render() {
     const { label, errorMessage, isSubmitted, dirty } = this.props
-    const { placeholder, multiline, disabled, ...other } = removeFieldProps(
-      this.props,
-    )
+    const {
+      placeholder,
+      multiline,
+      disabled,
+      inForm,
+      ...other
+    } = removeFieldProps(this.props)
 
     const showError = (isSubmitted() || dirty) && !!errorMessage
 
@@ -212,21 +215,23 @@ export class TextField extends Component<Props, State> {
     return (
       <Container>
         <FieldContainer
+          className={transition}
           muitheme={muitheme}
-          hasFocus={this.state.focus}
-          hasContent={hasValue}
+          hasfocus={{ on: this.state.focus }}
+          hascontent={{ on: hasValue }}
           showError={showError}
           disabled={disabled}>
           <Label
+            className={transition}
             muitheme={muitheme}
-            hasFocus={this.state.focus}
-            hasContent={hasValue}
+            hasfocus={{ on: this.state.focus }}
+            hascontent={{ on: hasValue }}
             disabled={disabled}>
             {label || placeholder}
           </Label>
           <Field
-            hasFocus={this.state.focus}
-            hasContent={hasValue}
+            hasfocus={{ on: this.state.focus }}
+            hascontent={{ on: hasValue }}
             muitheme={muitheme}
             value={value}
             onChangeText={this.onChange}

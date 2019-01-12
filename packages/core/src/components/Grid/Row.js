@@ -24,7 +24,7 @@ type Props = ScreenSizes & {
 
 const RowView = styled.View`
   width: 100%;
-  flex-direction: 'row';
+  flex-direction: row;
   flex-wrap: ${props => (props.nowrap ? 'nowrap' : 'wrap')};
   justify-content: flex-start;
   margin: ${props => props.muiTheme.spacing / 2}px -${props => props.muiTheme.spacing / 2}px;
