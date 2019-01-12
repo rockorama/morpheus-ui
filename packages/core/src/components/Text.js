@@ -25,21 +25,9 @@ export default class Text extends Component<Props> {
   static contextType = Theme
 
   getTextTheme = memoize((props: Props, context: Object) => {
-    const {
-      // $FlowFixMe
-      trace,
-      // $FlowFixMe
-      bold,
-      // $FlowFixMe
-      italic,
-      // $FlowFixMe
-      size,
-      // $FlowFixMe
-      uppercase,
-      // $FlowFixMe
-      color,
-      ...theme
-    }: Object = getTheme('Text', props, context)
+    // $FlowFixMe
+    const { trace, ...theme }: Object = getTheme('Text', props, context)
+    const { bold, italic, size, uppercase, color } = props
     return getPropertiesFromTheme({
       ...theme,
       color: color || theme.color,
