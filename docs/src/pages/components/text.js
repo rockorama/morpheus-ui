@@ -4,6 +4,7 @@ import { Button, Row, Column, Text } from '@morpheus-ui/core'
 import SyntaxHighlighter from 'react-native-syntax-highlighter'
 import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
+import Table from '../../components/Table'
 
 const importStatement = "import { Text } from '@morpheus-ui/core'"
 
@@ -57,13 +58,156 @@ const Background = styled.View`
 const Container = styled.View`
   display: flex;
   align-items: center;
-  margin-top: 20px;
 `
 const CodeContainer = styled.View`
   padding: 10px 20px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   background-color: ${props => props.theme.codeContainer} !important;
 `
+const DemoContainer = styled.View`
+  background-color: ${props => props.theme.demoContainer} !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`
+const TitleContainer = styled.View`
+  padding-top: 30px;
+`
+
+const props = [
+  {
+    name: 'variant',
+    type: 'string | Array<string>',
+    required: false,
+    description:
+      'Possible variations of Text component. Options are: "bold", "italic", "h1", or "h2"',
+  },
+  {
+    name: 'children',
+    type: 'any',
+    required: true,
+    description: 'Text to be displayed',
+  },
+  {
+    name: 'bold',
+    type: 'boolean',
+    required: false,
+    description: 'Renders bold text',
+  },
+  {
+    name: 'italic',
+    type: 'boolean',
+    required: false,
+    description: 'Renders italic text',
+  },
+  {
+    name: 'size',
+    type: 'number',
+    required: false,
+    description: 'Size of the text',
+  },
+  {
+    name: 'color',
+    type: 'string',
+    required: false,
+    description: 'Text color',
+  },
+  {
+    name: 'uppercase',
+    type: 'boolean',
+    required: false,
+    description: 'Renders the text as uppercase',
+  },
+  {
+    name: 'styles',
+    type: 'string',
+    required: false,
+    description: 'Additional styles',
+  },
+]
+
+const theming = [
+  {
+    name: 'fontFamily',
+    description: 'Font family',
+    default: '"Muli"',
+  },
+  {
+    name: 'fontSize',
+    description: 'Font size',
+    default: '14',
+  },
+  {
+    name: 'fontWeight',
+    description: 'Font weight',
+  },
+  {
+    name: 'fontStyle',
+    description: 'Font style',
+  },
+  {
+    name: 'fontVariant',
+    description: 'Font variant',
+  },
+  {
+    name: 'color',
+    description: 'Color of text',
+    default: '"#1F3464"',
+  },
+  {
+    name: 'direction',
+    description: 'Direction',
+  },
+  {
+    name: 'letterSpacing',
+    description: 'Letter spacing',
+  },
+  {
+    name: 'lineHeight',
+    description: 'Line height',
+  },
+  {
+    name: 'textAlign',
+    description: 'Text align',
+  },
+  {
+    name: 'textDecoration',
+    description: 'Text decoration',
+  },
+  {
+    name: 'textIndent',
+    description: 'Text indent',
+  },
+  {
+    name: 'textShadow',
+    description: 'Text shadow',
+  },
+  {
+    name: 'textTransform',
+    description: 'Text transform',
+  },
+  {
+    name: 'textOverflow',
+    description: 'Text overflow',
+  },
+  {
+    name: 'unicodeBidi',
+    description: 'Unicode bidirectional text handling',
+  },
+  {
+    name: 'verticalAlign',
+    description: 'Vertical alignment property',
+  },
+  {
+    name: 'whiteSpace',
+    description: 'White space',
+  },
+  {
+    name: 'wordSpacing',
+    description: 'Word spacing',
+  },
+]
 
 export default class NormalButtonExample extends Component {
   render() {
@@ -72,18 +216,47 @@ export default class NormalButtonExample extends Component {
         <Background>
           <Text variant="h2">{'Text'}</Text>
           <Row inner>
-            <Text variant="h3">{'Import statement'}</Text>
+            <TitleContainer>
+              <Text variant="h3">{'Import statement'}</Text>
+            </TitleContainer>
           </Row>
           <Row inner>
             <Column lg={10}>
               <CodeContainer>
-                <SyntaxHighlighter
-                  customStyle={{ backgroundColor: '#fff' }}
-                  language="javascript"
-                  highlighter={'prism'}>
+                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
                   {importStatement}
                 </SyntaxHighlighter>
               </CodeContainer>
+            </Column>
+          </Row>
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Props'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={props} props />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Theming'}</Text>
+              </TitleContainer>
+              <TitleContainer>
+                <Text>
+                  {
+                    'All css that applies to an ordinary RNW <Text> component will apply to the Morpheus-UI <Text> Component.'
+                  }
+                </Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={theming} theming />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Demos + Code Samples'}</Text>
+              </TitleContainer>
             </Column>
           </Row>
           {textExamples.map(text => (
@@ -91,7 +264,6 @@ export default class NormalButtonExample extends Component {
               <Column lg={5}>
                 <CodeContainer>
                   <SyntaxHighlighter
-                    customStyle={{ backgroundColor: '#fff' }}
                     language="javascript"
                     highlighter={'prism'}>
                     {text.code}
@@ -99,7 +271,9 @@ export default class NormalButtonExample extends Component {
                 </CodeContainer>
               </Column>
               <Column sm={5}>
-                <Container>{text.toRender}</Container>
+                <DemoContainer>
+                  <Container>{text.toRender}</Container>
+                </DemoContainer>
               </Column>
             </Row>
           ))}

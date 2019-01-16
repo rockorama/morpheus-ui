@@ -5,6 +5,7 @@ import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
 import SyntaxHighlighter from 'react-native-syntax-highlighter'
 import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
+import Table from '../../components/Table'
 
 const importStatement = "import { Button } from '@morpheus-ui/core'"
 
@@ -317,10 +318,6 @@ const DemoContainer = styled.View`
   align-items: center;
   height: 100%;
 `
-const BorderRow = styled.View`
-  border-bottom: 1px solid ${props => props.theme.blue};
-  width: 100%;
-`
 const TitleContainer = styled.View`
   padding-top: 30px;
 `
@@ -354,44 +351,7 @@ export default class NormalButtonExample extends Component {
               </TitleContainer>
             </Column>
           </Row>
-          <Row inner>
-            <Column lg={12}>
-              <Row size={12} inner>
-                <Column size={2}>
-                  <Text variant="h3">{'name'}</Text>
-                </Column>
-                <Column size={2}>
-                  <Text variant="h3">{'type'}</Text>
-                </Column>
-                <Column size={2}>
-                  <Text variant="h3">{'required'}</Text>
-                </Column>
-                <Column size={5}>
-                  <Text variant="h3">{'description'}</Text>
-                </Column>
-              </Row>
-              {props.map(prop => {
-                return (
-                  <BorderRow>
-                    <Row size={12} inner>
-                      <Column size={2}>
-                        <Text>{prop.name}</Text>
-                      </Column>
-                      <Column size={2}>
-                        <Text>{prop.type}</Text>
-                      </Column>
-                      <Column size={2}>
-                        <Text>{prop.required.toString()}</Text>
-                      </Column>
-                      <Column size={6}>
-                        <Text>{prop.description}</Text>
-                      </Column>
-                    </Row>
-                  </BorderRow>
-                )
-              })}
-            </Column>
-          </Row>
+          <Table data={props} props />
           <Row size={1}>
             <Column>
               <TitleContainer>
@@ -399,38 +359,7 @@ export default class NormalButtonExample extends Component {
               </TitleContainer>
             </Column>
           </Row>
-          <Row inner>
-            <Column lg={12}>
-              <Row size={12} inner>
-                <Column size={3}>
-                  <Text variant="h3">{'name'}</Text>
-                </Column>
-                <Column size={2}>
-                  <Text variant="h3">{'default'}</Text>
-                </Column>
-                <Column size={7}>
-                  <Text variant="h3">{'description'}</Text>
-                </Column>
-              </Row>
-              {theming.map(cssValue => {
-                return (
-                  <BorderRow>
-                    <Row size={8} inner>
-                      <Column size={2}>
-                        <Text>{cssValue.name}</Text>
-                      </Column>
-                      <Column size={2}>
-                        <Text>{cssValue.default}</Text>
-                      </Column>
-                      <Column size={4}>
-                        <Text>{cssValue.description}</Text>
-                      </Column>
-                    </Row>
-                  </BorderRow>
-                )
-              })}
-            </Column>
-          </Row>
+          <Table data={theming} theming />
           <Row inner size={1}>
             <Column>
               <TitleContainer>

@@ -10,7 +10,26 @@ import Layout from '../components/Layout'
 import SEO from '../components/seo'
 
 const Background = styled.View`
-  padding: 50px;
+  padding: 40px;
+`
+
+const Padding = styled.View`
+  padding: 20px 0;
+`
+const DemoTextContainer = styled.View`
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+const DemoContainer = styled.View`
+  background-color: ${props => props.theme.demoContainer} !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 40px;
+  margin-top: 20px;
 `
 
 export default class IndexPage extends Component<{}> {
@@ -26,9 +45,11 @@ export default class IndexPage extends Component<{}> {
             <Text variant="h1">Usage</Text>
           </Row>
           <Row size={1}>
-            <Text variant="h3">
-              Get started using Morpheus-UI in your project now.
-            </Text>
+            <Padding>
+              <Text variant="h3">
+                Get started using Morpheus-UI in your project now.
+              </Text>
+            </Padding>
           </Row>
           <Row size={1}>
             <Text variant="h2">Quick Start</Text>
@@ -41,10 +62,12 @@ export default class IndexPage extends Component<{}> {
             </SyntaxHighlighter>
           </Row>
           <Row size={2}>
-            <Text>Demo:</Text>
-          </Row>
-          <Row size={2}>
-            <Button title="Large Button" variant={'large'} />
+            <DemoTextContainer>
+              <Text variant="h3">Demo:</Text>
+              <DemoContainer>
+                <Button title="Large Button" variant={'large'} />
+              </DemoContainer>
+            </DemoTextContainer>
           </Row>
         </Background>
       </Layout>

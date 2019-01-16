@@ -5,6 +5,10 @@ import { StaticQuery, graphql, Link, navigate } from 'gatsby'
 import { Text } from '@morpheus-ui/core'
 import styled from 'styled-components/native'
 
+const H1Container = styled.View`
+  padding-top: 40px;
+`
+
 const Container = styled.View`
   padding: ${props => props.theme.spacing}px;
   width: 310px;
@@ -47,9 +51,11 @@ class LeftNav extends Component<Props> {
     let lastMatch = ''
     return (
       <Container>
-        <Button onPress={() => navigate('/')}>
-          <Text variant={'h1'}>{'Morpheus-UI'}</Text>
-        </Button>
+        <H1Container>
+          <Button onPress={() => navigate('/')}>
+            <Text variant={'h1'}>{'Morpheus-UI'}</Text>
+          </Button>
+        </H1Container>
         <ListContainer>
           <ButtonContainer>
             {this.props.allSitePage.edges.map(edge => {
