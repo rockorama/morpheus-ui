@@ -4,9 +4,12 @@ export default {
     iconPosition: 'right',
     iconWidth: 24,
     iconHeight: 24,
-    iconMargin: 15,
+    iconMargin: 0,
     iconColor: '#979797',
-    iconHoverColor: '#DA1157',
+    iconBackgroundColor: '#FFF',
+    iconDisabledBackgroundColor: '#FFF',
+    iconHoverBackgroundColor: '#DA1157',
+    iconHoverColor: '#FFF',
     iconDisabledColor: '#D3D3D3',
 
     titleColor: '#979797',
@@ -19,13 +22,14 @@ export default {
     borderHoverColor: '#DA1157',
     borderDisabledColor: '#D3D3D3',
 
-    backgroundColor: 'transparent',
-    backgroundHoverColor: 'transparent',
-    backgroundDisabledColor: 'transparent',
+    backgroundColor: '#FFF',
+    backgroundHoverColor: '#FFF',
+    backgroundDisabledColor: '#FFF',
 
     shadow: false,
     hoverShadow: false,
-    padding: 10,
+    iconPadding: 10,
+    titlePadding: '10px',
     fontSize: 13,
     fontFamily: 'Muli',
     fontWeight: 'bold',
@@ -46,10 +50,12 @@ export default {
   },
   'no-border': {
     borderWidth: 0,
-    padding: 0,
+    iconPadding: 0,
+    titlePadding: '10px',
   },
   'hover-shadow': {
     hoverShadow: true,
-    padding: 10,
+    iconPadding: 10,
+    titlePadding: '10px',
   },
 }

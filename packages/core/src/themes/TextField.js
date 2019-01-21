@@ -24,7 +24,7 @@ export default {
 
     shadow: false,
     activeShadow: true,
-    padding: 15,
+    padding: '9px 10px',
     fontSize: 13,
     fontFamily: 'Muli',
     fontWeight: 'bold',

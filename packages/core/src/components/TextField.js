@@ -20,32 +20,27 @@ const FieldContainer = styled.View`
   border-radius: ${props => props.muitheme.borderRadius}px;
   border-color: ${props => props.muitheme.borderColor};
   border-width: ${props => props.muitheme.borderWidth}px;
-  padding: ${props => props.muitheme.padding}px
-    ${props => props.muitheme.padding}px
-    ${props => props.muitheme.padding - 2}px
-    ${props => props.muitheme.padding}px;
-
-  ${props =>
-    props.muitheme.shadow &&
-    ` shadow-color: #000;
+  padding: ${props => props.muitheme.padding}
+    ${props =>
+      props.muitheme.shadow &&
+      ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-
-  ${props =>
-    !props.disabled &&
-    props.hasfocus.on &&
-    css`
-      background-color: ${props => props.muitheme.backgroundActiveColor};
-      border-color: ${props => props.muitheme.borderActiveColor};
-      ${props.muitheme.activeShadow &&
-        ` shadow-color: #000;
+    ${props =>
+      !props.disabled &&
+      props.hasfocus.on &&
+      css`
+        background-color: ${props => props.muitheme.backgroundActiveColor};
+        border-color: ${props => props.muitheme.borderActiveColor};
+        ${props.muitheme.activeShadow &&
+          ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-    `};
+      `};
 
   ${props =>
     props.disabled &&
@@ -73,8 +68,8 @@ const Label = styled.Text`
     (props.hasfocus.on || props.hascontent.on) &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
-      font-size: ${props => props.muitheme.fontSize - 5}px;
-      margin-top: -${props => props.muitheme.padding - 5}px;
+      font-size: 6px;
+      margin-top: -8px;
       text-transform: uppercase;
     `};
 

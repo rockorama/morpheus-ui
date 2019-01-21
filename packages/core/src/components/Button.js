@@ -30,10 +30,10 @@ const Container = styled.View`
 const Clicker = styled.TouchableWithoutFeedback``
 
 const InnerContainer = styled.View`
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: ${({ muitheme }) => muitheme.padding}px;
     background-color: ${({ muitheme }) => muitheme.backgroundColor};
     border-color: ${({ muitheme }) => muitheme.borderColor};
     border-width: ${({ muitheme }) => muitheme.borderWidth};
@@ -76,30 +76,41 @@ const InnerContainer = styled.View`
 const IconContainer = styled.Text`
   ${({ muitheme, title, ishover, disabled }) =>
     css`
+      padding: 10px;
+      display: flex;
+      background-color: ${muitheme.iconBackgroundColor};
       align-items: center;
       justify-content: center;
       color: ${muitheme.iconColor};
       ${!!title &&
         muitheme.iconPosition === 'top' &&
-        `margin-bottom: ${muitheme.iconMargin}px;`}
+        `margin-bottom: ${muitheme.iconMargin};`}
       ${!!title &&
         muitheme.iconPosition === 'right' &&
-        `margin-left: ${muitheme.iconMargin}px;`}
+        `margin-left: ${muitheme.iconMargin};`}
       ${!!title &&
         muitheme.iconPosition === 'bottom' &&
-        `margin-top: ${muitheme.iconMargin}px;`}
+        `margin-top: ${muitheme.iconMargin};`}
       ${!!title &&
         muitheme.iconPosition === 'left' &&
-        `margin-right: ${muitheme.iconMargin}px;`}
+        `margin-right: ${muitheme.iconMargin};`}
 
-       ${ishover.on && `color: ${muitheme.iconHoverColor};`}
-       ${disabled && `color: ${muitheme.iconDisabledColor};`}
+       ${ishover.on &&
+         `color: ${muitheme.iconHoverColor};
+          background-color: ${muitheme.iconHoverBackgroundColor};
+`}
+       ${disabled &&
+         `
+        color: ${muitheme.iconDisabledColor};
+        background-color: ${muitheme.iconDisabledBackgroundColor};
+        `}
   `}
 `
 
 const Title = styled.Text`
   ${({ muitheme, ishover, disabled }) =>
     css`
+      padding: 10px;
       font-family: ${muitheme.fontFamily};
       font-size: ${muitheme.fontSize};
       font-weight: ${muitheme.fontWeight};
