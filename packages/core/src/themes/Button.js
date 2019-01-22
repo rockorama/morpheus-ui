@@ -28,7 +28,7 @@ export default {
 
     shadow: false,
     hoverShadow: false,
-    iconPadding: 10,
+    iconPadding: '10px',
     titlePadding: '10px',
     fontSize: 13,
     fontFamily: 'Muli',

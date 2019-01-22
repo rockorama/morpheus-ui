@@ -17,9 +17,9 @@ const Container = styled.View``
 
 const FieldContainer = styled.View`
   background-color: ${props => props.muitheme.backgroundColor};
-  border-radius: ${props => props.muitheme.borderRadius}px;
+  border-radius: ${props => props.muitheme.borderRadius};
   border-color: ${props => props.muitheme.borderColor};
-  border-width: ${props => props.muitheme.borderWidth}px;
+  border-width: ${props => props.muitheme.borderWidth};
   padding: ${props => props.muitheme.padding}
     ${props =>
       props.muitheme.shadow &&
@@ -59,7 +59,7 @@ const FieldContainer = styled.View`
 
 const Label = styled.Text`
   font-family: ${props => props.muitheme.fontFamily};
-  font-size: ${props => props.muitheme.fontSize}px;
+  font-size: ${props => props.muitheme.fontSize};
   color: ${props => props.muitheme.labelColor};
   position: absolute;
 
@@ -91,7 +91,7 @@ const Label = styled.Text`
 const Field = styled.TextInput`
   font-family: ${props => props.muitheme.fontFamily};
   outline: none;
-  font-size: ${props => props.muitheme.fontSize}px;
+  font-size: ${props => props.muitheme.fontSize};
   position: relative;
   color: ${props => props.muitheme.textColor};
   ${props =>
@@ -112,7 +112,7 @@ const ErrorMessage = styled.Text`
   font-size: 10px;
   height: 18px;
   color: ${props => props.muitheme.errorColor};
-  min-height: ${props => props.muitheme.fontSize}px;
+  min-height: ${props => props.muitheme.fontSize};
   padding: 2px;
   margin-bottom: 2px;
 `

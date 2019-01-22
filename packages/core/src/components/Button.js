@@ -76,7 +76,7 @@ const InnerContainer = styled.View`
 const IconContainer = styled.Text`
   ${({ muitheme, title, ishover, disabled }) =>
     css`
-      padding: 10px;
+      padding: ${muitheme.iconPadding};
       display: flex;
       background-color: ${muitheme.iconBackgroundColor};
       align-items: center;
@@ -110,7 +110,7 @@ const IconContainer = styled.Text`
 const Title = styled.Text`
   ${({ muitheme, ishover, disabled }) =>
     css`
-      padding: 10px;
+      padding: ${muitheme.titlePadding};
       font-family: ${muitheme.fontFamily};
       font-size: ${muitheme.fontSize};
       font-weight: ${muitheme.fontWeight};
