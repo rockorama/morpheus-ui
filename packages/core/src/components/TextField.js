@@ -60,7 +60,7 @@ const FieldContainer = styled.View`
     `};
 `
 const TextContainer = styled.View`
-  positon: relative;
+  position: relative;
   flex: 1;
 `
 
