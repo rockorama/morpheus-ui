@@ -1,9 +1,16 @@
 // TextField Styles
 export default {
   default: {
+    iconWidth: 18,
+    iconHeight: 18,
     backgroundColor: '#F9F9F9',
     backgroundActiveColor: '#FFFFFF',
     backgroundDisabledColor: '#E9E9E9',
+
+    iconColor: '#979797',
+    iconActiveColor: '#1F3464',
+    iconDisabledColor: '#D3D3D3',
+    iconMargin: '10px',
 
     borderColor: 'transparent',
     borderActiveColor: 'transparent',

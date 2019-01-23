@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { action } from '@storybook/addon-actions'
 import { TextField, Row, Column } from '@morpheus-ui/core'
+import { WalletsMd } from '@morpheus-ui/icons'
 import { Form } from '@morpheus-ui/forms'
 
 export default class NormaltextFieldExample extends Component<{}> {
@@ -17,6 +18,8 @@ export default class NormaltextFieldExample extends Component<{}> {
 
             <Column>
               <TextField
+                IconLeft={WalletsMd}
+                onPressIcon={action('clicked')}
                 type="email"
                 placeholder="put the vault name here"
                 name="email"
@@ -47,6 +50,8 @@ export default class NormaltextFieldExample extends Component<{}> {
 
             <Column sm={2}>
               <TextField
+                IconLeft={WalletsMd}
+                onPressIcon={action('clicked')}
                 name="disabled"
                 label="disabled"
                 required

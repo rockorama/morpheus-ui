@@ -55,7 +55,7 @@ export default {
   },
   'hover-shadow': {
     hoverShadow: true,
-    iconPadding: 10,
+    iconPadding: '10px',
     titlePadding: '10px',
   },
 }
