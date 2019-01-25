@@ -6,8 +6,8 @@ import memoize from 'memoize-one'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
 
-import transition from '../transitionClass'
-import Theme, { getTheme } from './ThemeProvider'
+import transition from '../../TextField/examples/transitionClass'
+import Theme, { getTheme } from '../../TextField/examples/ThemeProvider'
 
 type Props = FieldProps & {
   title?: string,
@@ -17,6 +17,7 @@ type Props = FieldProps & {
   variant?: string | Array<string>,
   theme: Object,
   disabled: boolean,
+  minWidth?: number,
   onPress?: () => void,
 }
 
@@ -38,9 +39,15 @@ const InnerContainer = styled.View`
     border-color: ${({ muitheme }) => muitheme.borderColor};
     border-width: ${({ muitheme }) => muitheme.borderWidth};
     border-radius: ${({ muitheme }) => muitheme.borderRadius};
+    ${props =>
+      props.minwidth &&
+      css`
+        min-width: ${props => props.minwidth}px !important;
+      `}
+
     ${({ muitheme }) =>
       (muitheme.iconPosition === 'top' || muitheme.iconPosition === 'bottom') &&
-      `flex-direction: column;`} 
+      `flex-direction: column;`}
    ${({ muitheme }) =>
      muitheme.shadow &&
      ` shadow-color: #000;
@@ -172,9 +179,9 @@ export class Button extends Component<Props, State> {
   )
 
   render() {
-    const { title, disabled } = this.props
+    const { title, disabled, minWidth } = this.props
     const muitheme: Object = this.getButtonTheme(this.props, this.context)
-
+    console.log(minWidth)
     return (
       <Container>
         <Clicker disabled={disabled} onPress={this.onSubmit}>
@@ -185,7 +192,8 @@ export class Button extends Component<Props, State> {
             onMouseLeave={this.onMouseLeave}
             muitheme={muitheme}
             disabled={disabled}
-            ishover={{ on: this.state.ishover }}>
+            ishover={{ on: this.state.ishover }}
+            minwidth={minWidth}>
             {(muitheme.iconPosition === 'left' ||
               muitheme.iconPosition === 'top') &&
               this.renderIcon(muitheme)}
