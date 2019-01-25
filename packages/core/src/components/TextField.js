@@ -10,7 +10,7 @@ import {
   type FieldProps,
 } from '@morpheus-ui/forms'
 
-import transition from '../transitionClass'
+import transition from './transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
 
 const Container = styled.View``
@@ -85,6 +85,16 @@ const Label = styled.Text`
     props.hascontent.on &&
     css`
       color: transparent;
+    `};
+
+  ${props =>
+    props.persistlabel &&
+    props.dirty &&
+    css`
+      color: ${props => props.muitheme.labelActiveColor};
+      font-size: 6px;
+      margin-top: -8px;
+      text-transform: uppercase;
     `};
 
   ${props =>
@@ -170,6 +180,7 @@ type Props = FieldProps & {
   IconLeft?: ?any,
   IconRight?: ?any,
   onPressIcon?: ?(position?: string) => void,
+  persistLabel?: boolean,
 }
 
 type State = {
@@ -244,10 +255,11 @@ export class TextField extends Component<Props, State> {
       IconLeft,
       IconRight,
       onPressIcon,
+      persistLabel,
       ...other
     } = removeFieldProps(this.props)
 
-    const showError = (isSubmitted() || dirty) && !!errorMessage
+    const showError = dirty && !!errorMessage
 
     const value = this.getValue()
     const hasValue = !!value
@@ -255,7 +267,6 @@ export class TextField extends Component<Props, State> {
     const type = this.getType()
 
     const muitheme: Object = this.getTextFieldTheme(this.props, this.context)
-
     return (
       <Container>
         <FieldContainer
@@ -299,6 +310,8 @@ export class TextField extends Component<Props, State> {
               muitheme={muitheme}
               hasfocus={{ on: this.state.focus }}
               hascontent={{ on: hasValue }}
+              persistlabel={persistLabel}
+              dirty={dirty}
               disabled={disabled}>
               {label || placeholder}
             </Label>
