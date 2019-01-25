@@ -88,7 +88,7 @@ const Label = styled.Text`
     `};
 
   ${props =>
-    props.persistlabel &&
+    props.stickylabel &&
     props.dirty &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
@@ -180,7 +180,7 @@ type Props = FieldProps & {
   IconLeft?: ?any,
   IconRight?: ?any,
   onPressIcon?: ?(position?: string) => void,
-  persistLabel?: boolean,
+  stickyLabel?: boolean,
 }
 
 type State = {
@@ -255,7 +255,7 @@ export class TextField extends Component<Props, State> {
       IconLeft,
       IconRight,
       onPressIcon,
-      persistLabel,
+      stickyLabel,
       ...other
     } = removeFieldProps(this.props)
 
@@ -311,7 +311,7 @@ export class TextField extends Component<Props, State> {
               muitheme={muitheme}
               hasfocus={{ on: this.state.focus }}
               hascontent={{ on: hasValue }}
-              persistlabel={persistLabel}
+              stickylabel={stickyLabel}
               dirty={dirty}
               disabled={disabled}>
               {label || placeholder}
