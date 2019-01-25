@@ -6,8 +6,8 @@ import memoize from 'memoize-one'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
 
-import transition from '../../TextField/examples/transitionClass'
-import Theme, { getTheme } from '../../TextField/examples/ThemeProvider'
+import transition from '../transitionClass'
+import Theme, { getTheme } from './ThemeProvider'
 
 type Props = FieldProps & {
   title?: string,
@@ -42,7 +42,7 @@ const InnerContainer = styled.View`
     ${props =>
       props.minwidth &&
       css`
-        min-width: ${props => props.minwidth}px !important;
+        min-width: ${props => props.minwidth}px;
       `}
 
     ${({ muitheme }) =>
@@ -181,7 +181,7 @@ export class Button extends Component<Props, State> {
   render() {
     const { title, disabled, minWidth } = this.props
     const muitheme: Object = this.getButtonTheme(this.props, this.context)
-    console.log(minWidth)
+
     return (
       <Container>
         <Clicker disabled={disabled} onPress={this.onSubmit}>
