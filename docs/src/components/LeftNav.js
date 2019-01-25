@@ -6,12 +6,12 @@ import { Text } from '@morpheus-ui/core'
 import styled from 'styled-components/native'
 
 const H1Container = styled.View`
-  padding-top: 40px;
+  padding-top: 30px;
 `
 
 const Container = styled.View`
-  padding: ${props => props.theme.spacing}px;
-  width: 310px;
+  padding: 30px;
+  width: 320px;
   background: ${props => props.theme.leftNavColor};
 `
 
