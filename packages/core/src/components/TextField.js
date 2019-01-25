@@ -10,7 +10,7 @@ import {
   type FieldProps,
 } from '@morpheus-ui/forms'
 
-import transition from './transitionClass'
+import transition from '../transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
 
 const Container = styled.View``
@@ -259,7 +259,7 @@ export class TextField extends Component<Props, State> {
       ...other
     } = removeFieldProps(this.props)
 
-    const showError = dirty && !!errorMessage
+    const showError = (isSubmitted() || dirty) && !!errorMessage
 
     const value = this.getValue()
     const hasValue = !!value
@@ -267,6 +267,7 @@ export class TextField extends Component<Props, State> {
     const type = this.getType()
 
     const muitheme: Object = this.getTextFieldTheme(this.props, this.context)
+
     return (
       <Container>
         <FieldContainer
