@@ -18,11 +18,14 @@ export default {
     labelColor: '#A9A9A9',
     labelActiveColor: '#585858',
     labelDisabledColor: '#D3D3D3',
+    labelWithContentColor: 'transparent',
+    labelDisabledWithContentColor: 'transparent',
 
     errorColor: '#E51111',
 
     textColor: '#232323',
     textActiveColor: '#1F3464',
+    textDisabledColor: '#D3D3D3',
 
     borderRadius: 5,
     borderWidth: 1,

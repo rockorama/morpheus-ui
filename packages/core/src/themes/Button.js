@@ -1,6 +1,7 @@
 // Button Styles
 export default {
   default: {
+    minWidth: 0,
     iconPosition: 'right',
     iconWidth: 24,
     iconHeight: 24,

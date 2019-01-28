@@ -24,12 +24,14 @@ type State = {
   ishover: boolean,
 }
 const Container = styled.View`
+  min-width: ${({ muitheme }) => muitheme.minWidth};
   align-items: center;
   flex-direction: row;
 `
 const Clicker = styled.TouchableWithoutFeedback``
 
 const InnerContainer = styled.View`
+    min-width: ${({ muitheme }) => muitheme.minWidth};
     overflow: hidden;
     align-items: center;
     justify-content: center;
@@ -176,7 +178,7 @@ export class Button extends Component<Props, State> {
     const muitheme: Object = this.getButtonTheme(this.props, this.context)
 
     return (
-      <Container>
+      <Container muitheme={muitheme}>
         <Clicker disabled={disabled} onPress={this.onSubmit}>
           <InnerContainer
             {...this.props}

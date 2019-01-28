@@ -71,7 +71,6 @@ const Label = styled.Text`
   position: absolute;
 
   ${props =>
-    !props.disabled &&
     (props.hasfocus.on || props.hascontent.on) &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
@@ -81,17 +80,25 @@ const Label = styled.Text`
     `};
 
   ${props =>
-    !props.hasfocus.on &&
-    props.hascontent.on &&
-    css`
-      color: transparent;
-    `};
-
-  ${props =>
     props.disabled &&
     css`
       color: ${props => props.muitheme.labelDisabledColor};
       cursor: not-allowed;
+    `};
+
+  ${props =>
+    !props.hasfocus.on &&
+    props.hascontent.on &&
+    css`
+      color: ${props => props.muitheme.labelWithContentColor};
+    `};
+
+  ${props =>
+    props.disabled &&
+    !props.hasfocus.on &&
+    props.hascontent.on &&
+    css`
+      color: ${props => props.muitheme.labelDisabledWithContentColor};
     `};
 `
 
@@ -110,6 +117,7 @@ const Field = styled.TextInput`
   ${props =>
     props.disabled &&
     css`
+      color: ${props => props.muitheme.textDisabledColor};
       cursor: not-allowed;
     `};
 `
