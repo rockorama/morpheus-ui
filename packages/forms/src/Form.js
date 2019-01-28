@@ -30,8 +30,8 @@ export const { Provider, Consumer } = createContext<FormContext>(
 )
 
 type Props = {
-  onSubmit?: (payload: FormSubmitPayload) => void,
-  onChange?: (payload: FormChangePayload) => void,
+  onSubmit?: (payload: FormSubmitPayload) => any,
+  onChange?: (payload: FormChangePayload) => any,
   children: Node,
 }
 
