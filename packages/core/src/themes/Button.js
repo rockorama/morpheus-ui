@@ -3,6 +3,8 @@ export default {
   default: {
     minWidth: 0,
     iconPosition: 'right',
+    margin: 0,
+    titleAlign: 'center',
     iconWidth: 24,
     iconHeight: 24,
     iconMargin: 0,
@@ -47,7 +49,6 @@ export default {
   },
   'icon-top': {
     iconPosition: 'top',
-    iconMargin: 10,
   },
   'no-border': {
     borderWidth: 0,

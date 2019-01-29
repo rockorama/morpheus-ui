@@ -25,6 +25,7 @@ type State = {
 }
 const Container = styled.View`
   min-width: ${({ muitheme }) => muitheme.minWidth};
+  margin: ${({ muitheme }) => muitheme.margin};
   align-items: center;
   flex-direction: row;
 `
@@ -86,13 +87,13 @@ const IconContainer = styled.Text`
       color: ${muitheme.iconColor};
       ${!!title &&
         muitheme.iconPosition === 'top' &&
-        `margin-bottom: ${muitheme.iconMargin};`}
+        `margin-bottom: ${muitheme.iconMargin}; width: 100%;`}
       ${!!title &&
         muitheme.iconPosition === 'right' &&
-        `margin-left: ${muitheme.iconMargin};`}
+        `margin-left: ${muitheme.iconMargin}; `}
       ${!!title &&
         muitheme.iconPosition === 'bottom' &&
-        `margin-top: ${muitheme.iconMargin};`}
+        `margin-top: ${muitheme.iconMargin}; width: 100%;`}
       ${!!title &&
         muitheme.iconPosition === 'left' &&
         `margin-right: ${muitheme.iconMargin};`}
@@ -110,8 +111,12 @@ const IconContainer = styled.Text`
 `
 
 const Title = styled.Text`
+  flex: 1;
+  width: 100%;
+
   ${({ muitheme, ishover, disabled }) =>
     css`
+      text-align: ${muitheme.titleAlign};
       padding: ${muitheme.titlePadding};
       font-family: ${muitheme.fontFamily};
       font-size: ${muitheme.fontSize};
@@ -191,13 +196,15 @@ export class Button extends Component<Props, State> {
             {(muitheme.iconPosition === 'left' ||
               muitheme.iconPosition === 'top') &&
               this.renderIcon(muitheme)}
-            <Title
-              className={transition}
-              ishover={{ on: this.state.ishover }}
-              muitheme={muitheme}
-              disabled={disabled}>
-              {title}
-            </Title>
+            {title ? (
+              <Title
+                className={transition}
+                ishover={{ on: this.state.ishover }}
+                muitheme={muitheme}
+                disabled={disabled}>
+                {title}
+              </Title>
+            ) : null}
             {(muitheme.iconPosition === 'right' ||
               muitheme.iconPosition === 'bottom') &&
               this.renderIcon(muitheme)}

@@ -177,7 +177,8 @@ type Props = FieldProps & {
   variant?: string | Array<string>,
   IconLeft?: ?any,
   IconRight?: ?any,
-  onPressIcon?: ?(position?: string) => void,
+  onPressIcon?: (payload: { position: string, value: string }) => void,
+  submitOnPressIcon?: boolean,
 }
 
 type State = {
@@ -193,7 +194,7 @@ export class TextField extends Component<Props, State> {
     innerValue: '',
   }
 
-  getValue() {
+  getValue = () => {
     const { inForm, defaultValue, value, fieldValue } = this.props
 
     if (inForm) {
@@ -238,6 +239,14 @@ export class TextField extends Component<Props, State> {
     }
   }
 
+  onPressIcon = (position: string) => {
+    if (this.props.onPressIcon) {
+      // $FlowFixMe
+      this.props.onPressIcon({ position, value: this.getValue() || '' })
+    }
+    this.props.submitOnPressIcon && this.onSubmit()
+  }
+
   getTextFieldTheme = memoize((props: Props, context: Object) =>
     getTheme('TextField', props, context),
   )
@@ -252,6 +261,7 @@ export class TextField extends Component<Props, State> {
       IconLeft,
       IconRight,
       onPressIcon,
+      submitOnPressIcon,
       ...other
     } = removeFieldProps(this.props)
 
@@ -274,8 +284,8 @@ export class TextField extends Component<Props, State> {
           showError={showError}
           disabled={disabled}>
           {IconLeft &&
-            (onPressIcon && !disabled ? (
-              <IconContainerPress onPress={() => onPressIcon('left')}>
+            ((onPressIcon || submitOnPressIcon) && !disabled ? (
+              <IconContainerPress onPress={() => this.onPressIcon('left')}>
                 <IconLeftHolder
                   className={transition}
                   disabled={disabled}
@@ -328,8 +338,8 @@ export class TextField extends Component<Props, State> {
             />
           </TextContainer>
           {IconRight &&
-            (onPressIcon && !disabled ? (
-              <IconContainerPress onPress={() => onPressIcon('right')}>
+            ((onPressIcon || submitOnPressIcon) && !disabled ? (
+              <IconContainerPress onPress={() => this.onPressIcon('right')}>
                 <IconRightHolder
                   className={transition}
                   disabled={disabled}

@@ -20,6 +20,7 @@ export default class NormaltextFieldExample extends Component<{}> {
               <TextField
                 IconLeft={WalletsMd}
                 onPressIcon={action('clicked')}
+                submitOnPressIcon
                 type="email"
                 placeholder="put the vault name here"
                 name="email"
