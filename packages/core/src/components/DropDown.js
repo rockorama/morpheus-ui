@@ -68,7 +68,7 @@ const Label = styled.Text`
     `color: ${props.muitheme.labelDisabledColor};`}
  
   overflow: hidden;
-  text-overflow: elipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `
 
@@ -341,11 +341,9 @@ export class DropDownComponent extends Component<Props, State> {
             disabled={this.props.disabled}
             onPress={this.onPress}>
             <InnerContainer muitheme={muitheme} disabled={this.props.disabled}>
-              {(this.props.checkedLabel || this.props.label) && (
-                <Label disabled={this.props.disabled} muitheme={muitheme}>
-                  {value != null ? this.printValue(value) : this.props.label}
-                </Label>
-              )}
+              <Label disabled={this.props.disabled} muitheme={muitheme}>
+                {value != null ? this.printValue(value) : this.props.label}
+              </Label>
               {!this.props.disabled && (
                 <IconContainer muitheme={muitheme}>
                   <SvgArrowDown />
