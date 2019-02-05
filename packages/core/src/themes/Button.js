@@ -36,6 +36,7 @@ export default {
     fontSize: 13,
     fontFamily: 'Muli',
     fontWeight: 'bold',
+    letterSpacing: 'inherit',
   },
   large: {
     fontSize: 15,
