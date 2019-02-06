@@ -198,7 +198,7 @@ export class TextField extends Component<Props, State> {
     const { inForm, defaultValue, value, fieldValue } = this.props
 
     if (inForm) {
-      return fieldValue != null ? fieldValue : defaultValue || ''
+      return value || fieldValue != null ? fieldValue : defaultValue || ''
     }
 
     if (value != null) {

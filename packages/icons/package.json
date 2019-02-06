@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/icons",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Morpheus UI - Icon Collection",
   "module": "./index.js",
   "main": "./index.js",
