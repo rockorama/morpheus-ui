@@ -46,7 +46,6 @@ class Field extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.value !== prevProps.value) {
-      console.log('field changed')
       this.onChange(this.props.value)
     }
   }

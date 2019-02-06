@@ -115,7 +115,7 @@ const Field = styled.TextInput`
     `};
 
   ${props =>
-    props.disabled &&
+    props.disabledStyle &&
     css`
       color: ${props => props.muitheme.textDisabledColor};
       cursor: not-allowed;
@@ -335,6 +335,7 @@ export class TextField extends Component<Props, State> {
               onSubmitEditing={this.onSubmit}
               multiline={multiline}
               placeholder={this.state.focus ? placeholder : null}
+              disabledStyle={disabled}
               disabled={disabled || disableEdit}
               {...other}
             />

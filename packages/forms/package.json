@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/forms",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Form context for react components",
   "module": "lib/index.js",
   "main": "lib/index.js",
