@@ -174,6 +174,7 @@ type Props = FieldProps & {
   defaultValue?: ?string,
   multiline: boolean,
   disabled: boolean,
+  disableEdit?: boolean,
   variant?: string | Array<string>,
   IconLeft?: ?any,
   IconRight?: ?any,
@@ -262,6 +263,7 @@ export class TextField extends Component<Props, State> {
       IconRight,
       onPressIcon,
       submitOnPressIcon,
+      disableEdit,
       ...other
     } = removeFieldProps(this.props)
 
@@ -333,7 +335,7 @@ export class TextField extends Component<Props, State> {
               onSubmitEditing={this.onSubmit}
               multiline={multiline}
               placeholder={this.state.focus ? placeholder : null}
-              disabled={disabled}
+              disabled={disabled || disableEdit}
               {...other}
             />
           </TextContainer>
