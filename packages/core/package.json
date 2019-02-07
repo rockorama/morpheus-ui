@@ -32,6 +32,7 @@
     "memoize-one": "^4.1.0",
     "react-art": "^16.6.0",
     "react-native-web": "^0.9.4",
+    "react-overlays": "^1.1.1",
     "react-sizes": "^1.0.4",
     "styled-components": "^4.0.3"
   },
