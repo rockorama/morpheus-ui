@@ -43,7 +43,7 @@ const InnerContainer = styled.View`
     border-radius: ${({ muitheme }) => muitheme.borderRadius};
     ${({ muitheme }) =>
       (muitheme.iconPosition === 'top' || muitheme.iconPosition === 'bottom') &&
-      `flex-direction: column;`} 
+      `flex-direction: column;`}
    ${({ muitheme }) =>
      muitheme.shadow &&
      ` shadow-color: #000;
@@ -116,6 +116,7 @@ const Title = styled.Text`
 
   ${({ muitheme, ishover, disabled }) =>
     css`
+      letter-spacing: ${muitheme.letterSpacing};
       text-align: ${muitheme.titleAlign};
       padding: ${muitheme.titlePadding};
       font-family: ${muitheme.fontFamily};
