@@ -1,14 +1,25 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component, createRef, type ElementRef } from 'react'
 import styled from 'styled-components/native'
 
 import memoize from 'memoize-one'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
+import { Modal } from 'react-overlays'
 
 import zIndex from '../zIndexClass'
+import getElementPosition from '../getElementPosition'
 import Theme, { getTheme } from './ThemeProvider'
+
+const BACKSTYLE = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  overflow: 'auto',
+}
 
 const SvgArrowDown = props => (
   <svg width="8" height="5" viewBox="0 0 8 5" {...props}>
@@ -86,11 +97,11 @@ const ErrorMessage = styled.Text`
   margin-bottom: 2px;
 `
 const DropMenu = styled.View`
-  min-width: 100%;
-  top: 0;
-  right: 0;
   background-color: ${props => props.muitheme.menuBackgroundColor};
   position: absolute;
+  width: ${props => props.width}px;
+  left: ${props => props.position.x}px;
+  top: ${props => props.position.y - 1}px;
   ${props =>
     props.muitheme.menuShadow &&
     `
@@ -111,7 +122,7 @@ const DropMenu = styled.View`
 `
 
 const Backdrop = styled.TouchableOpacity`
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -163,10 +174,15 @@ type State = {
   open: boolean,
   value: ?string,
   focus: number,
+  containerPos?: Object,
+  containerWidth?: ?Number,
 }
 
 export class DropDownComponent extends Component<Props, State> {
   static contextType = Theme
+
+  // $FlowFixMe: React Ref
+  containerRef: ElementRef<'div'> = createRef()
 
   constructor(props: Props) {
     super(props)
@@ -176,6 +192,28 @@ export class DropDownComponent extends Component<Props, State> {
       open: false,
       focus: -1,
     }
+  }
+
+  componentDidMount() {
+    this.getPosition()
+
+    window.addEventListener('scroll', this.getPosition)
+    window.addEventListener('resize', this.getPosition)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.getPosition)
+    window.removeEventListener('resize', this.getPosition)
+  }
+
+  getPosition = () => {
+    this.setState({
+      containerPos: getElementPosition(this.containerRef.current),
+      containerWidth: this.containerRef.current
+        ? // $FlowFixMe: OffSet
+          this.containerRef.current.offsetWidth
+        : null,
+    })
   }
 
   getDropDownTheme = memoize((props: Props, context: Object) =>
@@ -328,57 +366,68 @@ export class DropDownComponent extends Component<Props, State> {
         muitheme={muitheme}
         onKeyDown={this.handleInputKeyDown}
         className={zIndex}>
+        <div ref={this.containerRef}>
+          <Container>
+            <Touchable
+              isopen={this.state.open}
+              disabled={this.props.disabled}
+              onPress={this.onPress}>
+              <InnerContainer
+                muitheme={muitheme}
+                disabled={this.props.disabled}>
+                <Label disabled={this.props.disabled} muitheme={muitheme}>
+                  {value != null ? this.printValue(value) : this.props.label}
+                </Label>
+                {!this.props.disabled && (
+                  <IconContainer muitheme={muitheme}>
+                    <SvgArrowDown />
+                  </IconContainer>
+                )}
+              </InnerContainer>
+            </Touchable>
+            <ErrorMessage muitheme={muitheme}>
+              {showError ? this.props.errorMessage : ''}
+            </ErrorMessage>
+          </Container>
+        </div>
         {this.state.open && (
-          <Backdrop
-            muitheme={muitheme}
-            onPress={this.dismissMenu}
-            onMouseOver={() => this.setFocus(-1)}
-          />
-        )}
-        <Container>
-          <Touchable
-            isopen={this.state.open}
-            disabled={this.props.disabled}
-            onPress={this.onPress}>
-            <InnerContainer muitheme={muitheme} disabled={this.props.disabled}>
-              <Label disabled={this.props.disabled} muitheme={muitheme}>
-                {value != null ? this.printValue(value) : this.props.label}
-              </Label>
-              {!this.props.disabled && (
-                <IconContainer muitheme={muitheme}>
-                  <SvgArrowDown />
-                </IconContainer>
-              )}
-            </InnerContainer>
-          </Touchable>
-          <ErrorMessage muitheme={muitheme}>
-            {showError ? this.props.errorMessage : ''}
-          </ErrorMessage>
-        </Container>
-        {this.state.open && (
-          <DropMenu muitheme={muitheme}>
-            <ScrollView>
-              {this.props.options.map((item, index) => {
-                const itemValue = this.getValueFromItem(item)
-                return (
-                  <DropItem
-                    muitheme={muitheme}
-                    onMouseOver={() => this.setFocus(index)}
-                    onFocus={() => this.setFocus(index)}
-                    onPress={() => this.closeMenu()}
-                    key={`item-${index}`}>
-                    <ItemText
-                      muitheme={muitheme}
-                      withfocus={(this.state.focus === index).toString()}
-                      // $FlowFixMe
-                      selected={value == itemValue}>
-                      {this.printItem(item)}
-                    </ItemText>
-                  </DropItem>
-                )
-              })}
-            </ScrollView>
-          </DropMenu>
+          <>
+            <Modal show style={BACKSTYLE}>
+              <div>
+                <Backdrop
+                  muitheme={muitheme}
+                  onPress={this.dismissMenu}
+                  onMouseOver={() => this.setFocus(-1)}
+                />
+                <DropMenu
+                  muitheme={muitheme}
+                  position={this.state.containerPos}
+                  width={this.state.containerWidth}>
+                  <ScrollView>
+                    {this.props.options.map((item, index) => {
+                      const itemValue = this.getValueFromItem(item)
+                      return (
+                        <DropItem
+                          muitheme={muitheme}
+                          onMouseOver={() => this.setFocus(index)}
+                          onFocus={() => this.setFocus(index)}
+                          onPress={() => this.closeMenu()}
+                          key={`item-${index}`}>
+                          <ItemText
+                            muitheme={muitheme}
+                            withfocus={(this.state.focus === index).toString()}
+                            // $FlowFixMe
+                            selected={value == itemValue}>
+                            {this.printItem(item)}
+                          </ItemText>
+                        </DropItem>
+                      )
+                    })}
+                  </ScrollView>
+                </DropMenu>
+              </div>
+            </Modal>
+          </>
         )}
       </OutterContainer>
     )
