@@ -2,7 +2,7 @@ import { StyleSheet, css } from 'aphrodite'
 
 const styles = StyleSheet.create({
   zIndex: {
-    zIndex: 'initial',
+    zIndex: '9999999999999999999',
   },
 })
 

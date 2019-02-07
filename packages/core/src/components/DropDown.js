@@ -117,8 +117,6 @@ const DropMenu = styled.View`
   border-color: ${props => props.muitheme.menuBorderColor};
   border-style: solid;
   border-radius: ${props => props.muitheme.menuBorderRadius};
-
-  z-index: 999999;
 `
 
 const Backdrop = styled.TouchableOpacity`
@@ -128,7 +126,6 @@ const Backdrop = styled.TouchableOpacity`
   left: 0;
   bottom: 0;
   background-color: ${props => props.muitheme.menuBackdropColor};
-  z-index: 99999;
 `
 
 const ScrollView = styled.ScrollView``
@@ -362,10 +359,7 @@ export class DropDownComponent extends Component<Props, State> {
       !!this.props.errorMessage
 
     return (
-      <OutterContainer
-        muitheme={muitheme}
-        onKeyDown={this.handleInputKeyDown}
-        className={zIndex}>
+      <OutterContainer muitheme={muitheme} onKeyDown={this.handleInputKeyDown}>
         <div ref={this.containerRef}>
           <Container>
             <Touchable
@@ -392,7 +386,7 @@ export class DropDownComponent extends Component<Props, State> {
         </div>
         {this.state.open && (
           <>
-            <Modal show style={BACKSTYLE}>
+            <Modal className={zIndex} show style={BACKSTYLE}>
               <div>
                 <Backdrop
                   muitheme={muitheme}
