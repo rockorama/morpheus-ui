@@ -25,21 +25,30 @@ export default class Text extends Component<Props> {
   static contextType = Theme
 
   getTextTheme = memoize((props: Props, context: Object) => {
-    const theme: Object = getTheme('Text', props, context)
+    // $FlowFixMe
+    const { trace, ...theme }: Object = getTheme('Text', props, context)
+    const { bold, italic, size, uppercase, color } = props
     return getPropertiesFromTheme({
       ...theme,
-      color: this.props.color || theme.color,
-      fontWeight: this.props.bold ? 'bold' : theme.fontWeight,
-      fontStyle: this.props.italic ? 'italic' : theme.fontStyle,
-      fontSize: this.props.size || theme.fontSize,
-      textTransform: this.props.uppercase ? 'uppercase' : theme.textTransform,
+      color: color || theme.color,
+      fontWeight: bold ? 'bold' : theme.fontWeight,
+      fontStyle: italic ? 'italic' : theme.fontStyle,
+      fontSize: size || theme.fontSize,
+      textTransform: uppercase ? 'uppercase' : theme.textTransform,
     })
   })
 
   render() {
-    const { children, ...other } = this.props
+    const {
+      children,
+      bold,
+      italic,
+      uppercase,
+      size,
+      color,
+      ...other
+    } = this.props
     const muistyles = this.getTextTheme(this.props, this.context)
-
     return (
       <TheThext muistyles={muistyles} {...other}>
         {children}

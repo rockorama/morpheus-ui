@@ -5,6 +5,8 @@ import styled, { css } from 'styled-components/native'
 import memoize from 'memoize-one'
 
 import { turnIntoField, type FieldProps } from '@morpheus-ui/forms'
+
+import transition from '../transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
 
 type Props = FieldProps & {
@@ -19,35 +21,40 @@ type Props = FieldProps & {
 }
 
 type State = {
-  isHover: boolean,
+  ishover: boolean,
 }
 const Container = styled.View`
+  min-width: ${({ muitheme }) => muitheme.minWidth};
+  margin: ${({ muitheme }) => muitheme.margin};
   align-items: center;
   flex-direction: row;
 `
 const Clicker = styled.TouchableWithoutFeedback``
 
 const InnerContainer = styled.View`
-  ${({ muitheme, isHover, disabled }) => css`
-    transition: all 0.3s;
+    min-width: ${({ muitheme }) => muitheme.minWidth};
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: ${muitheme.padding}px;
-    background-color: ${muitheme.backgroundColor};
-    border-color: ${muitheme.borderColor};
-    border-width: ${muitheme.borderWidth};
-    border-radius: ${muitheme.borderRadius};
-    ${(muitheme.iconPosition === 'top' || muitheme.iconPosition === 'bottom') &&
-      `flex-direction: column;`} 
-   ${muitheme.shadow &&
+    background-color: ${({ muitheme }) => muitheme.backgroundColor};
+    border-color: ${({ muitheme }) => muitheme.borderColor};
+    border-width: ${({ muitheme }) => muitheme.borderWidth};
+    border-radius: ${({ muitheme }) => muitheme.borderRadius};
+    ${({ muitheme }) =>
+      (muitheme.iconPosition === 'top' || muitheme.iconPosition === 'bottom') &&
+      `flex-direction: column;`}
+   ${({ muitheme }) =>
+     muitheme.shadow &&
      ` shadow-color: #000;
        shadow-offset: {width: 0, height: 0};
        shadow-opacity: 0.1;
        shadow-radius: 8;
     `}
 
-  ${isHover &&
+  ${({ ishover, muitheme, disabled }) =>
+    ishover.on &&
+    !disabled &&
     ` background-color: ${muitheme.backgroundHoverColor};
       border-color: ${muitheme.borderHoverColor};
       ${muitheme.hoverShadow &&
@@ -58,48 +65,65 @@ const InnerContainer = styled.View`
         `}
      `}
 
-    ${disabled &&
+
+    ${({ muitheme, disabled }) =>
+      disabled &&
       ` background-color: ${muitheme.backgroundDisabledColor};
       border-color: ${muitheme.borderDisabledColor};
       cursor: not-allowed;
      `}
-  `}
+
+
 `
 
-const IconContainer = styled.View`
-  ${({ muitheme, title, isHover, disabled }) =>
+const IconContainer = styled.Text`
+  ${({ muitheme, title, ishover, disabled }) =>
     css`
-      transition: all 0.3s;
+      padding: ${muitheme.iconPadding};
+      display: flex;
+      background-color: ${muitheme.iconBackgroundColor};
       align-items: center;
       justify-content: center;
       color: ${muitheme.iconColor};
       ${!!title &&
         muitheme.iconPosition === 'top' &&
-        `margin-bottom: ${muitheme.iconMargin}px;`}
+        `margin-bottom: ${muitheme.iconMargin}; width: 100%;`}
       ${!!title &&
         muitheme.iconPosition === 'right' &&
-        `margin-left: ${muitheme.iconMargin}px;`}
+        `margin-left: ${muitheme.iconMargin}; `}
       ${!!title &&
         muitheme.iconPosition === 'bottom' &&
-        `margin-top: ${muitheme.iconMargin}px;`}
+        `margin-top: ${muitheme.iconMargin}; width: 100%;`}
       ${!!title &&
         muitheme.iconPosition === 'left' &&
-        `margin-right: ${muitheme.iconMargin}px;`}
+        `margin-right: ${muitheme.iconMargin};`}
 
-       ${isHover && `color: ${muitheme.iconHoverColor};`}
-       ${disabled && `color: ${muitheme.iconDisabledColor};`}
+       ${ishover.on &&
+         `color: ${muitheme.iconHoverColor};
+          background-color: ${muitheme.iconHoverBackgroundColor};
+`}
+       ${disabled &&
+         `
+        color: ${muitheme.iconDisabledColor};
+        background-color: ${muitheme.iconDisabledBackgroundColor};
+        `}
   `}
 `
 
 const Title = styled.Text`
-  ${({ muitheme, isHover, disabled }) =>
+  flex: 1;
+  width: 100%;
+
+  ${({ muitheme, ishover, disabled }) =>
     css`
-      transition: all 0.3s;
+      letter-spacing: ${muitheme.letterSpacing};
+      text-align: ${muitheme.titleAlign};
+      padding: ${muitheme.titlePadding};
       font-family: ${muitheme.fontFamily};
       font-size: ${muitheme.fontSize};
       font-weight: ${muitheme.fontWeight};
       color: ${muitheme.titleColor};
-      ${isHover && `color: ${muitheme.titleHoverColor};`}
+      ${ishover.on && `color: ${muitheme.titleHoverColor};`}
 
       ${disabled &&
         `color: ${muitheme.titleDisabledColor}; cursor: not-allowed;`}
@@ -110,18 +134,18 @@ export class Button extends Component<Props, State> {
   static contextType = Theme
 
   state = {
-    isHover: false,
+    ishover: false,
   }
 
   onMouseOver = () => {
     this.setState({
-      isHover: true,
+      ishover: true,
     })
   }
 
   onMouseLeave = () => {
     this.setState({
-      isHover: false,
+      ishover: false,
     })
   }
 
@@ -138,12 +162,13 @@ export class Button extends Component<Props, State> {
     const { Icon, HoverIcon, disabled } = this.props
     if (!Icon) return null
 
-    const TheIcon = this.state.isHover && !disabled ? HoverIcon || Icon : Icon
+    const TheIcon = this.state.ishover && !disabled ? HoverIcon || Icon : Icon
     return (
       <IconContainer
+        className={transition}
         muitheme={muitheme}
         title={this.props.title}
-        isHover={this.state.isHover}
+        ishover={{ on: this.state.ishover }}
         disabled={disabled}>
         <TheIcon width={muitheme.iconWidth} height={muitheme.iconHeight} />
       </IconContainer>
@@ -159,24 +184,28 @@ export class Button extends Component<Props, State> {
     const muitheme: Object = this.getButtonTheme(this.props, this.context)
 
     return (
-      <Container>
+      <Container muitheme={muitheme}>
         <Clicker disabled={disabled} onPress={this.onSubmit}>
           <InnerContainer
             {...this.props}
+            className={transition}
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
             muitheme={muitheme}
             disabled={disabled}
-            isHover={this.state.isHover}>
+            ishover={{ on: this.state.ishover }}>
             {(muitheme.iconPosition === 'left' ||
               muitheme.iconPosition === 'top') &&
               this.renderIcon(muitheme)}
-            <Title
-              isHover={this.state.isHover}
-              muitheme={muitheme}
-              disabled={disabled}>
-              {title}
-            </Title>
+            {title ? (
+              <Title
+                className={transition}
+                ishover={{ on: this.state.ishover }}
+                muitheme={muitheme}
+                disabled={disabled}>
+                {title}
+              </Title>
+            ) : null}
             {(muitheme.iconPosition === 'right' ||
               muitheme.iconPosition === 'bottom') &&
               this.renderIcon(muitheme)}

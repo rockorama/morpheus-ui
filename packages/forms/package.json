@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/forms",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Form context for react components",
   "module": "lib/index.js",
   "main": "lib/index.js",
@@ -15,11 +15,11 @@
   },
   "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
   "scripts": {
-    "build:clean": "rm -rf ./lib",
-    "build:js": "BABEL_ENV='browser-cjs' babel src --out-dir lib --ignore test.js",
+    "build:clean": "del-cli lib",
+    "build:js": "cross-env BABEL_ENV=browser-cjs babel src --out-dir lib --ignore test.js",
     "build:flow": "flow-copy-source src lib",
     "build": "yarn build:clean && yarn build:js && yarn build:flow",
-    "start": "BABEL_ENV='test' babel src --out-dir lib  --watch --ignore test.js",
+    "start": "cross-env BABEL_ENV=test babel src --out-dir lib  --watch --ignore test.js",
     "flow:install": "flow-typed install --ignoreDeps=dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

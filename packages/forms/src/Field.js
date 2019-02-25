@@ -39,9 +39,15 @@ class Field extends Component<Props, State> {
     this.props.name &&
       this.props.addField({
         name: this.props.name,
-        value: this.props.defaultValue,
+        value: this.props.value || this.props.defaultValue,
         validate: this.validate,
       })
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.value !== prevProps.value) {
+      this.onChange(this.props.value)
+    }
   }
 
   componentWillUnmount() {

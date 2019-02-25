@@ -1,0 +1,10 @@
+
+<svg width="5px" height="8px" viewBox="0 0 5 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Buttons/Dropdown-off" transform="translate(-50.000000, -9.000000)" fill="#D3D3D3">
+            <g id="Group-3" transform="translate(52.500000, 13.000000) rotate(-270.000000) translate(-52.500000, -13.000000) translate(48.500000, 10.500000)">
+                <path d="M7.1465,0.1465 L3.9995,3.2925 L0.8535,0.1465 C0.6585,-0.0485 0.3415,-0.0485 0.1465,0.1465 C-0.0485,0.3415 -0.0485,0.6585 0.1465,0.8535 L3.6465,4.3535 C3.7445,4.4515 3.8725,4.5005 3.9995,4.5005 C4.1275,4.5005 4.2555,4.4515 4.3535,4.3535 L7.8535,0.8535 C8.0485,0.6585 8.0485,0.3415 7.8535,0.1465 C7.6585,-0.0485 7.3415,-0.0485 7.1465,0.1465 Z" id="Fill-1"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,12 +4,10 @@ import React, { createContext, Component } from 'react'
 
 import { ThemeProvider as StyledThemeProvider } from 'styled-components/native'
 
-import { BUTTON_THEME, TEXT_FIELD_THEME, TEXT_THEME } from '../themes'
+import * as Themes from '../themes'
 
 export const DEFAULT_THEME = {
-  Button: BUTTON_THEME,
-  TextField: TEXT_FIELD_THEME,
-  Text: TEXT_THEME,
+  ...Themes,
   Grid: {
     default: {
       spacing: 15,

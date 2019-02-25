@@ -56,6 +56,7 @@ export type FormContext = {
 
 export type PreFieldProps = {
   name: FieldName,
+  value?: ?FieldValue,
   defaultValue?: ?FieldValue,
   label?: string,
   required?: ?boolean,

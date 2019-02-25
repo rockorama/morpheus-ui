@@ -10,56 +10,40 @@ import {
   type FieldProps,
 } from '@morpheus-ui/forms'
 
+import transition from '../transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
-
-type Props = FieldProps & {
-  placeholder?: string,
-  value?: ?string,
-  defaultValue?: ?string,
-  multiline: boolean,
-  disabled: boolean,
-  variant?: string | Array<string>,
-}
-
-type State = {
-  focus: boolean,
-  innerValue: string,
-}
 
 const Container = styled.View``
 
 const FieldContainer = styled.View`
-  transition: all 0.3s;
+  flex-direction: row;
+  align-items: center;
+
   background-color: ${props => props.muitheme.backgroundColor};
-  border-radius: ${props => props.muitheme.borderRadius}px;
+  border-radius: ${props => props.muitheme.borderRadius};
   border-color: ${props => props.muitheme.borderColor};
-  border-width: ${props => props.muitheme.borderWidth}px;
-  padding: ${props => props.muitheme.padding}px
-    ${props => props.muitheme.padding}px
-    ${props => props.muitheme.padding - 2}px
-    ${props => props.muitheme.padding}px;
-
-  ${props =>
-    props.muitheme.shadow &&
-    ` shadow-color: #000;
+  border-width: ${props => props.muitheme.borderWidth};
+  padding: ${props => props.muitheme.padding}
+    ${props =>
+      props.muitheme.shadow &&
+      ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-
-  ${props =>
-    !props.disabled &&
-    props.hasFocus &&
-    css`
-      background-color: ${props => props.muitheme.backgroundActiveColor};
-      border-color: ${props => props.muitheme.borderActiveColor};
-      ${props.muitheme.activeShadow &&
-        ` shadow-color: #000;
+    ${props =>
+      !props.disabled &&
+      props.hasfocus.on &&
+      css`
+        background-color: ${props => props.muitheme.backgroundActiveColor};
+        border-color: ${props => props.muitheme.borderActiveColor};
+        ${props.muitheme.activeShadow &&
+          ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-    `};
+      `};
 
   ${props =>
     props.disabled &&
@@ -75,29 +59,24 @@ const FieldContainer = styled.View`
       border-color: ${props => props.muitheme.errorColor};
     `};
 `
+const TextContainer = styled.View`
+  position: relative;
+  flex: 1;
+`
 
 const Label = styled.Text`
   font-family: ${props => props.muitheme.fontFamily};
-  font-size: ${props => props.muitheme.fontSize}px;
+  font-size: ${props => props.muitheme.fontSize};
   color: ${props => props.muitheme.labelColor};
   position: absolute;
-  transition: all 0.3s;
 
   ${props =>
-    !props.disabled &&
-    (props.hasFocus || props.hasContent) &&
+    (props.hasfocus.on || props.hascontent.on) &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
-      font-size: ${props => props.muitheme.fontSize - 5}px;
-      margin-top: -${props => props.muitheme.padding - 5}px;
+      font-size: 6px;
+      margin-top: -8px;
       text-transform: uppercase;
-    `};
-
-  ${props =>
-    !props.hasFocus &&
-    props.hasContent &&
-    css`
-      color: transparent;
     `};
 
   ${props =>
@@ -106,23 +85,39 @@ const Label = styled.Text`
       color: ${props => props.muitheme.labelDisabledColor};
       cursor: not-allowed;
     `};
+
+  ${props =>
+    !props.hasfocus.on &&
+    props.hascontent.on &&
+    css`
+      color: ${props => props.muitheme.labelWithContentColor};
+    `};
+
+  ${props =>
+    props.disabled &&
+    !props.hasfocus.on &&
+    props.hascontent.on &&
+    css`
+      color: ${props => props.muitheme.labelDisabledWithContentColor};
+    `};
 `
 
 const Field = styled.TextInput`
   font-family: ${props => props.muitheme.fontFamily};
   outline: none;
-  font-size: ${props => props.muitheme.fontSize}px;
+  font-size: ${props => props.muitheme.fontSize};
   position: relative;
   color: ${props => props.muitheme.textColor};
   ${props =>
-    props.hasFocus &&
+    props.hasfocus.on &&
     css`
       color: ${props => props.muitheme.textActiveColor};
     `};
 
   ${props =>
-    props.disabled &&
+    props.disabledstyle.on &&
     css`
+      color: ${props => props.muitheme.textDisabledColor};
       cursor: not-allowed;
     `};
 `
@@ -132,10 +127,65 @@ const ErrorMessage = styled.Text`
   font-size: 10px;
   height: 18px;
   color: ${props => props.muitheme.errorColor};
-  min-height: ${props => props.muitheme.fontSize}px;
+  min-height: ${props => props.muitheme.fontSize};
   padding: 2px;
   margin-bottom: 2px;
 `
+
+const IconContainerPress = styled.TouchableWithoutFeedback``
+
+const IconLeftHolder = styled.Text`
+  display: flex;
+  margin-right: ${props => props.muitheme.iconMargin};
+  color: ${props => props.muitheme.iconColor};
+  ${props =>
+    props.hasfocus.on &&
+    css`
+      color: ${props => props.muitheme.iconActiveColor};
+    `};
+
+  ${props =>
+    props.disabled &&
+    css`
+      color: ${props => props.muitheme.iconDisabledColor};
+    `};
+`
+
+const IconRightHolder = styled.Text`
+  display: flex;
+  margin-left: ${props => props.muitheme.iconMargin};
+  color: ${props => props.muitheme.iconColor};
+  ${props =>
+    props.hasfocus.on &&
+    css`
+      color: ${props => props.muitheme.iconActiveColor};
+    `};
+
+  ${props =>
+    props.disabled &&
+    css`
+      color: ${props => props.muitheme.iconDisabledColor};
+    `};
+`
+
+type Props = FieldProps & {
+  placeholder?: string,
+  value?: ?string,
+  defaultValue?: ?string,
+  multiline: boolean,
+  disabled: boolean,
+  disableEdit?: boolean,
+  variant?: string | Array<string>,
+  IconLeft?: ?any,
+  IconRight?: ?any,
+  onPressIcon?: (payload: { position: string, value: string }) => void,
+  submitOnPressIcon?: boolean,
+}
+
+type State = {
+  focus: boolean,
+  innerValue: string,
+}
 
 export class TextField extends Component<Props, State> {
   static contextType = Theme
@@ -145,11 +195,11 @@ export class TextField extends Component<Props, State> {
     innerValue: '',
   }
 
-  getValue() {
+  getValue = () => {
     const { inForm, defaultValue, value, fieldValue } = this.props
 
     if (inForm) {
-      return fieldValue || defaultValue || ''
+      return value || fieldValue != null ? fieldValue : defaultValue || ''
     }
 
     if (value != null) {
@@ -190,15 +240,32 @@ export class TextField extends Component<Props, State> {
     }
   }
 
+  onPressIcon = (position: string) => {
+    if (this.props.onPressIcon) {
+      // $FlowFixMe
+      this.props.onPressIcon({ position, value: this.getValue() || '' })
+    }
+    this.props.submitOnPressIcon && this.onSubmit()
+  }
+
   getTextFieldTheme = memoize((props: Props, context: Object) =>
     getTheme('TextField', props, context),
   )
 
   render() {
     const { label, errorMessage, isSubmitted, dirty } = this.props
-    const { placeholder, multiline, disabled, ...other } = removeFieldProps(
-      this.props,
-    )
+    const {
+      placeholder,
+      multiline,
+      disabled,
+      inForm,
+      IconLeft,
+      IconRight,
+      onPressIcon,
+      submitOnPressIcon,
+      disableEdit,
+      ...other
+    } = removeFieldProps(this.props)
 
     const showError = (isSubmitted() || dirty) && !!errorMessage
 
@@ -207,39 +274,100 @@ export class TextField extends Component<Props, State> {
 
     const type = this.getType()
 
-    const muitheme = this.getTextFieldTheme(this.props, this.context)
+    const muitheme: Object = this.getTextFieldTheme(this.props, this.context)
 
     return (
       <Container>
         <FieldContainer
+          className={transition}
           muitheme={muitheme}
-          hasFocus={this.state.focus}
-          hasContent={hasValue}
+          hasfocus={{ on: this.state.focus }}
+          hascontent={{ on: hasValue }}
           showError={showError}
           disabled={disabled}>
-          <Label
-            muitheme={muitheme}
-            hasFocus={this.state.focus}
-            hasContent={hasValue}
-            disabled={disabled}>
-            {label || placeholder}
-          </Label>
-          <Field
-            hasFocus={this.state.focus}
-            hasContent={hasValue}
-            muitheme={muitheme}
-            value={value}
-            onChangeText={this.onChange}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            textContentType={type}
-            secureTextEntry={type === 'password'}
-            onSubmitEditing={this.onSubmit}
-            multiline={multiline}
-            placeholder={this.state.focus ? placeholder : null}
-            disabled={disabled}
-            {...other}
-          />
+          {IconLeft &&
+            ((onPressIcon || submitOnPressIcon) && !disabled ? (
+              <IconContainerPress onPress={() => this.onPressIcon('left')}>
+                <IconLeftHolder
+                  className={transition}
+                  disabled={disabled}
+                  hasfocus={{ on: this.state.focus }}
+                  hascontent={{ on: hasValue }}
+                  muitheme={muitheme}>
+                  <IconLeft
+                    width={muitheme.iconWidth}
+                    height={muitheme.iconHeight}
+                  />
+                </IconLeftHolder>
+              </IconContainerPress>
+            ) : (
+              <IconLeftHolder
+                className={transition}
+                disabled={disabled}
+                hasfocus={{ on: this.state.focus }}
+                hascontent={{ on: hasValue }}
+                muitheme={muitheme}>
+                <IconLeft
+                  width={muitheme.iconWidth}
+                  height={muitheme.iconHeight}
+                />
+              </IconLeftHolder>
+            ))}
+          <TextContainer>
+            <Label
+              className={transition}
+              muitheme={muitheme}
+              hasfocus={{ on: this.state.focus }}
+              hascontent={{ on: hasValue }}
+              disabled={disabled}>
+              {label || placeholder}
+            </Label>
+            <Field
+              hasfocus={{ on: this.state.focus }}
+              hascontent={{ on: hasValue }}
+              muitheme={muitheme}
+              value={value}
+              onChangeText={this.onChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              textContentType={type}
+              secureTextEntry={type === 'password'}
+              onSubmitEditing={this.onSubmit}
+              multiline={multiline}
+              placeholder={this.state.focus ? placeholder : null}
+              disabledstyle={{ on: disabled }}
+              disabled={disabled || disableEdit}
+              {...other}
+            />
+          </TextContainer>
+          {IconRight &&
+            ((onPressIcon || submitOnPressIcon) && !disabled ? (
+              <IconContainerPress onPress={() => this.onPressIcon('right')}>
+                <IconRightHolder
+                  className={transition}
+                  disabled={disabled}
+                  hasfocus={{ on: this.state.focus }}
+                  hascontent={{ on: hasValue }}
+                  muitheme={muitheme}>
+                  <IconRight
+                    width={muitheme.iconWidth}
+                    height={muitheme.iconHeight}
+                  />
+                </IconRightHolder>
+              </IconContainerPress>
+            ) : (
+              <IconRightHolder
+                className={transition}
+                disabled={disabled}
+                hasfocus={{ on: this.state.focus }}
+                hascontent={{ on: hasValue }}
+                muitheme={muitheme}>
+                <IconRight
+                  width={muitheme.iconWidth}
+                  height={muitheme.iconHeight}
+                />
+              </IconRightHolder>
+            ))}
         </FieldContainer>
         <ErrorMessage muitheme={muitheme}>
           {showError ? errorMessage : ''}
