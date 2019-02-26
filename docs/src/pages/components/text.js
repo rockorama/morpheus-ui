@@ -64,6 +64,11 @@ const CodeContainer = styled.View`
   margin-bottom: 0px;
   background-color: ${props => props.theme.codeContainer} !important;
 `
+const InlineCodeContainer = styled.View`
+  padding: 0px;
+  margin-top: -23px;
+  background-color: ${props => props.theme.codeContainer} !important;
+`
 const DemoContainer = styled.View`
   background-color: ${props => props.theme.demoContainer} !important;
   display: flex;
@@ -74,6 +79,97 @@ const DemoContainer = styled.View`
 const TitleContainer = styled.View`
   padding-top: 30px;
 `
+const TitleFlexContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+`
+
+export default class NormalButtonExample extends Component {
+  render() {
+    return (
+      <Layout>
+        <Background>
+          <Text variant="h2">{'Text'}</Text>
+          <Row inner>
+            <TitleContainer>
+              <Text variant="h3">{'Import statement'}</Text>
+            </TitleContainer>
+          </Row>
+          <Row inner>
+            <Column lg={10}>
+              <CodeContainer>
+                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
+                  {importStatement}
+                </SyntaxHighlighter>
+              </CodeContainer>
+            </Column>
+          </Row>
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Props'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={props} props />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Theming'}</Text>
+              </TitleContainer>
+              <TitleFlexContainer>
+                <Text>{'All css that applies to an ordinary RNW '}</Text>
+                <InlineCodeContainer>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    highlighter={'prism'}>
+                    {'<Text>'}
+                  </SyntaxHighlighter>
+                </InlineCodeContainer>
+                <Text>{'component will apply to the Morpheus-UI '}</Text>
+                <InlineCodeContainer>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    highlighter={'prism'}>
+                    {'<Text>'}
+                  </SyntaxHighlighter>
+                </InlineCodeContainer>
+                <Text>{' Component'}</Text>
+              </TitleFlexContainer>
+            </Column>
+          </Row>
+          <Table data={theming} theming />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Demos + Code Samples'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          {textExamples.map(text => (
+            <Row inner>
+              <Column lg={5}>
+                <CodeContainer>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    highlighter={'prism'}>
+                    {text.code}
+                  </SyntaxHighlighter>
+                </CodeContainer>
+              </Column>
+              <Column sm={5}>
+                <DemoContainer>
+                  <Container>{text.toRender}</Container>
+                </DemoContainer>
+              </Column>
+            </Row>
+          ))}
+        </Background>
+      </Layout>
+    )
+  }
+}
 
 const props = [
   {
@@ -208,77 +304,3 @@ const theming = [
     description: 'Word spacing',
   },
 ]
-
-export default class NormalButtonExample extends Component {
-  render() {
-    return (
-      <Layout>
-        <Background>
-          <Text variant="h2">{'Text'}</Text>
-          <Row inner>
-            <TitleContainer>
-              <Text variant="h3">{'Import statement'}</Text>
-            </TitleContainer>
-          </Row>
-          <Row inner>
-            <Column lg={10}>
-              <CodeContainer>
-                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
-                  {importStatement}
-                </SyntaxHighlighter>
-              </CodeContainer>
-            </Column>
-          </Row>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Props'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={props} props />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Theming'}</Text>
-              </TitleContainer>
-              <TitleContainer>
-                <Text>
-                  {
-                    'All css that applies to an ordinary RNW <Text> component will apply to the Morpheus-UI <Text> Component.'
-                  }
-                </Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={theming} theming />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Demos + Code Samples'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          {textExamples.map(text => (
-            <Row inner>
-              <Column lg={5}>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {text.code}
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-              <Column sm={5}>
-                <DemoContainer>
-                  <Container>{text.toRender}</Container>
-                </DemoContainer>
-              </Column>
-            </Row>
-          ))}
-        </Background>
-      </Layout>
-    )
-  }
-}

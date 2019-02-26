@@ -8,6 +8,7 @@ module.exports = {
     'gatsby-plugin-flow',
     'gatsby-plugin-react-native-web',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-aphrodite',
     {
       resolve: `gatsby-source-filesystem`,
       options: {

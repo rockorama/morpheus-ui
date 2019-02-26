@@ -7,6 +7,97 @@ import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
 import Table from '../../components/Table'
 
+const Background = styled.View`
+  padding: 50px;
+`
+const Container = styled.View`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+`
+const CodeContainer = styled.View`
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  background-color: ${props => props.theme.codeContainer} !important;
+`
+const DemoContainer = styled.View`
+  background-color: ${props => props.theme.demoContainer} !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`
+const TitleContainer = styled.View`
+  padding-top: 30px;
+`
+
+export default class NormalButtonExample extends Component {
+  render() {
+    return (
+      <Layout>
+        <Background>
+          <Text variant="h2">{'Button'}</Text>
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Import statement'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Row inner size={1}>
+            <Column>
+              <CodeContainer>
+                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
+                  {importStatement}
+                </SyntaxHighlighter>
+              </CodeContainer>
+            </Column>
+          </Row>
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Props'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={props} props />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Theming'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={theming} theming />
+          <Row inner size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Demos + Code Samples'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          {buttons.map(button => (
+            <Row size={10} inner>
+              <Column sm={10} lg={5}>
+                <CodeContainer>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    highlighter={'prism'}>
+                    {button.code}
+                  </SyntaxHighlighter>
+                </CodeContainer>
+              </Column>
+              <Column sm={10} lg={4}>
+                <DemoContainer>{button.toRender}</DemoContainer>
+              </Column>
+            </Row>
+          ))}
+        </Background>
+      </Layout>
+    )
+  }
+}
+
 const importStatement = "import { Button } from '@morpheus-ui/core'"
 
 const normalButtonCode =
@@ -297,94 +388,3 @@ const theming = [
     default: '"bold"',
   },
 ]
-
-const Background = styled.View`
-  padding: 50px;
-`
-const Container = styled.View`
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-`
-const CodeContainer = styled.View`
-  padding: 10px 20px;
-  margin-bottom: 30px;
-  background-color: ${props => props.theme.codeContainer} !important;
-`
-const DemoContainer = styled.View`
-  background-color: ${props => props.theme.demoContainer} !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`
-const TitleContainer = styled.View`
-  padding-top: 30px;
-`
-
-export default class NormalButtonExample extends Component {
-  render() {
-    return (
-      <Layout>
-        <Background>
-          <Text variant="h2">{'Button'}</Text>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Import statement'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Row inner size={1}>
-            <Column>
-              <CodeContainer>
-                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
-                  {importStatement}
-                </SyntaxHighlighter>
-              </CodeContainer>
-            </Column>
-          </Row>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Props'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={props} props />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Theming'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={theming} theming />
-          <Row inner size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Demos + Code Samples'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          {buttons.map(button => (
-            <Row size={10} inner>
-              <Column sm={10} lg={5}>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {button.code}
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-              <Column sm={10} lg={4}>
-                <DemoContainer>{button.toRender}</DemoContainer>
-              </Column>
-            </Row>
-          ))}
-        </Background>
-      </Layout>
-    )
-  }
-}

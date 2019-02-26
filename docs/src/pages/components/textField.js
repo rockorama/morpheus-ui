@@ -10,8 +10,6 @@ import styled from 'styled-components/native'
 import Layout from '../../components/Layout'
 import Table from '../../components/Table'
 
-const importStatement = "import { TextField } from '@morpheus-ui/core'"
-
 const Background = styled.View`
   padding: 50px;
 `
@@ -36,6 +34,131 @@ const DemoContainer = styled.View`
   height: 100%;
   padding: 30px;
 `
+
+export default class NormalButtonExample extends Component {
+  render() {
+    return (
+      <Layout>
+        <Background>
+          <Text variant="h2">{'TextField'}</Text>
+          <Row inner>
+            <TitleContainer>
+              <Text variant="h3">{'Import statement'}</Text>
+            </TitleContainer>
+          </Row>
+          <Row inner>
+            <Column size={12}>
+              <CodeContainer>
+                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
+                  {importStatement}
+                </SyntaxHighlighter>
+              </CodeContainer>
+            </Column>
+          </Row>
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Props'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={props} props />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Theming'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+          <Table data={theming} theming />
+          <Row size={1}>
+            <Column>
+              <TitleContainer>
+                <Text variant="h3">{'Demos + Code Samples'}</Text>
+              </TitleContainer>
+            </Column>
+          </Row>
+
+          {textfields.map(example => (
+            <Form onSubmit={data => console.log(data)}>
+              <Row size={12} inner>
+                <Column lg={5} md={12} sm={12}>
+                  <CodeContainer>
+                    <SyntaxHighlighter
+                      language="javascript"
+                      highlighter={'prism'}>
+                      {example.code}
+                    </SyntaxHighlighter>
+                  </CodeContainer>
+                </Column>
+                <Column lg={7} md={12} sm={12}>
+                  <DemoContainer>{example.toRender}</DemoContainer>
+                </Column>
+              </Row>
+            </Form>
+          ))}
+        </Background>
+      </Layout>
+    )
+  }
+}
+
+const importStatement = "import { TextField } from '@morpheus-ui/core'"
+const nameCode = '<TextField\n  name="name"\n  label="Name"\n  required\n/>'
+const emailCode =
+  '<TextField\n  name="email"\n  type="email"\n  label="Email"\n  required\n/>'
+const passwordCode =
+  '<TextField\n  name="password"\n  type="password"\n  label="Password"\n  required\n/>'
+const messageCode =
+  '<TextField\n  name="message"\n  label="Message"\n  multiline\n  numberOfLines={6}\n/>'
+const disabledCode =
+  '<TextField\n  name="disabled"\n  label="This field can\'t be edited"\n  disabled\n />'
+const outlinedCode =
+  '<TextField\n  name="outlined"\n  label="Outlined"\n  variant="outlined"\n  required\n />'
+
+const textfields = [
+  {
+    code: importStatement + '\n\n' + nameCode,
+    toRender: <TextField name="name" label="Name" required />,
+  },
+  {
+    code: importStatement + '\n\n' + emailCode,
+    toRender: (
+      <TextField
+        type="email"
+        placeholder="put the vault name here"
+        name="email"
+        label="Email"
+        required
+      />
+    ),
+  },
+  {
+    code: importStatement + '\n\n' + passwordCode,
+    toRender: (
+      <TextField name="password" type="password" label="Password" required />
+    ),
+  },
+  {
+    code: importStatement + '\n\n' + messageCode,
+    toRender: (
+      <TextField name="message" label="Message" multiline numberOfLines={6} />
+    ),
+  },
+  {
+    code: importStatement + '\n\n' + disabledCode,
+    toRender: (
+      <TextField name="disabled" label="This field can't be edited" disabled />
+    ),
+  },
+  {
+    code: importStatement + '\n\n' + outlinedCode,
+    toRender: (
+      <TextField name="outlined" label="Outlined" required variant="outlined" />
+    ),
+  },
+]
+
 const props = [
   {
     name: 'placeholder',
@@ -186,200 +309,3 @@ const theming = [
     default: '"bold"',
   },
 ]
-
-export default class NormalButtonExample extends Component {
-  render() {
-    return (
-      <Layout>
-        <Background>
-          <Text variant="h2">{'TextField'}</Text>
-          <Row inner>
-            <TitleContainer>
-              <Text variant="h3">{'Import statement'}</Text>
-            </TitleContainer>
-          </Row>
-          <Row inner>
-            <Column lg={12}>
-              <CodeContainer>
-                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
-                  {importStatement}
-                </SyntaxHighlighter>
-              </CodeContainer>
-            </Column>
-          </Row>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Props'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={props} props />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Theming'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={theming} theming />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Demos + Code Samples'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField name="name" label="Name" required />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="name"\n  label="Name"\n  required\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField
-                    type="email"
-                    placeholder="put the vault name here"
-                    name="email"
-                    label="Email"
-                    required
-                  />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="email"\n  type="email"\n  placeholder="put the vault name here"\n  label="Email"\n  required\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField
-                    name="password"
-                    type="password"
-                    label="Password"
-                    required
-                  />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="password"\n  type="password"\n  label="password"\n  required\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField
-                    name="message"
-                    label="Message"
-                    multiline
-                    required
-                    numberOfLines={6}
-                  />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="message"\n  label="Message"\n  multiline\n  required\n  numberOfLines={6}\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField
-                    name="disabled"
-                    label="disabled"
-                    required
-                    disabled
-                    defaultValue="This field can't be edited"
-                  />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="disabled"\n  label="disabled"\n  required\n  disabled\n  defaultValue="This field can\'t be edited"\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-          <Form onSubmit={data => console.log(data)}>
-            <Row size={2} inner>
-              <Column>
-                <DemoContainer>
-                  <TextField
-                    name="outlined"
-                    label="Outlined"
-                    required
-                    variant="outlined"
-                  />
-                </DemoContainer>
-              </Column>
-              <Column>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {
-                      '<TextField\n  name="outlined"\n  label="Outlined"\n  required\n  variant="outlined"\n/>'
-                    }
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-            </Row>
-          </Form>
-        </Background>
-      </Layout>
-    )
-  }
-}

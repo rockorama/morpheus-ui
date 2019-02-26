@@ -21,7 +21,7 @@ export default class Table extends Component<Props> {
     const { data, props, theming } = this.props
     return (
       <Row inner>
-        <Column lg={12}>
+        <Column size={12}>
           <Row size={12} inner>
             <Column size={props ? 2 : 3}>
               <Text variant="h3">{'name'}</Text>
