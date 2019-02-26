@@ -33,7 +33,7 @@ export default {
   },
   Text: {
     h3: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 600,
     },
     light: {

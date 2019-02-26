@@ -95,7 +95,7 @@ export default class ComponentTemplate extends Component {
           </Row>
           {examples.map(example => (
             <Row inner size={12}>
-              <Column lg={5} md={12} sm={12}>
+              <Column lg={6} md={7} sm={12}>
                 <CodeContainer>
                   <SyntaxHighlighter
                     language="javascript"
@@ -104,7 +104,7 @@ export default class ComponentTemplate extends Component {
                   </SyntaxHighlighter>
                 </CodeContainer>
               </Column>
-              <Column lg={5} md={12} sm={12}>
+              <Column lg={6} md={5} sm={12}>
                 <DemoContainer>
                   <Container>{example.toRender}</Container>
                 </DemoContainer>

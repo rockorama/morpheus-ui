@@ -81,9 +81,14 @@ const Button = styled.TouchableOpacity`
   margin: 2px 0;
 `
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = screenSize(styled.TouchableOpacity`
   padding: 0px;
-`
+  ${props =>
+    props.screenWidth >= 900 &&
+    css`
+      display: none;
+    `};
+`)
 
 const LinkText = styled.Text`
   color: ${props => props.theme.linkColor};
@@ -172,9 +177,7 @@ class LeftNav extends Component<Props> {
                   return (
                     <View key={edge.node.path}>
                       {renderHeader}
-                      <Button
-                        onPress={() => navigate(edge.node.path)}
-                        variant={'grayHover'}>
+                      <Button onPress={() => navigate(edge.node.path)}>
                         <LinkText>{capitalize(match[2])}</LinkText>
                       </Button>
                     </View>

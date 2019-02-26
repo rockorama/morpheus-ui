@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Row, Column, Text } from '@morpheus-ui/core'
 import styled, { css } from 'styled-components/native'
+import screenSize from './hocs/ScreenSize'
 
 type Props = {
   data: Array<Object>,
@@ -16,6 +17,7 @@ const BorderRow = styled.View`
       border-bottom: 0px;
     `}
 `
+
 export default class Table extends Component<Props> {
   render() {
     const { data, props, theming } = this.props
