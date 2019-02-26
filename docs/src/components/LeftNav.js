@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import { StaticQuery, graphql, Link, navigate } from 'gatsby'
-import { Image } from 'react-native-web'
+import { Image, View } from 'react-native-web'
 import { Text } from '@morpheus-ui/core'
 import styled, { css } from 'styled-components/native'
 import { Modal } from 'react-overlays'
@@ -106,7 +106,7 @@ function capitalize(string) {
 }
 
 class LeftNav extends Component<Props> {
-  state = { open: true }
+  state = { open: false }
 
   toggleMenu = () => {
     this.setState(prevState => {
@@ -141,14 +141,14 @@ class LeftNav extends Component<Props> {
                 )
                 lastMatch = match[1]
                 return (
-                  <>
+                  <View key={edge.node.path}>
                     {renderHeader}
                     <Button
                       onPress={() => navigate(edge.node.path)}
                       variant={'grayHover'}>
                       <LinkText>{capitalize(match[2])}</LinkText>
                     </Button>
-                  </>
+                  </View>
                 )
               }
             })}
@@ -170,14 +170,14 @@ class LeftNav extends Component<Props> {
                   )
                   lastMatch = match[1]
                   return (
-                    <>
+                    <View key={edge.node.path}>
                       {renderHeader}
                       <Button
                         onPress={() => navigate(edge.node.path)}
                         variant={'grayHover'}>
                         <LinkText>{capitalize(match[2])}</LinkText>
                       </Button>
-                    </>
+                    </View>
                   )
                 }
               })}

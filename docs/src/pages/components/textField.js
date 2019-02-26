@@ -4,101 +4,18 @@ import { Button, Row, Column, TextField, Text } from '@morpheus-ui/core'
 import CircleArrowRight from '@morpheus-ui/icons/CircleArrowRight'
 import { WalletsMd, WalletsMdFilled } from '@morpheus-ui/icons'
 import { Form } from '@morpheus-ui/forms'
-
-import SyntaxHighlighter from 'react-native-syntax-highlighter'
-import styled from 'styled-components/native'
-import Layout from '../../components/Layout'
-import Table from '../../components/Table'
-
-const Background = styled.View`
-  padding: 50px;
-`
-const Container = styled.View`
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-`
-const CodeContainer = styled.View`
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  background-color: ${props => props.theme.codeContainer} !important;
-`
-const TitleContainer = styled.View`
-  padding-top: 30px;
-`
-const DemoContainer = styled.View`
-  background-color: ${props => props.theme.demoContainer} !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 30px;
-`
+import ComponentTemplate from '../../components/ComponentTemplate'
 
 export default class NormalButtonExample extends Component {
   render() {
     return (
-      <Layout>
-        <Background>
-          <Text variant="h2">{'TextField'}</Text>
-          <Row inner>
-            <TitleContainer>
-              <Text variant="h3">{'Import statement'}</Text>
-            </TitleContainer>
-          </Row>
-          <Row inner>
-            <Column size={12}>
-              <CodeContainer>
-                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
-                  {importStatement}
-                </SyntaxHighlighter>
-              </CodeContainer>
-            </Column>
-          </Row>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Props'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={props} props />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Theming'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={theming} theming />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Demos + Code Samples'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-
-          {textfields.map(example => (
-            <Form onSubmit={data => console.log(data)}>
-              <Row size={12} inner>
-                <Column lg={5} md={12} sm={12}>
-                  <CodeContainer>
-                    <SyntaxHighlighter
-                      language="javascript"
-                      highlighter={'prism'}>
-                      {example.code}
-                    </SyntaxHighlighter>
-                  </CodeContainer>
-                </Column>
-                <Column lg={7} md={12} sm={12}>
-                  <DemoContainer>{example.toRender}</DemoContainer>
-                </Column>
-              </Row>
-            </Form>
-          ))}
-        </Background>
-      </Layout>
+      <ComponentTemplate
+        title="TextField"
+        theming={theming}
+        props={props}
+        importStatement={importStatement}
+        examples={textfields}
+      />
     )
   }
 }
@@ -116,45 +33,72 @@ const disabledCode =
 const outlinedCode =
   '<TextField\n  name="outlined"\n  label="Outlined"\n  variant="outlined"\n  required\n />'
 
+function printData(data) {
+  console.log(data)
+}
+
 const textfields = [
   {
     code: importStatement + '\n\n' + nameCode,
-    toRender: <TextField name="name" label="Name" required />,
+    toRender: (
+      <Form onSubmit={printData}>
+        <TextField name="name" label="Name" required />
+      </Form>
+    ),
   },
   {
     code: importStatement + '\n\n' + emailCode,
     toRender: (
-      <TextField
-        type="email"
-        placeholder="put the vault name here"
-        name="email"
-        label="Email"
-        required
-      />
+      <Form onSubmit={printData}>
+        <TextField
+          type="email"
+          placeholder="put the vault name here"
+          name="email"
+          label="Email"
+          required
+        />
+      </Form>
     ),
   },
   {
     code: importStatement + '\n\n' + passwordCode,
     toRender: (
-      <TextField name="password" type="password" label="Password" required />
+      <Form onSubmit={printData}>
+        <TextField name="password" type="password" label="Password" required />
+      </Form>
     ),
   },
   {
     code: importStatement + '\n\n' + messageCode,
     toRender: (
-      <TextField name="message" label="Message" multiline numberOfLines={6} />
+      <Form onSubmit={printData}>
+        <TextField name="message" label="Message" multiline numberOfLines={6} />
+      </Form>
     ),
   },
   {
     code: importStatement + '\n\n' + disabledCode,
     toRender: (
-      <TextField name="disabled" label="This field can't be edited" disabled />
+      <Form onSubmit={printData}>
+        <TextField
+          name="disabled"
+          label="This field can't be edited"
+          disabled
+        />
+      </Form>
     ),
   },
   {
     code: importStatement + '\n\n' + outlinedCode,
     toRender: (
-      <TextField name="outlined" label="Outlined" required variant="outlined" />
+      <Form onSubmit={printData}>
+        <TextField
+          name="outlined"
+          label="Outlined"
+          required
+          variant="outlined"
+        />
+      </Form>
     ),
   },
 ]

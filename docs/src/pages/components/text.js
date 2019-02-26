@@ -1,10 +1,24 @@
 //@flow
 import React, { Component } from 'react'
-import { Button, Row, Column, Text } from '@morpheus-ui/core'
-import SyntaxHighlighter from 'react-native-syntax-highlighter'
-import styled from 'styled-components/native'
-import Layout from '../../components/Layout'
-import Table from '../../components/Table'
+import { Text } from '@morpheus-ui/core'
+import ComponentTemplate from '../../components/ComponentTemplate'
+
+export default class TextPage extends Component {
+  render() {
+    return (
+      <ComponentTemplate
+        title="Text"
+        theming={theming}
+        props={props}
+        importStatement={importStatement}
+        examples={textExamples}
+        extraThemingText={
+          'Any styling that can be applied to a RNW Text component can also be applied to the Morpheus-UI Text component.'
+        }
+      />
+    )
+  }
+}
 
 const importStatement = "import { Text } from '@morpheus-ui/core'"
 
@@ -51,125 +65,6 @@ const textExamples = [
     toRender: <Text variant="h2">{'Header 2 (h2)'}</Text>,
   },
 ]
-
-const Background = styled.View`
-  padding: 50px;
-`
-const Container = styled.View`
-  display: flex;
-  align-items: center;
-`
-const CodeContainer = styled.View`
-  padding: 10px 20px;
-  margin-bottom: 0px;
-  background-color: ${props => props.theme.codeContainer} !important;
-`
-const InlineCodeContainer = styled.View`
-  padding: 0px;
-  margin-top: -23px;
-  background-color: ${props => props.theme.codeContainer} !important;
-`
-const DemoContainer = styled.View`
-  background-color: ${props => props.theme.demoContainer} !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`
-const TitleContainer = styled.View`
-  padding-top: 30px;
-`
-const TitleFlexContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  padding-top: 30px;
-`
-
-export default class NormalButtonExample extends Component {
-  render() {
-    return (
-      <Layout>
-        <Background>
-          <Text variant="h2">{'Text'}</Text>
-          <Row inner>
-            <TitleContainer>
-              <Text variant="h3">{'Import statement'}</Text>
-            </TitleContainer>
-          </Row>
-          <Row inner>
-            <Column lg={10}>
-              <CodeContainer>
-                <SyntaxHighlighter language="javascript" highlighter={'prism'}>
-                  {importStatement}
-                </SyntaxHighlighter>
-              </CodeContainer>
-            </Column>
-          </Row>
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Props'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          <Table data={props} props />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Theming'}</Text>
-              </TitleContainer>
-              <TitleFlexContainer>
-                <Text>{'All css that applies to an ordinary RNW '}</Text>
-                <InlineCodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {'<Text>'}
-                  </SyntaxHighlighter>
-                </InlineCodeContainer>
-                <Text>{'component will apply to the Morpheus-UI '}</Text>
-                <InlineCodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {'<Text>'}
-                  </SyntaxHighlighter>
-                </InlineCodeContainer>
-                <Text>{' Component'}</Text>
-              </TitleFlexContainer>
-            </Column>
-          </Row>
-          <Table data={theming} theming />
-          <Row size={1}>
-            <Column>
-              <TitleContainer>
-                <Text variant="h3">{'Demos + Code Samples'}</Text>
-              </TitleContainer>
-            </Column>
-          </Row>
-          {textExamples.map(text => (
-            <Row inner>
-              <Column lg={5}>
-                <CodeContainer>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    highlighter={'prism'}>
-                    {text.code}
-                  </SyntaxHighlighter>
-                </CodeContainer>
-              </Column>
-              <Column sm={5}>
-                <DemoContainer>
-                  <Container>{text.toRender}</Container>
-                </DemoContainer>
-              </Column>
-            </Row>
-          ))}
-        </Background>
-      </Layout>
-    )
-  }
-}
 
 const props = [
   {
