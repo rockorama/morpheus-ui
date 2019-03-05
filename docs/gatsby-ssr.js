@@ -2,7 +2,6 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StyleSheetServer } from 'aphrodite'
 import { StyleSheetServer as StyleSheetServerNoImportant } from 'aphrodite/no-important'
-import { AppRegistry } from 'react-native'
 
 // we need this function because Gatsby 2's Webpack config splits bundles into
 // chunks by page and if there is `aphrodite` & `aphrodite/no-important` it
@@ -26,23 +25,7 @@ const replaceRenderer = ({
   replaceBodyHTMLString,
   setHeadComponents,
 }) => {
-  // gatsby plugin aphrodite
   const { html, css } = renderAphrodite(bodyComponent)
-
-  replaceBodyHTMLString(html)
-
-  // gatsby plugin RNW
-  class App extends React.Component {
-    render() {
-      return bodyComponent
-    }
-  }
-
-  // See https://github.com/necolas/react-native-web/blob/master/website/guides/getting-started.md#server-side-rendering
-  AppRegistry.registerComponent('App', () => App)
-  const { element, getStyleElement } = AppRegistry.getApplication('App')
-
-  const styleElement = getStyleElement()
 
   replaceBodyHTMLString(html)
 
@@ -61,7 +44,6 @@ const replaceRenderer = ({
         )}`,
       }}
     />,
-    styleElement,
   ])
 }
 
