@@ -17,7 +17,7 @@ export default {
     errorColor: '#E51111',
     errorFontSize: 10,
 
-    checkSymbolSize: 22,
+    checkSymbolSize: 20,
     checkSymbolColor: '#DA1157',
     checkSymbolDisabledColor: '#E9E9E9',
     checkSymbolRadius: '100%',

@@ -65,6 +65,8 @@ export type PreFieldProps = {
   type?: ?string,
   errorMessages: DefaultErrorMessages,
   inForm?: boolean,
+  formValid: boolean,
+  renderIfValid?: FieldName | Array<FieldName>,
 }
 
 export type FieldProps = PreFieldProps & {

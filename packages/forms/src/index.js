@@ -22,6 +22,7 @@ export const removeFieldProps = (props: Object) => {
     setDirty,
     isSubmitted,
     submitForm,
+    formValid,
     ...other
   } = props
   return other
@@ -45,6 +46,7 @@ export const getFieldProps = (props: Object) => {
     setDirty,
     isSubmitted,
     submitForm,
+    formValid,
   } = props
 
   return {
@@ -64,5 +66,6 @@ export const getFieldProps = (props: Object) => {
     setDirty,
     isSubmitted,
     submitForm,
+    formValid,
   }
 }

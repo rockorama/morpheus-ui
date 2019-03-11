@@ -163,6 +163,7 @@ export default class Form extends Component<Props, State> {
           inForm: true,
           values,
           errors,
+          formValid: this.isValid(),
         }}>
         {this.props.children}
       </Provider>

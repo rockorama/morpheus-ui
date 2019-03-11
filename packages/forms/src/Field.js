@@ -102,15 +102,32 @@ class Field extends Component<Props, State> {
     })
   }
 
+  shouldNotRender() {
+    const { renderIfValid } = this.props
+    if (renderIfValid) {
+      const fields = Array.isArray(renderIfValid)
+        ? renderIfValid
+        : [renderIfValid]
+      return fields.filter(field => this.props.errors[field]).length
+    }
+
+    return false
+  }
+
   render() {
     const {
       addField,
       removeField,
       errorMessages,
       valueChanged,
+      renderIfValid,
       render,
       ...other
     } = this.props
+    if (this.shouldNotRender()) {
+      return null
+    }
+
     const props = {
       ...other,
       onChange: this.onChange,

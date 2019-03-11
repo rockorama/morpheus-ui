@@ -17,6 +17,7 @@ type Props = FieldProps & {
   variant?: string | Array<string>,
   theme: Object,
   disabled: boolean,
+  invalidFormDisabled?: boolean,
   onPress?: () => void,
 }
 
@@ -180,19 +181,21 @@ export class Button extends Component<Props, State> {
   )
 
   render() {
-    const { title, disabled } = this.props
+    const { title, disabled, invalidFormDisabled, formValid } = this.props
     const muitheme: Object = this.getButtonTheme(this.props, this.context)
+
+    const isDisabled = disabled || (invalidFormDisabled && !formValid)
 
     return (
       <Container muitheme={muitheme}>
-        <Clicker disabled={disabled} onPress={this.onSubmit}>
+        <Clicker disabled={isDisabled} onPress={this.onSubmit}>
           <InnerContainer
             {...this.props}
             className={transition}
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
             muitheme={muitheme}
-            disabled={disabled}
+            disabled={isDisabled}
             ishover={{ on: this.state.ishover }}>
             {(muitheme.iconPosition === 'left' ||
               muitheme.iconPosition === 'top') &&
@@ -202,7 +205,7 @@ export class Button extends Component<Props, State> {
                 className={transition}
                 ishover={{ on: this.state.ishover }}
                 muitheme={muitheme}
-                disabled={disabled}>
+                disabled={isDisabled}>
                 {title}
               </Title>
             ) : null}

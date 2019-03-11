@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import { action } from '@storybook/addon-actions'
-import { TextField, Row, Column } from '@morpheus-ui/core'
+import { TextField, Button, Row, Column } from '@morpheus-ui/core'
 import { WalletsMd } from '@morpheus-ui/icons'
 import { Form } from '@morpheus-ui/forms'
 
@@ -70,9 +70,14 @@ export default class NormaltextFieldExample extends Component<{}> {
               <TextField
                 name="outlined"
                 label="Outlined"
+                renderIfValid={['name', 'password']}
                 required
                 variant="outlined"
               />
+            </Column>
+
+            <Column sm={2}>
+              <Button title="Submit" invalidFormDisabled submit />
             </Column>
           </Row>
         </Form>
