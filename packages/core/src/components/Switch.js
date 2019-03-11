@@ -83,7 +83,7 @@ const Label = styled.Text`
   font-style: ${props => props.muitheme.fontStyle};
   color: ${props => props.muitheme.labelColor};
 
-  ${props => props.value && `color: ${props.labelCheckedColor};`}
+  ${props => props.value && `color: ${props.muitheme.labelCheckedColor};`}
 
   ${props => props.disabled && `color: ${props.muitheme.labelDisabledColor};`}
 `
