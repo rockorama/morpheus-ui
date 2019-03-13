@@ -151,16 +151,35 @@ export class Button extends Component<Props, State> {
   }
 
   onSubmit = () => {
-    if (!this.props.disabled) {
-      if (this.props.inForm && this.props.submit) {
-        this.props.submitForm()
+    const {
+      submit,
+      onPress,
+      disabled,
+      invalidFormDisabled,
+      formValid,
+      submitForm,
+      inForm,
+    } = this.props
+
+    const isDisabled = disabled || (invalidFormDisabled && !formValid)
+    if (!isDisabled) {
+      if (inForm && submit) {
+        submitForm()
       }
-      this.props.onPress && this.props.onPress()
+      onPress && onPress()
     }
   }
 
   renderIcon(muitheme: Object) {
-    const { Icon, HoverIcon, disabled } = this.props
+    const {
+      Icon,
+      HoverIcon,
+      disabled,
+      invalidFormDisabled,
+      formValid,
+    } = this.props
+    const isDisabled = disabled || (invalidFormDisabled && !formValid)
+
     if (!Icon) return null
 
     const TheIcon = this.state.ishover && !disabled ? HoverIcon || Icon : Icon
@@ -170,7 +189,7 @@ export class Button extends Component<Props, State> {
         muitheme={muitheme}
         title={this.props.title}
         ishover={{ on: this.state.ishover }}
-        disabled={disabled}>
+        disabled={isDisabled}>
         <TheIcon width={muitheme.iconWidth} height={muitheme.iconHeight} />
       </IconContainer>
     )
