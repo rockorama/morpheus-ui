@@ -13,37 +13,38 @@ import {
 import transition from '../transitionClass'
 import Theme, { getTheme } from './ThemeProvider'
 
-const Container = styled.View``
+const Container = styled.View`
+  margin: ${props => props.muitheme.margin};
+`
 
 const FieldContainer = styled.View`
   flex-direction: row;
   align-items: center;
-
+  overflow: hidden;
   background-color: ${props => props.muitheme.backgroundColor};
   border-radius: ${props => props.muitheme.borderRadius};
   border-color: ${props => props.muitheme.borderColor};
   border-width: ${props => props.muitheme.borderWidth};
-  padding: ${props => props.muitheme.padding}
-    ${props =>
-      props.muitheme.shadow &&
-      ` shadow-color: #000;
+  ${props =>
+    props.muitheme.shadow &&
+    ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-    ${props =>
-      !props.disabled &&
-      props.hasfocus.on &&
-      css`
-        background-color: ${props => props.muitheme.backgroundActiveColor};
-        border-color: ${props => props.muitheme.borderActiveColor};
-        ${props.muitheme.activeShadow &&
-          ` shadow-color: #000;
+  ${props =>
+    !props.disabled &&
+    props.hasfocus.on &&
+    css`
+      background-color: ${props => props.muitheme.backgroundActiveColor};
+      border-color: ${props => props.muitheme.borderActiveColor};
+      ${props.muitheme.activeShadow &&
+        ` shadow-color: #000;
           shadow-offset: {width: 0, height: 0};
           shadow-opacity: 0.1;
           shadow-radius: 8;
       `}
-      `};
+    `};
 
   ${props =>
     props.disabled &&
@@ -60,23 +61,28 @@ const FieldContainer = styled.View`
     `};
 `
 const TextContainer = styled.View`
+  padding: ${props => props.muitheme.padding};
   position: relative;
   flex: 1;
 `
 
 const Label = styled.Text`
-  font-family: ${props => props.muitheme.fontFamily};
-  font-size: ${props => props.muitheme.fontSize};
+  font-family: ${props => props.muitheme.labelFontFamily};
+  font-size: ${props =>
+    props.muitheme.labelFontSize || props.muitheme.fontSize};
   color: ${props => props.muitheme.labelColor};
-  position: absolute;
+  margin: ${props => props.muitheme.labelMargin};
+  text-transform: ${props => props.muitheme.labelTextTransform};
+  position: ${props => props.muitheme.labelPosition};
 
   ${props =>
     (props.hasfocus.on || props.hascontent.on) &&
     css`
       color: ${props => props.muitheme.labelActiveColor};
-      font-size: 6px;
-      margin-top: -8px;
-      text-transform: uppercase;
+      font-size: ${props => props.muitheme.labelActiveFontSize};
+      margin: ${props => props.muitheme.labelActiveMargin};
+
+      text-transform: ${props => props.muitheme.labelActiveTextTransform};
     `};
 
   ${props =>
@@ -123,11 +129,13 @@ const Field = styled.TextInput`
 `
 
 const ErrorMessage = styled.Text`
-  font-family: ${props => props.muitheme.fontFamily};
-  font-size: 10px;
-  height: 18px;
+  ${props => props.muitheme.noError && `display: none`};
+  font-family: ${props => props.muitheme.errorFontFamily};
+  font-size: ${props => props.muitheme.errorFontSize};
+  min-height: ${props => props.muitheme.errorMinHeight};
+  padding: ${props => props.muitheme.errorPadding};
+  margin: ${props => props.muitheme.errorMargin};
   color: ${props => props.muitheme.errorColor};
-  min-height: ${props => props.muitheme.fontSize};
   padding: 2px;
   margin-bottom: 2px;
 `
@@ -136,6 +144,7 @@ const IconContainerPress = styled.TouchableWithoutFeedback``
 
 const IconLeftHolder = styled.Text`
   display: flex;
+  padding: ${props => props.muitheme.iconPadding};
   margin-right: ${props => props.muitheme.iconMargin};
   color: ${props => props.muitheme.iconColor};
   ${props =>
@@ -153,6 +162,7 @@ const IconLeftHolder = styled.Text`
 
 const IconRightHolder = styled.Text`
   display: flex;
+  padding: ${props => props.muitheme.iconPadding};
   margin-left: ${props => props.muitheme.iconMargin};
   color: ${props => props.muitheme.iconColor};
   ${props =>
@@ -171,7 +181,7 @@ const IconRightHolder = styled.Text`
 type Props = FieldProps & {
   placeholder?: string,
   value?: ?string,
-  defaultValue?: ?string,
+  defaultValue?: string,
   multiline: boolean,
   disabled: boolean,
   disableEdit?: boolean,
@@ -184,15 +194,19 @@ type Props = FieldProps & {
 
 type State = {
   focus: boolean,
-  innerValue: string,
+  innerValue: any,
 }
 
 export class TextField extends Component<Props, State> {
   static contextType = Theme
 
-  state: State = {
-    focus: false,
-    innerValue: '',
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      focus: false,
+      innerValue: props.defaultValue || '',
+    }
   }
 
   getValue = () => {
@@ -277,7 +291,7 @@ export class TextField extends Component<Props, State> {
     const muitheme: Object = this.getTextFieldTheme(this.props, this.context)
 
     return (
-      <Container>
+      <Container muitheme={muitheme}>
         <FieldContainer
           className={transition}
           muitheme={muitheme}
@@ -313,14 +327,14 @@ export class TextField extends Component<Props, State> {
                 />
               </IconLeftHolder>
             ))}
-          <TextContainer>
+          <TextContainer muitheme={muitheme}>
             <Label
               className={transition}
               muitheme={muitheme}
               hasfocus={{ on: this.state.focus }}
               hascontent={{ on: hasValue }}
               disabled={disabled}>
-              {label || placeholder}
+              {label}
             </Label>
             <Field
               hasfocus={{ on: this.state.focus }}
