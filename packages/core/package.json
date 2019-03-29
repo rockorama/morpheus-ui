@@ -1,6 +1,6 @@
 {
   "name": "@morpheus-ui/core",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "UI Library from Mainframe",
   "module": "lib/index.js",
   "main": "lib/index.js",

@@ -330,9 +330,12 @@ export class DropDownComponent extends Component<Props, State> {
   selectItem = (value: string) => {
     this.props.onChange && this.props.onChange(value)
     if (!this.props.inForm) {
-      this.setState({
-        value: value,
-      })
+      this.setState(
+        {
+          value: value,
+        },
+        this.getPosition,
+      )
     }
   }
 

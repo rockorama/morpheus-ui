@@ -188,8 +188,10 @@ type Props = FieldProps & {
   variant?: string | Array<string>,
   IconLeft?: ?any,
   IconRight?: ?any,
-  onPressIcon?: (payload: { position: string, value: string }) => void,
   submitOnPressIcon?: boolean,
+  onPressIcon?: (payload: { position: string, value: string }) => void,
+  onFocus?: () => any,
+  onBlur?: () => any,
 }
 
 type State = {
@@ -241,11 +243,13 @@ export class TextField extends Component<Props, State> {
 
   onFocus = () => {
     this.setState({ focus: true })
+    this.props.onFocus && this.props.onFocus()
   }
 
   onBlur = () => {
     this.props.setDirty()
     this.setState({ focus: false })
+    this.props.onBlur && this.props.onBlur()
   }
 
   onSubmit = () => {
@@ -340,10 +344,6 @@ export class TextField extends Component<Props, State> {
               hasfocus={{ on: this.state.focus }}
               hascontent={{ on: hasValue }}
               muitheme={muitheme}
-              value={value}
-              onChangeText={this.onChange}
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
               textContentType={type}
               secureTextEntry={type === 'password'}
               onSubmitEditing={this.onSubmit}
@@ -352,6 +352,10 @@ export class TextField extends Component<Props, State> {
               disabledstyle={{ on: disabled }}
               disabled={disabled || disableEdit}
               {...other}
+              value={value}
+              onChangeText={this.onChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
             />
           </TextContainer>
           {IconRight &&
