@@ -10,6 +10,7 @@ export { default as RadioGroup } from './components/RadioGroup'
 export { default as Radio } from './components/Radio'
 export { default as DropDown } from './components/DropDown'
 export { default as Pagination } from './components/Pagination'
+export { default as Tooltip } from './components/Tooltip'
 
 //Grid
 export { default as Row } from './components/Grid/Row'
