@@ -170,6 +170,7 @@ export default class Tooltip extends Component<Props, State> {
       ...BACKSTYLE,
       width: theme.tooltipWidth,
       left: this.state.containerPos.x,
+      zIndex: theme.zIndex,
       marginLeft,
     }
 

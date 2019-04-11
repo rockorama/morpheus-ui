@@ -19,6 +19,8 @@ type Props = FieldProps & {
   disabled: boolean,
   invalidFormDisabled?: boolean,
   onPress?: () => void,
+  onMouseOver?: () => void,
+  onMouseLeave?: () => void,
 }
 
 type State = {
@@ -142,12 +144,15 @@ export class Button extends Component<Props, State> {
     this.setState({
       ishover: true,
     })
+
+    this.props.onMouseOver && this.props.onMouseOver()
   }
 
   onMouseLeave = () => {
     this.setState({
       ishover: false,
     })
+    this.props.onMouseLeave && this.props.onMouseLeave()
   }
 
   onSubmit = () => {
@@ -207,12 +212,14 @@ export class Button extends Component<Props, State> {
 
     return (
       <Container muitheme={muitheme}>
-        <Clicker disabled={isDisabled} onPress={this.onSubmit}>
+        <Clicker
+          disabled={isDisabled}
+          onMouseOver={this.onMouseOver}
+          onMouseLeave={this.onMouseLeave}
+          onPress={this.onSubmit}>
           <InnerContainer
             {...this.props}
             className={transition}
-            onMouseOver={this.onMouseOver}
-            onMouseLeave={this.onMouseLeave}
             muitheme={muitheme}
             disabled={isDisabled}
             ishover={{ on: this.state.ishover }}>

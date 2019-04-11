@@ -12,5 +12,6 @@ export default {
     tooltipShadow: true,
     tooltipBorderWidth: '0',
     tooltipBorderColor: 'transparent',
+    zIndex: 9999,
   },
 }
