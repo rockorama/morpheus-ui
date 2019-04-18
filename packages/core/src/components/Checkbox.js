@@ -132,6 +132,7 @@ type Props = FieldProps & {
   defaultValue?: ?boolean,
   disabled: boolean,
   variant?: string | Array<string>,
+  onPress?: (value: boolean) => void,
 }
 
 type State = {
@@ -157,6 +158,7 @@ export class CheckboxComponent extends Component<Props, State> {
     if (!this.props.disabled) {
       const value = this.getValue()
 
+      this.props.onPress && this.props.onPress(!value)
       this.props.onChange && this.props.onChange(!value)
       !this.props.dirty && this.props.setDirty && this.props.setDirty()
 
@@ -176,7 +178,7 @@ export class CheckboxComponent extends Component<Props, State> {
     }
 
     if (value != null) {
-      return value || defaultValue || false
+      return value
     }
 
     return this.state.value
