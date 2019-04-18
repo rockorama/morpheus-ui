@@ -1,0 +1,7 @@
+.morpheus-ui-transition{
+   transition: all 0.3s;
+}
+
+.morpheus-ui-z-index{
+  z-index: 9999999999999999999;
+}
