@@ -119,6 +119,7 @@ const Label = styled.Text`
 `
 
 const ErrorMessage = styled.Text`
+  display: ${props => (props.muitheme.noError ? 'none' : 'block')};
   font-family: ${props => props.muitheme.fontFamily};
   font-size: ${props => props.muitheme.errorFontSize};
   color: ${props => props.muitheme.errorColor};
