@@ -21,6 +21,7 @@ export default {
     checkSymbolColor: '#DA1157',
     checkSymbolDisabledColor: '#E9E9E9',
     checkSymbolRadius: '100%',
+    noError: false,
 
     fontSize: 11,
     fontFamily: 'Muli',

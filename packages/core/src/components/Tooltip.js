@@ -1,12 +1,9 @@
 //@flow
-import React, { Component, createRef, type ElementRef } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components/native'
 import memoize from 'memoize-one'
-import { Modal } from 'react-overlays'
-
 import transition from '../transitionClass'
-import getElementPosition from '../getElementPosition'
-import getScreenSize from '../getScreenSize'
+import OverlayBaloon from './OverlayBaloon'
 
 import Theme, { getTheme } from './ThemeProvider'
 
@@ -18,12 +15,6 @@ type Props = {
 
 type State = {
   hover: boolean,
-  containerPos: Object,
-  screenSize: Object,
-}
-
-const BACKSTYLE = {
-  position: 'fixed',
 }
 
 const SvgQuestionMark = props => (
@@ -37,91 +28,24 @@ const SvgQuestionMark = props => (
   </svg>
 )
 
-const SvgTooltipArrowUp = props => (
-  <svg width="21" height="21" viewBox="0 0 21 12" {...props}>
-    <path
-      d="M11.942 1.414l8.338 8.338a.915.915 0 0 1-.648 1.562H1.37a.893.893 0 0 1-.632-1.525l8.376-8.375a2 2 0 0 1 2.828 0z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
-  </svg>
-)
-
-const SvgTooltipArrowDown = props => (
-  <svg width="21" height="21" viewBox="0 0 21 12" {...props}>
-    <path
-      d="M11.942 10.597L20.28 2.26a.915.915 0 0 0-.648-1.562H1.37a.893.893 0 0 0-.632 1.524l8.376 8.375a2 2 0 0 0 2.828 0z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
-  </svg>
-)
-
 const Container = styled.View`
   margin: ${({ muistyles }) => muistyles.margin};
   flex-direction: row;
 `
 
 const IconContainer = styled.Text`
+  position: relative;
   display: flex;
   flex-direction: row;
   color: ${props =>
     props.hover ? props.muistyles.iconHoverColor : props.muistyles.iconColor};
 `
 
-const ArrowContainer = styled.Text`
-  position: fixed;
-
-  color: ${props => props.muistyles.tooltipBackgroundColor};
-`
-
-const TooltipContainer = styled.View`
-  width: 100%;
-  background-color: ${props => props.muistyles.tooltipBackgroundColor};
-  border-radius: ${props => props.muistyles.tooltipBorderRadius};
-  padding: ${props => props.muistyles.tooltipPadding};
-
-  border-width: ${props => props.muistyles.tooltipBorderWidth};
-  border-color: ${props => props.muistyles.tooltipBorderColor};
-
-  ${({ muistyles }) =>
-    muistyles.tooltipShadow &&
-    ` shadow-color: #000;
-       shadow-offset: {width: 0, height: 0};
-       shadow-opacity: 0.1;
-       shadow-radius: 8;
-    `}
-`
-
 export default class Tooltip extends Component<Props, State> {
   static contextType = Theme
 
-  // $FlowFixMe: React Ref
-  containerRef: ElementRef<'div'> = createRef()
-
   state = {
-    containerPos: {},
-    screenSize: {},
     hover: false,
-  }
-
-  componentDidMount() {
-    this.getPosition()
-
-    window.addEventListener('scroll', this.getPosition)
-    window.addEventListener('resize', this.getPosition)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.getPosition)
-    window.removeEventListener('resize', this.getPosition)
-  }
-
-  getPosition = () => {
-    this.setState({
-      containerPos: getElementPosition(this.containerRef.current),
-      screenSize: getScreenSize(),
-    })
   }
 
   getTooltipTheme = memoize((props: Props, context: Object) =>
@@ -129,12 +53,9 @@ export default class Tooltip extends Component<Props, State> {
   )
 
   onMouseOver = () => {
-    this.setState(
-      {
-        hover: true,
-      },
-      this.getPosition,
-    )
+    this.setState({
+      hover: true,
+    })
   }
 
   onMouseLeave = () => {
@@ -143,105 +64,41 @@ export default class Tooltip extends Component<Props, State> {
     })
   }
 
-  getTooltipStyles(theme: Object) {
-    if (!this.state.containerPos) {
-      return {}
-    }
-    let marginLeft =
-      ((theme.tooltipWidth - theme.iconSize) / 2) * -1 +
-      (this.props.offset || 0)
-
-    if (this.state.containerPos.x + marginLeft < 0) {
-      marginLeft = -(this.state.containerPos.x - 10)
-    }
-
-    if (
-      this.state.containerPos.x + theme.tooltipWidth + marginLeft >
-      this.state.screenSize.width
-    ) {
-      marginLeft =
-        (theme.tooltipWidth +
-          10 -
-          (this.state.screenSize.width - this.state.containerPos.x)) *
-        -1
-    }
-
-    const baseStyles = {
-      ...BACKSTYLE,
-      width: theme.tooltipWidth,
-      left: this.state.containerPos.x,
-      zIndex: theme.zIndex,
-      marginLeft,
-    }
-
-    if (!this.props.top) {
-      return {
-        ...baseStyles,
-        top: this.state.containerPos.y + 30,
-      }
-    }
-    return {
-      ...baseStyles,
-      bottom: this.state.screenSize.height - this.state.containerPos.y + 18,
-    }
-  }
-
-  getArrowStyles() {
-    if (!this.state.containerPos) {
-      return {}
-    }
-
-    if (!this.props.top) {
-      return {
-        top: this.state.containerPos.y + 18,
-        left: this.state.containerPos.x - 3,
-      }
-    }
-
-    return {
-      bottom: this.state.screenSize.height - this.state.containerPos.y + 2,
-      left: this.state.containerPos.x - 3,
-    }
-  }
-
   render() {
     const { children } = this.props
     const muistyles: Object = this.getTooltipTheme(this.props, this.context)
 
+    const baloonTheme: Object = {
+      baloonWidth: muistyles.tooltipWidth,
+      baloonBackgroundColor: muistyles.tooltipBackgroundColor,
+      baloonBorderRadius: muistyles.tooltipBorderRadius,
+      baloonPadding: muistyles.tooltipPadding,
+      baloonShadow: muistyles.tooltipShadow,
+      baloonBorderWidth: muistyles.tooltipBorderWidth,
+      baloonBorderColor: muistyles.tooltipBorderColor,
+      zIndex: muistyles.zIndex,
+    }
+
     return (
       <Container muistyles={muistyles}>
-        <div ref={this.containerRef}>
-          <IconContainer
-            className={transition}
-            onMouseOver={this.onMouseOver}
-            onMouseLeave={this.onMouseLeave}
-            hover={this.state.hover}
-            muistyles={muistyles}>
-            <SvgQuestionMark
-              width={muistyles.iconSize}
-              height={muistyles.iconSize}
-            />
-          </IconContainer>
-        </div>
-
-        {this.state.hover && (
-          <Modal show style={this.getTooltipStyles(muistyles)}>
-            <div>
-              <TooltipContainer muistyles={muistyles}>
-                <div>{children}</div>
-              </TooltipContainer>
-              <ArrowContainer
-                muistyles={muistyles}
-                style={this.getArrowStyles()}>
-                {!this.props.top ? (
-                  <SvgTooltipArrowUp />
-                ) : (
-                  <SvgTooltipArrowDown />
-                )}
-              </ArrowContainer>
-            </div>
-          </Modal>
-        )}
+        <IconContainer
+          className={transition}
+          onMouseOver={this.onMouseOver}
+          onMouseLeave={this.onMouseLeave}
+          hover={this.state.hover}
+          muistyles={muistyles}>
+          <SvgQuestionMark
+            width={muistyles.iconSize}
+            height={muistyles.iconSize}
+          />
+          <OverlayBaloon
+            theme={baloonTheme}
+            hoverable
+            offset={this.props.offset}
+            top={this.props.top}>
+            {children}
+          </OverlayBaloon>
+        </IconContainer>
       </Container>
     )
   }
