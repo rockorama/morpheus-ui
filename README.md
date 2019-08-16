@@ -4,13 +4,13 @@ A React UI Library
 
 ## Collection
 
-This library contains 4 packages:
+This library contains 3 packages:
 
-@morpheus-ui/core - Set of UI Components
-@morpheus-ui/fonts - Fonts used by Morpheus UI
-@morpheus-ui/forms - Used by Morpheus UI to add a form context to some UI components
-@morpheus-ui/icons - Collection of Icon Components designed by Diogo Perillo
+`@morpheus-ui/core` - Set of UI Components
 
+`@morpheus-ui/fonts` - Fonts used by Morpheus UI
+
+`@morpheus-ui/forms` - Used by Morpheus UI to add a form context to some UI components
 
 ## Development Overview
 
