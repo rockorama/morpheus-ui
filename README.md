@@ -1,6 +1,6 @@
-# Morpheus UI - By Mainframe
+# Morpheus UI
 
-A React UI Library designed by Mainframe
+A React UI Library
 
 ## Collection
 
@@ -9,12 +9,12 @@ This library contains 4 packages:
 @morpheus-ui/core - Set of UI Components
 @morpheus-ui/fonts - Fonts used by Morpheus UI
 @morpheus-ui/forms - Used by Morpheus UI to add a form context to some UI components
-@morpheus-ui/icons - Collection of Icon Components designed by Mainframe
+@morpheus-ui/icons - Collection of Icon Components designed by Diogo Perillo
 
 
 ## Development Overview
 
-This library contains a set of UI/UX components used to build Mainframe dApps
+This library contains a set of UI/UX components used to build Diogo Perillo dApps
 
 In order to make it easier to share code among packages, this project uses [lerna](https://lernajs.io/). Whenever code changes, it's expected that you run `yarn build` from the root of the project directory, and it will kick off the necessary `lerna` build processes in the package folders.
 

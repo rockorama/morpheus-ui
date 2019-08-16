@@ -7,10 +7,10 @@
     "morpheus-ui",
     "fonts"
   ],
-  "author": "Mainframe",
+  "author": "Diogo Perillo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
+    "url": "git+https://github.com/diogoperillo/morpheus-ui.git"
   }
 }

@@ -1,19 +1,19 @@
 {
   "name": "@morpheus-ui/forms",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Form context for react components",
   "module": "lib/index.js",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
+    "url": "git+https://github.com/diogoperillo/morpheus-ui.git"
   },
-  "author": "Mainframe",
+  "author": "Diogo Perillo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MainframeHQ/morpheus-ui/issues"
+    "url": "https://github.com/diogoperillo/morpheus-ui/issues"
   },
-  "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
+  "homepage": "https://github.com/diogoperillo/morpheus-ui#readme",
   "scripts": {
     "build:clean": "del-cli lib",
     "build:js": "cross-env BABEL_ENV=browser-cjs babel src --out-dir lib --ignore test.js",

@@ -41,7 +41,7 @@ const Divider = () => <View style={styles.divider} />
 
 const SourceLink = ({ uri }) => (
   <ExternalLink
-    href={`https://github.com/MainframeHQ/morpheus-ui/tree/master/packages/core/src${uri}`}
+    href={`https://github.com/diogoperillo/morpheus-ui/tree/master/packages/core/src${uri}`}
     style={styles.link}>
     View source code on GitHub
   </ExternalLink>

@@ -1,9 +1,9 @@
 # Morpheus UI
 
-[React](http://facebook.github.io/react/) components that implement [Mainframe Designs](https://mainframe.com).
+[React](http://facebook.github.io/react/) UI components.
 
 [![npm package](https://img.shields.io/npm/v/@morpheus-ui/core/latest.svg)](https://www.npmjs.com/package/@morpheus-ui/core)
-[![CircleCI](https://circleci.com/gh/MainframeHQ/morpheus-ui.svg?style=svg)](https://circleci.com/gh/MainframeHQ/morpheus-ui)
+[![CircleCI](https://circleci.com/gh/diogoperillo/morpheus-ui.svg?style=svg)](https://circleci.com/gh/diogoperillo/morpheus-ui)
 
 ## Installation
 

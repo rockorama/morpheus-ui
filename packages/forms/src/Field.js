@@ -142,13 +142,14 @@ class Field extends Component<Props, State> {
   }
 }
 
-export default (Component: any) => {
+export default (Component: any, defaultProps?: Object = {}) => {
   return (props: Object) => {
     const FinalComponent = (
       <Consumer>
         {(value: FormContext) => {
           return (
             <Field
+              {...defaultProps}
               {...props}
               {...value}
               render={(fieldProps: FieldProps) => <Component {...fieldProps} />}

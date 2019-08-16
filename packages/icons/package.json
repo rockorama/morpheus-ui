@@ -6,14 +6,14 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MainframeHQ/morpheus-ui.git"
+    "url": "git+https://github.com/diogoperillo/morpheus-ui.git"
   },
-  "author": "Mainframe",
+  "author": "Diogo Perillo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MainframeHQ/morpheus-ui/issues"
+    "url": "https://github.com/diogoperillo/morpheus-ui/issues"
   },
-  "homepage": "https://github.com/MainframeHQ/morpheus-ui#readme",
+  "homepage": "https://github.com/diogoperillo/morpheus-ui#readme",
   "scripts": {
     "build:clean": "del-cli components *js",
     "build:components": "npx @svgr/cli -d ./components ./svgs --icon --replace-attr-values \"#D3D3D3=currentColor\"",
