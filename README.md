@@ -14,9 +14,11 @@ This library contains 3 packages:
 
 ## Development Overview
 
-This library contains a set of UI/UX components used to build Diogo Perillo dApps
+This library contains a set of UI/UX components.
 
-In order to make it easier to share code among packages, this project uses [lerna](https://lernajs.io/). Whenever code changes, it's expected that you run `yarn build` from the root of the project directory, and it will kick off the necessary `lerna` build processes in the package folders.
+In order to make it easier to share code among packages, this project uses [lerna](https://lernajs.io/).
+
+Whenever code changes, it's expected that you run `yarn build` from the root of the project directory, and it will kick off the necessary `lerna` build processes in the package folders.
 
 ## Getting Started
 
